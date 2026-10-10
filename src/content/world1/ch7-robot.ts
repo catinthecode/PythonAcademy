@@ -56,6 +56,32 @@ export const ch7: Chapter = {
                     ],
                 },
                 {
+                    scene: 'room',
+                    alt: 'Max says hi lots to Bolt, and Bolt prints hi eight times on one line.',
+                    cast: [
+                        { who: 'max', pose: 'point', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'Bolt, say hi lots!' },
+                        { who: 'bolt', text: 'Lots of hi, coming up! Beep!' },
+                    ],
+                    caption: 'Max wanted 3 hi lines. Oops!',
+                    code: py`print("hi hi hi hi hi hi hi hi")`,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Py points at a checklist on the screen: what, how big, how many, where.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bolt', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Good instructions say WHAT, HOW BIG and HOW MANY.' },
+                        { who: 'bolt', text: 'Numbers are best. I never guess numbers wrong!' },
+                    ],
+                },
+                {
                     scene: 'meadow',
                     alt: 'Max gives Bolt a clear instruction and Bolt draws a perfect square.',
                     wide: true,
@@ -216,6 +242,7 @@ export const ch7: Chapter = {
                 {
                     scene: 'room',
                     alt: 'Bolt proudly holds up code while Sneak giggles behind it.',
+                    wide: true,
                     cast: [
                         { who: 'bolt', pose: 'happy', x: 32 },
                         { who: 'sneak', pose: 'happy', x: 76, flip: true },
@@ -231,6 +258,56 @@ export const ch7: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 28 }],
                     bubbles: [
                         { who: 'py', text: 'Always check what a robot gives you. Read it. Run it. Test it with different inputs!' },
+                    ],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Max reads Bolt\'s code slowly, counting on his fingers.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'max', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Step 1: read it. Trace it like Python before you press Run.' },
+                        { who: 'max', text: 'blocks is 3, then 6, then 12!' },
+                    ],
+                    code: py`
+                        blocks = 3
+                        for i in range(2):
+                            blocks = blocks + blocks
+                            print(blocks)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Bolt scratches its head next to a strange spiky shape instead of a triangle.',
+                    cast: [
+                        { who: 'max', pose: 'surprised', x: 25 },
+                        { who: 'bolt', pose: 'sad', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'I asked for a triangle with sides of 100!' },
+                        { who: 'bolt', text: 'Oops! I swapped my numbers. Robots slip up too.' },
+                    ],
+                    caption: 'Step 2: run it. Which number goes where?',
+                    code: py`
+                        from turtle import *
+                        for i in range(3):
+                            forward(120)
+                            left(100)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Sneak giggles at a sign that says: worked once, so it must be right.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'sneak', text: 'It worked once, so it is right. Hehe!' },
+                        { who: 'py', text: 'One test is not enough. Step 3: test different numbers!' },
                     ],
                 },
                 {

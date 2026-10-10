@@ -56,7 +56,14 @@ for (const world of WORLDS.filter(w => w.chapters.length > 0)) {
         for (const chapter of world.chapters) {
             await expectRendered(page, `w/${world.id}/${chapter.id}`, errors, chapter.title);
             for (const lesson of chapter.lessons) {
-                await expectRendered(page, `w/${world.id}/${chapter.id}/lesson/${lesson.id}`, errors, lesson.title);
+                const route = `w/${world.id}/${chapter.id}/lesson/${lesson.id}`;
+                if (lesson.kind === 'read') {
+                    // All of a chapter's books share one page, headed by the chapter; each book is a section
+                    await expectRendered(page, route, errors, chapter.title);
+                    await expect(page.locator(`#book-${lesson.id} h2`), `#/${route} should show book "${lesson.title}"`).toContainText(lesson.title);
+                } else {
+                    await expectRendered(page, route, errors, lesson.title);
+                }
             }
         }
     });

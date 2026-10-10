@@ -47,7 +47,7 @@ export const ch7: Chapter = {
                         { who: 'bolt', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'kai', text: '"damage(attack, defense) returns attack minus defense, at least 1. damage(10, 4) is 6, damage(2, 9) is 1."' },
+                        { who: 'kai', text: '"damage(attack, defense) is attack minus defense, but at least 1. damage(2, 9) is 1."' },
                         { who: 'bolt', text: 'Got it! Now I know exactly what to build.' },
                     ],
                     code: py`
@@ -56,6 +56,57 @@ export const ch7: Chapter = {
 
                         print(damage(10, 4), damage(2, 9))
                     `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bolt proudly shows a name decorated with squiggles. Kai is unsure.',
+                    cast: [
+                        { who: 'kai', pose: 'talk', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'Bolt, make my name fancy.' },
+                        { who: 'bolt', text: 'Fancy means squiggles? I had to guess!' },
+                    ],
+                    caption: 'Fuzzy words make robots guess.',
+                    code: py`
+                        def fancy(name):
+                            return "~" + name + "~"
+
+                        print(fancy("Kai"))
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Kai holds up an example card: half_hp(5) is 2.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Examples answer the tricky questions, like how to round.' },
+                        { who: 'kai', text: 'half_hp(5) is 2, so round DOWN!' },
+                    ],
+                    code: py`
+                        def half_hp(hp):
+                            return hp // 2
+
+                        print(half_hp(5))
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py pins a finished spec card to the wall. Bolt salutes.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'A good spec gives the name, the inputs, what it returns, and examples, including the edges. Leave nothing to guess.' },
+                        { who: 'bolt', text: 'Clear specs make me a much better helper!' },
+                    ],
                 },
             ],
         },
@@ -214,6 +265,52 @@ export const ch7: Chapter = {
                     alt: 'Kai holds a finished spec card like a treasure map.',
                     cast: [{ who: 'kai', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'kai', text: 'Clear specs + tests = robot helpers that actually help.' }],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py copies examples from a spec card straight into asserts.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Copy each example straight into an assert.' },
+                        { who: 'kai', text: 'Both examples pass!' },
+                    ],
+                    code: py`
+                        def stars(n):
+                            return "*" * n
+
+                        assert stars(3) == "***"
+                        assert stars(0) == ""
+                        print("Spec examples pass!")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Kai scratches his head at a spec that just says "returns a big number".',
+                    cast: [
+                        { who: 'kai', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: '"Returns a big number." How do I test that?' },
+                        { who: 'py', text: 'You can\'t! Good examples have EXACT answers.' },
+                    ],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Kai, Py and Bolt watch every test on the screen turn green.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'kai', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Spec, then examples, then asserts, then run them on Bolt\'s code. A failing test means fix the code, or fix the spec if it was unclear.' },
+                        { who: 'bolt', text: 'All green. Beep boop!' },
+                    ],
                 },
             ],
         },

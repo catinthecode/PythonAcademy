@@ -58,6 +58,62 @@ export const ch5: Chapter = {
                             print()
                     `,
                 },
+                {
+                    scene: 'sky',
+                    alt: 'Glitch built a tall thin tower instead of a wall.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'My wall came out as one tall column!' },
+                        { who: 'py', text: 'print() is inside the inner loop. Unpush it one step.' },
+                    ],
+                    code: py`
+                        for row in range(2):
+                            for col in range(3):
+                                print("#", end="")
+                                print()
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix counts the bricks in a wall of 2 rows and 5 columns.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'How many times does the inside run?' },
+                        { who: 'py', text: 'Rows times columns: 2 × 5 is 10. Count to check!' },
+                    ],
+                    code: py`
+                        bricks = 0
+                        for row in range(2):
+                            for col in range(5):
+                                bricks += 1
+                        print("Bricks:", bricks)
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py labels a wall: rows going down, columns going across.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Outer loop = rows. Inner loop = columns. end="" keeps a row together, and print() after the inner loop starts the next row.' },
+                        { who: 'bix', text: 'Rows down, bricks across!' },
+                    ],
+                    code: py`
+                        for row in range(2):
+                            for col in range(6):
+                                print("=", end="")
+                            print()
+                    `,
+                },
             ],
         },
         {
@@ -168,7 +224,7 @@ export const ch5: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [{ who: 'py', text: 'A times table is a grid: rows times columns!' }],
                     code: py`
-                        for a in range(1, 4):
+                        for a in range(2, 5):
                             for b in range(1, 4):
                                 print(a * b, end=" ")
                             print()
@@ -179,6 +235,59 @@ export const ch5: Chapter = {
                     alt: 'Glitch hops across a grid of floating platforms.',
                     cast: [{ who: 'glitch', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'glitch', text: 'Grids are everywhere in games: maps, boards, pixel art!' }],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'A checkerboard floor of light and dark tiles.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Add an if: when row + col is even, print #, otherwise a dot.' },
+                        { who: 'bix', text: 'A checkerboard!' },
+                    ],
+                    code: py`
+                        for row in range(4):
+                            for col in range(4):
+                                if (row + col) % 2 == 0:
+                                    print("#", end="")
+                                else:
+                                    print(".", end="")
+                            print()
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Glitch frowns at a staircase whose first step is missing.',
+                    cast: [
+                        { who: 'glitch', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'My staircase starts with an empty row!' },
+                        { who: 'py', text: 'range(0) runs zero times. Start rows at 1.' },
+                    ],
+                    code: py`
+                        for row in range(4):
+                            for col in range(row):
+                                print("*", end="")
+                            print()
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix, Glitch and Py stand on a grid of floating platforms.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'bix', pose: 'happy', x: 55 },
+                        { who: 'glitch', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'The inner loop can use the outer variable for growing shapes, and an if inside makes patterns.' },
+                        { who: 'bix', text: 'Stairs, tables, checkerboards... I can grid anything!' },
+                    ],
                 },
             ],
         },

@@ -50,6 +50,57 @@ export const ch7: Chapter = {
                         { who: 'bolt', text: 'Oops. > and >= only disagree right at the edge.' },
                     ],
                 },
+                {
+                    scene: 'village',
+                    alt: 'Fizz holds a cake with 8 slices, but nobody came to the party.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'fizz', pose: 'sad', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'candy', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Weird values break code. What if 0 friends come?' },
+                        { who: 'fizz', text: 'Sharing with nobody... CRASH!' },
+                    ],
+                    code: py`
+                        slices = 8
+                        friends = 0
+                        print(slices // friends)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae points at an HP bar that has dropped below zero.',
+                    cast: [
+                        { who: 'rae', pose: 'surprised', x: 25 },
+                        { who: 'bolt', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'HP is -3, but it says Still fighting!' },
+                        { who: 'bolt', text: '== 0 misses negatives. I need <= 0!' },
+                    ],
+                    code: py`
+                        hp = -3
+                        if hp == 0:
+                            print("Fainted")
+                        else:
+                            print("Still fighting")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae holds up three cards: normal, edge, weird. Bolt salutes.',
+                    wide: true,
+                    cast: [
+                        { who: 'rae', pose: 'point', x: 22 },
+                        { who: 'py', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'happy', x: 80, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'My test plan: a NORMAL value, the EDGE value right on the line, and a WEIRD one like 0 or a negative.' },
+                        { who: 'bolt', text: 'Three tests, every time. Beep!' },
+                    ],
+                },
             ],
         },
         {
@@ -180,9 +231,16 @@ export const ch7: Chapter = {
                 {
                     scene: 'arena',
                     alt: 'Rae brainstorms strange inputs on a scroll.',
-                    cast: [{ who: 'rae', pose: 'think', x: 35 }],
-                    props: [{ item: 'scroll', x: 72, y: 100 }],
-                    bubbles: [{ who: 'rae', text: 'What if HP is 0? Negative? Exactly at the limit? A name in CAPITALS?' }],
+                    wide: true,
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'happy', x: 78, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 52, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: 'What if HP is 0? Negative? Exactly at the limit? A name in CAPITALS?' },
+                        { who: 'py', text: 'Great questions! Thinking of strange inputs is a tester\'s superpower.' },
+                    ],
                 },
                 {
                     scene: 'arena',
@@ -198,10 +256,71 @@ export const ch7: Chapter = {
                     ],
                 },
                 {
+                    scene: 'meadow',
+                    alt: 'A weather sign shows hot, mild and cold. Py points at each one.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'rae', pose: 'think', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Every path needs a test. Three paths? Test at least three values.' },
+                        { who: 'rae', text: 'Plus the edges, 25 and 10!' },
+                    ],
+                    caption: 'Try 30, 15 and 5. Then 25 and 10.',
+                    code: py`
+                        temp = 30
+                        if temp > 25:
+                            print("Hot")
+                        elif temp > 10:
+                            print("Mild")
+                        else:
+                            print("Cold")
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'An empty name box on the screen. Fizz tilts its head.',
+                    cast: [
+                        { who: 'fizz', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'fizz', text: 'What if the player types nothing at all?' },
+                        { who: 'py', text: 'Empty text "" is an edge too. Its len() is 0.' },
+                    ],
+                    code: py`
+                        name = ""
+                        if len(name) == 0:
+                            print("Please type a name")
+                        else:
+                            print("Hi", name)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bolt types super fast while Rae watches with a checklist.',
+                    cast: [
+                        { who: 'bolt', pose: 'talk', x: 25 },
+                        { who: 'rae', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bolt', text: 'I write code super fast, but I only test what you ask me to.' },
+                        { who: 'rae', text: 'Then I will check your edges myself!' },
+                    ],
+                },
+                {
                     scene: 'arena',
                     alt: 'Bolt gives a thumbs-up, ready to be tested.',
-                    cast: [{ who: 'bolt', pose: 'wave', x: 40 }],
-                    bubbles: [{ who: 'bolt', text: 'Test me harder! AI helpers like me make edge mistakes ALL the time.' }],
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bolt', pose: 'wave', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Normal, edge, weird: test all three before you trust any code, even your own.' },
+                        { who: 'bolt', text: 'Test me harder! AI helpers like me make edge mistakes ALL the time.' },
+                    ],
                 },
             ],
         },

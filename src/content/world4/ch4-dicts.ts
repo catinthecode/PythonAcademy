@@ -25,7 +25,7 @@ export const ch4: Chapter = {
                         { who: 'py', text: 'Use a dictionary: look things up by NAME. Each key has a value.' },
                     ],
                     code: py`
-                        bag = {"potion": 3, "key": 1, "gold": 50}
+                        bag = {"potion": 2, "key": 1, "gold": 80}
                         print(bag["potion"])
                         print(bag["gold"])
                     `,
@@ -36,9 +36,9 @@ export const ch4: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 30 }],
                     bubbles: [{ who: 'py', text: 'Put a value at a key to add it, or to change what\'s already there.' }],
                     code: py`
-                        bag = {"potion": 3}
-                        bag["shield"] = 1
-                        bag["potion"] = bag["potion"] + 2
+                        bag = {"arrow": 10}
+                        bag["bow"] = 1
+                        bag["arrow"] = bag["arrow"] + 5
                         print(bag)
                     `,
                 },
@@ -51,12 +51,62 @@ export const ch4: Chapter = {
                     ],
                     bubbles: [
                         { who: 'slime', text: 'Gimme the dragon egg! KeyError! Blorp!' },
-                        { who: 'py', text: 'Asking for a missing key crashes. .get(key, default) is safe: it gives the default instead.' },
+                        { who: 'py', text: 'A missing key crashes. .get(key, default) safely gives the default.' },
                     ],
                     code: py`
-                        bag = {"potion": 3}
-                        print(bag.get("egg", 0))
-                        print(bag["egg"])
+                        bag = {"arrow": 10}
+                        print(bag.get("map", 0))
+                        print(bag["map"])
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai frowns at a crash after leaving the quotes off a key.',
+                    cast: [
+                        { who: 'kai', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'bag[arrow] crashed with a NameError!' },
+                        { who: 'py', text: 'Text keys need quotes: bag["arrow"].' },
+                    ],
+                    code: py`
+                        bag = {"arrow": 10}
+                        print(bag[arrow])
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py compares a numbered list with a labelled hero sheet.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Lists find things by position. Dictionaries find them by name.' },
+                        { who: 'kai', text: 'hero["level"] beats hero[2]!' },
+                    ],
+                    code: py`
+                        hero = {"name": "Kai", "hp": 30, "level": 4}
+                        print(hero["level"])
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai checks his stats on a glowing scroll as he takes damage.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'A dictionary holds key: value pairs. d[key] reads, d[key] = value adds or changes, and .get() asks safely.' },
+                        { who: 'kai', text: 'No mana key? .get gives me 0 instead of a crash!' },
+                    ],
+                    code: py`
+                        stats = {"hp": 30}
+                        stats["hp"] -= 5
+                        print(stats.get("hp", 0), stats.get("mana", 0))
                     `,
                 },
             ],
@@ -154,7 +204,7 @@ export const ch4: Chapter = {
                     ],
                     bubbles: [{ who: 'py', text: 'A for loop over a dictionary gives you each KEY. Use it to look up the value.' }],
                     code: py`
-                        bag = {"potion": 3, "key": 1, "gold": 50}
+                        bag = {"apple": 4, "torch": 2, "rope": 1}
                         for item in bag:
                             print(item, bag[item])
                     `,
@@ -165,8 +215,8 @@ export const ch4: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 30 }],
                     bubbles: [{ who: 'py', text: 'in checks the KEYS. len() counts how many keys there are.' }],
                     code: py`
-                        bag = {"potion": 3, "key": 1}
-                        print("key" in bag)
+                        bag = {"apple": 4, "torch": 2}
+                        print("torch" in bag)
                         print(len(bag))
                     `,
                 },
@@ -181,6 +231,56 @@ export const ch4: Chapter = {
                             counts[letter] = counts.get(letter, 0) + 1
                         print(counts)
                     `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Kai adds up the prices on a shop sign.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'think', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Loop over the keys and add up every value.' },
+                        { who: 'kai', text: 'Buying one of everything costs 8!' },
+                    ],
+                    code: py`
+                        prices = {"potion": 5, "map": 3}
+                        total = 0
+                        for item in prices:
+                            total += prices[item]
+                        print(total)
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime is confused that 3 is not found in a bag holding 3 potions.',
+                    cast: [
+                        { who: 'slime', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: '3 in bag is False? I HAVE 3 potions!' },
+                        { who: 'py', text: 'in looks at the KEYS, not the values.' },
+                    ],
+                    code: py`
+                        bag = {"potion": 3}
+                        print(3 in bag)
+                        print("potion" in bag)
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai tips out his bag and counts everything with a tally sheet.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Looping over a dictionary gives you the keys. in checks the keys. And .get(key, 0) + 1 can count anything.' },
+                        { who: 'kai', text: 'My bag is finally organised!' },
+                    ],
                 },
             ],
         },

@@ -43,12 +43,62 @@ export const ch7: Chapter = {
                     ],
                     bubbles: [{ who: 'bix', text: 'A trace table: write each variable\'s value as the code runs, line by line.' }],
                     code: py`
-                        x = [3, 7, 2]
-                        y = 0
-                        for z in x:
-                            y += z
-                        print(y)
+                        w = "hello"
+                        n = 0
+                        for ch in w:
+                            if ch == "l":
+                                n += 1
+                        print(n)
                     `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bix reads friendly variable names and smiles.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Step 1: guess from the names. Good names tell the story.' },
+                        { who: 'bix', text: 'It says hello to each friend!' },
+                    ],
+                    code: py`
+                        friends = ["Glitch", "Bolt"]
+                        for friend in friends:
+                            print("Hello", friend)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bix works through a tiny example on a notepad.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'Step 2: total is 0, then 10, then 30.' },
+                        { who: 'py', text: 'Tiny examples make tracing quick!' },
+                    ],
+                    code: py`
+                        total = 0
+                        for n in [1, 2]:
+                            total += n * 10
+                        print(total)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Bix runs the code and compares it with his notes. Bolt watches.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'bix', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'surprised', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Step 3: run it and compare with your guess. Surprised? Trace again, more slowly.' },
+                        { who: 'bolt', text: 'So you really DO check my code. Good!' },
+                    ],
                 },
             ],
         },
@@ -159,12 +209,14 @@ export const ch7: Chapter = {
                 {
                     scene: 'room',
                     alt: 'Bolt shrugs at its own confusing variable names.',
+                    wide: true,
                     cast: [
                         { who: 'bolt', pose: 'think', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Names like x, y, z make code hard to read. When an AI helps you, ask for clear names!' },
+                        { who: 'bolt', text: 'x, y and z are short. Less typing!' },
+                        { who: 'py', text: 'But hard to read! When an AI helps you, ask for clear names.' },
                     ],
                 },
                 {
@@ -182,6 +234,49 @@ export const ch7: Chapter = {
                     alt: 'Bix explains the code out loud in plain words.',
                     cast: [{ who: 'bix', pose: 'talk', x: 40 }],
                     bubbles: [{ who: 'bix', text: 'If I can explain it in plain words, I understand it. If not, I trace it again.' }],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bix tests a doubling program with two numbers.',
+                    cast: [
+                        { who: 'bix', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'It doubles 2 into 4... but 5 gives 7!' },
+                        { who: 'py', text: 'It adds 2 instead of doubling. One test hid that!' },
+                    ],
+                    code: py`
+                        for n in [2, 5]:
+                            print(n + 2)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bolt points at its code line by line, explaining each one.',
+                    cast: [
+                        { who: 'bix', pose: 'talk', x: 25 },
+                        { who: 'bolt', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'Bolt, explain your code line by line.' },
+                        { who: 'bolt', text: 'Line 1 makes a list. Line 2 sets total to 0...' },
+                    ],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py, Bix and Bolt stand beside a checklist: read, trace, explain, test.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'bix', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'happy', x: 82, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 36, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Clear names, a quick trace, plain words, then tests. That is how you trust code you did not write.' },
+                        { who: 'bix', text: 'Read, trace, explain, test!' },
+                    ],
                 },
             ],
         },

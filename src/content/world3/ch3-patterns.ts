@@ -39,7 +39,7 @@ export const ch3: Chapter = {
                     props: [{ item: 'coin', x: 52, y: 100 }],
                     bubbles: [{ who: 'py', text: 'The TOTAL pattern: start at 0, add each item.' }],
                     code: py`
-                        scores = [4, 5, 6]
+                        scores = [2, 9, 4]
                         total = 0
                         for s in scores:
                             total += s
@@ -59,6 +59,58 @@ export const ch3: Chapter = {
                                 count += 1
                         print("Big scores:", count)
                     `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix holds up a brick instead of a position number.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'Do I still need [0], [1], [2]?' },
+                        { who: 'py', text: 'No! brick IS the item itself, not its position.' },
+                    ],
+                    code: py`
+                        bricks = ["red", "blue", "green"]
+                        for brick in bricks:
+                            print(brick, len(brick))
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Glitch made a tally mark for every score, even the small ones.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'It counted 4, but only 2 scores are big!' },
+                        { who: 'py', text: 'count += 1 must be INSIDE the if. Push it in further.' },
+                    ],
+                    code: py`
+                        scores = [3, 8, 6, 2]
+                        count = 0
+                        for s in scores:
+                            if s > 5:
+                                print("Big one!")
+                            count += 1
+                        print("Big scores:", count)
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Py holds two signs, TOTAL and COUNT. Bix copies them into a notebook.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'TOTAL adds every item. COUNT adds 1 only when something is true. Both start at 0, BEFORE the loop.' },
+                        { who: 'bix', text: 'Two patterns I will use forever!' },
+                    ],
                 },
             ],
         },
@@ -171,7 +223,7 @@ export const ch3: Chapter = {
                         { who: 'py', text: 'The BIGGEST pattern: remember the best so far. If you find a bigger one, it becomes the new best.' },
                     ],
                     code: py`
-                        scores = [3, 8, 5]
+                        scores = [4, 11, 7]
                         best = scores[0]
                         for s in scores:
                             if s > best:
@@ -188,7 +240,7 @@ export const ch3: Chapter = {
                     ],
                     bubbles: [
                         { who: 'glitch', text: 'Python has shortcuts: sum(), max(), min()!' },
-                        { who: 'py', text: 'True! But the patterns let you do things the shortcuts can\'t, like counting only BIG scores.' },
+                        { who: 'py', text: 'True! But patterns can do more, like counting only BIG scores.' },
                     ],
                     code: py`
                         scores = [3, 8, 5]
@@ -201,9 +253,62 @@ export const ch3: Chapter = {
                     cast: [{ who: 'bix', pose: 'point', x: 40 }],
                     bubbles: [{ who: 'bix', text: 'Average = total ÷ how many. That\'s total / len(scores).' }],
                     code: py`
-                        scores = [2, 4, 6]
+                        scores = [3, 6, 9]
                         print("Average:", sum(scores) / len(scores))
                     `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'A podium with three names. Py places a crown on the winner.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Track TWO things: the best score, and who got it.' },
+                        { who: 'bix', text: 'Glitch wins with 9!' },
+                    ],
+                    code: py`
+                        names = ["Bix", "Glitch", "Bolt"]
+                        scores = [7, 9, 4]
+                        best = scores[0]
+                        winner = names[0]
+                        for i in range(len(scores)):
+                            if scores[i] > best:
+                                best = scores[i]
+                                winner = names[i]
+                        print(winner, best)
+                    `,
+                },
+                {
+                    scene: 'circuit',
+                    alt: 'Glitch tries to average an empty list and the screen flashes red.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'The average of NO scores... CRASH!' },
+                        { who: 'py', text: 'len is 0, and nothing divides by 0. Check first!' },
+                    ],
+                    code: py`
+                        scores = []
+                        print(sum(scores) / len(scores))
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix and Glitch hold up trophies for biggest and smallest.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'bix', pose: 'happy', x: 55 },
+                        { who: 'glitch', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Biggest: start with the FIRST item and keep the best so far. sum, max and min are handy shortcuts.' },
+                        { who: 'bix', text: 'And patterns for anything special!' },
+                    ],
                 },
             ],
         },

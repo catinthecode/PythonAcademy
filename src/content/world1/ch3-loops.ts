@@ -46,13 +46,48 @@ export const ch3: Chapter = {
                     scene: 'room',
                     alt: 'Py explains that pushed-in lines are inside the loop.',
                     cast: [
-                        { who: 'py', pose: 'talk', x: 30 },
+                        { who: 'py', pose: 'talk', x: 25 },
                         { who: 'max', pose: 'think', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'range(3) means "do it 3 times". Lines pushed in with 4 spaces are INSIDE the loop.' },
-                        { who: 'py', text: "Don't forget the colon : at the end of the for line!" },
+                        { who: 'py', text: 'range(3) means "3 times". Lines pushed in with 4 spaces are INSIDE the loop.' },
+                        { who: 'max', text: 'And the colon : at the end starts the loop!' },
                     ],
+                    caption: 'Both pushed-in lines repeat, together.',
+                    code: py`
+                        for i in range(3):
+                            print("Hop")
+                            print("Skip")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py circles two lines that appear again and again in Max\'s long scroll of code.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Find the part that repeats. Your square is forward(100), left(90)... four times.' },
+                        { who: 'max', text: 'So I write it ONCE and loop it 4 times!' },
+                    ],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Sneak grins at a loop whose inside lines are not pushed in.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'I squashed the spaces flat! Hehe!' },
+                        { who: 'py', text: 'Now nothing is inside the loop. Press Tab to push lines back in.' },
+                    ],
+                    code: py`
+                        for i in range(3):
+                        print("Moo")
+                    `,
                 },
                 {
                     scene: 'meadow',
@@ -203,13 +238,14 @@ export const ch3: Chapter = {
                 {
                     scene: 'village',
                     alt: 'Max points at the letter i. Py holds up counting cards 0, 1, 2.',
+                    wide: true,
                     cast: [
                         { who: 'max', pose: 'think', x: 28 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
                         { who: 'max', text: "What's the i for?" },
-                        { who: 'py', text: 'i counts the loops: 0, 1, 2. Python starts counting at 0, not 1!' },
+                        { who: 'py', text: 'i counts the loops: 0, 1, 2. Python starts counting at 0, not 1! It still runs 3 times.' },
                     ],
                     code: py`
                         for i in range(3):
@@ -225,6 +261,59 @@ export const ch3: Chapter = {
                         for i in range(2):
                             print("Dig")
                         print("Done!")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py pushes the Done line inward, and now it repeats with Dig.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Now push Done! in too. Spot the difference?' },
+                        { who: 'max', text: 'Done! repeats every time now!' },
+                    ],
+                    code: py`
+                        for i in range(2):
+                            print("Dig")
+                            print("Done!")
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Shelly looks sad next to one long straight line instead of a square.',
+                    cast: [
+                        { who: 'shelly', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'shelly', text: 'I wanted a square, but I drew one long line!' },
+                        { who: 'py', text: 'left(90) is outside the loop. You only turned once, at the end.' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        for i in range(4):
+                            forward(80)
+                        left(90)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Max holds up three fingers next to a triangle tent.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'How do I loop a triangle?' },
+                        { who: 'py', text: 'Sides go in range, the turn goes in left. Triangle: 3 sides, turn 120.' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        for i in range(3):
+                            forward(100)
+                            left(120)
                     `,
                 },
                 {

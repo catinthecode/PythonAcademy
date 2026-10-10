@@ -63,6 +63,23 @@ export const ch8: Chapter = {
                 },
                 {
                     scene: 'meadow',
+                    alt: 'Shelly stands on a giant map grid with (0, 0) marked in the middle.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'shelly', pose: 'happy', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: "Shelly's world is a map. The middle is (0, 0)." },
+                        { who: 'shelly', text: 'goto(100, 100) walks me straight to that spot!' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        goto(100, 0)
+                        goto(100, 100)
+                    `,
+                },
+                {
+                    scene: 'meadow',
                     alt: 'Shelly lifts her pencil and hops to a new spot.',
                     cast: [
                         { who: 'shelly', pose: 'talk', x: 35 },
@@ -81,9 +98,35 @@ export const ch8: Chapter = {
                 },
                 {
                     scene: 'meadow',
+                    alt: 'Py points left and down, where the negative numbers are on the map.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'What does a minus number mean?' },
+                        { who: 'py', text: 'Minus x is left of the middle. Minus y is below it.' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        penup()
+                        goto(-120, -60)
+                        pendown()
+                        forward(60)
+                    `,
+                },
+                {
+                    scene: 'meadow',
                     alt: 'Shelly swaps her pencil for a red one.',
-                    cast: [{ who: 'shelly', pose: 'happy', x: 40 }],
-                    bubbles: [{ who: 'shelly', text: 'color("red") swaps my pencil colour. Try "blue", "green", "orange"...' }],
+                    wide: true,
+                    cast: [
+                        { who: 'shelly', pose: 'happy', x: 30 },
+                        { who: 'max', pose: 'happy', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'shelly', text: 'color("red") swaps my pencil colour. Try "blue", "green", "orange"...' },
+                        { who: 'max', text: 'Map spots, pencil up and down, colours. I am ready to plan my scene!' },
+                    ],
                     code: py`
                         from turtle import *
                         color("red")
@@ -204,13 +247,37 @@ export const ch8: Chapter = {
                 {
                     scene: 'meadow',
                     alt: 'Py points out that a tree is just a rectangle and a square.',
+                    wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 28 },
                         { who: 'max', pose: 'surprised', x: 74, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Reuse what you know! A tree is a rectangle trunk with a square of leaves on top.' },
+                        { who: 'max', text: 'I already know how to draw both of those!' },
                     ],
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Py copies the square loop and changes only the colour, the spot and the size.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'shelly', pose: 'happy', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Copy your square loop. Change only the colour, spot and size.' },
+                        { who: 'shelly', text: 'Same loop, brand new bush!' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        color("green")
+                        penup()
+                        goto(-50, 20)
+                        pendown()
+                        for i in range(4):
+                            forward(40)
+                            left(90)
+                    `,
                 },
                 {
                     scene: 'meadow',
@@ -227,6 +294,47 @@ export const ch8: Chapter = {
                         from turtle import *
                         color("orange")
                         circle(25)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Max groans at a long line running from the house up to the sun.',
+                    cast: [
+                        { who: 'max', pose: 'sad', x: 25 },
+                        { who: 'shelly', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'Why is there a line to my sun?' },
+                        { who: 'shelly', text: 'No penup() before goto, so I drew the whole way!' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        forward(50)
+                        goto(80, 120)
+                        circle(20)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py sticks labels on parts of a long program, like sticky notes.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Label each part with a # note. Python skips them.' },
+                        { who: 'max', text: 'But they help ME find my sun later!' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        # The ground
+                        forward(100)
+                        # The sun
+                        penup()
+                        goto(60, 100)
+                        pendown()
+                        circle(20)
                     `,
                 },
                 {

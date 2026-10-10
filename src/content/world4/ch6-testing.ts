@@ -42,11 +42,11 @@ export const ch6: Chapter = {
                     ],
                     bubbles: [{ who: 'py', text: 'A failing assert raises an AssertionError, like an alarm bell: "something is broken HERE!"' }],
                     code: py`
-                        def double(n):
-                            return n + 2
+                        def half(n):
+                            return n - 2
 
-                        assert double(2) == 4
-                        assert double(5) == 10
+                        assert half(4) == 2
+                        assert half(10) == 5
                         print("All tests passed!")
                     `,
                 },
@@ -58,6 +58,62 @@ export const ch6: Chapter = {
                     code: py`
                         hp = -5
                         assert hp >= 0, "HP can never be negative!"
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai tests a yes-or-no function with a big and a small number.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'True/False functions need tests too. Use not for False.' },
+                        { who: 'kai', text: 'Big for 500, not big for 3. Passed!' },
+                    ],
+                    code: py`
+                        def is_big(n):
+                            return n > 100
+
+                        assert is_big(500)
+                        assert not is_big(3)
+                        print("is_big works!")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime wrote one equals sign in a test and it crashed before running.',
+                    cast: [
+                        { who: 'slime', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: 'assert hp = 30 crashed before it even ran!' },
+                        { who: 'py', text: 'Tests ask a question, so they compare with ==.' },
+                    ],
+                    code: py`
+                        hp = 30
+                        assert hp = 30
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'A little robot checker gives a thumbs up next to Kai.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'assert checks that something is True. Passing tests stay silent. A failing test stops with AssertionError and your message.' },
+                        { who: 'kai', text: 'A free checker that never gets bored!' },
+                    ],
+                    code: py`
+                        def add(a, b):
+                            return a + b
+
+                        assert add(2, 3) == 5, "2 + 3 should be 5"
+                        print("add works!")
                     `,
                 },
             ],
@@ -212,6 +268,58 @@ export const ch6: Chapter = {
                         { who: 'kai', pose: 'point', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'kai', text: 'When Bolt gives me code, I run my tests on it. Tests don\'t care who wrote the code!' }],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py holds up an empty scroll as a test case.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Even empty text "" deserves a test.' },
+                        { who: 'kai', text: 'shout("") gives just "!". Fine!' },
+                    ],
+                    code: py`
+                        def shout(text):
+                            return text.upper() + "!"
+
+                        assert shout("hi") == "HI!"
+                        assert shout("") == "!"
+                        print("shout works!")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai frowns at a failing test, then spots that the test itself is wrong.',
+                    cast: [
+                        { who: 'kai', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'My test fails, but square() looks right!' },
+                        { who: 'py', text: 'Tests can have bugs too. 3 squared is 9, not 6!' },
+                    ],
+                    code: py`
+                        def square(n):
+                            return n * n
+
+                        assert square(3) == 6
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai, Bolt and Py stand by a big green checkmark.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'kai', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Test normal values, edges and weird ones. Write tests first if you like, then run them on ANY code: yours, a friend\'s, or an AI\'s.' },
+                        { who: 'bolt', text: 'Tests keep everyone honest. Even me!' },
+                    ],
                 },
             ],
         },

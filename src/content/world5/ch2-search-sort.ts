@@ -49,7 +49,7 @@ export const ch2: Chapter = {
                     code: py`
                         lo = 1
                         hi = 100
-                        secret = 37
+                        secret = 81
                         while True:
                             guess = (lo + hi) // 2
                             print("Guess:", guess)
@@ -69,6 +69,58 @@ export const ch2: Chapter = {
                         { who: 'nova', pose: 'point', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'nova', text: 'Catch: halving only works if the list is SORTED. Otherwise "too low" tells you nothing!' }],
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork opens a giant dictionary book right in the middle.',
+                    cast: [
+                        { who: 'zork', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Like looking up a word in a book: open it in the middle!' },
+                        { who: 'py', text: 'Exactly. Nobody starts reading at page 1.' },
+                    ],
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork moved the wrong end of the range and skipped right past the answer.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'My search skipped right past 8!' },
+                        { who: 'py', text: 'Too LOW means go higher: move lo up, not hi down.' },
+                    ],
+                    code: py`
+                        lo = 1
+                        hi = 10
+                        secret = 8
+                        while lo <= hi:
+                            guess = (lo + hi) // 2
+                            print(guess)
+                            if guess == secret:
+                                print("Found!")
+                                break
+                            elif guess < secret:
+                                hi = guess - 1
+                            else:
+                                lo = guess + 1
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Py slices a long row of numbers in half, again and again.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Binary search: check the middle, keep the half that could still hold the answer, and repeat. It only works on SORTED lists.' },
+                        { who: 'nova', text: 'Any number from 1 to 100 in 7 guesses or fewer!' },
+                    ],
                 },
             ],
         },
@@ -198,7 +250,7 @@ export const ch2: Chapter = {
                         { who: 'py', text: 'Bubble sort: walk along the list swapping neighbours that are out of order. Repeat until no swaps happen.' },
                     ],
                     code: py`
-                        nums = [5, 2, 4, 1]
+                        nums = [6, 3, 5, 2]
                         for p in range(len(nums) - 1):
                             for i in range(len(nums) - 1):
                                 if nums[i] > nums[i + 1]:
@@ -217,11 +269,66 @@ export const ch2: Chapter = {
                     alt: 'Nova puts the two ideas together: sort first, then search fast.',
                     cast: [{ who: 'nova', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'nova', text: 'Sort once, then search super fast with halving, as many times as you like!' }],
-                    code: BINARY + '\n' + py`
+                    code: py`
                         gems = sorted([42, 7, 19, 88, 3, 56])
                         print(gems)
-                        print(binary_search(gems, 56))
+                        n = len(gems)
+                        guesses = 0
+                        while n >= 1:
+                            n //= 2
+                            guesses += 1
+                        print("At most", guesses, "guesses per search")
                     `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork and Nova swap places in one quick hop.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'zork', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Python swaps in one line: a, b = b, a.' },
+                        { who: 'zork', text: 'No spare box needed. Neat!' },
+                    ],
+                    code: py`
+                        first, second = "Zork", "Nova"
+                        first, second = second, first
+                        print(first, second)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork\'s sort crashes when it reaches the end of the list.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'IndexError at the very end of my list!' },
+                        { who: 'py', text: 'The last item has no neighbour. Stop one early.' },
+                    ],
+                    code: py`
+                        nums = [3, 1, 2]
+                        for i in range(len(nums)):
+                            if nums[i] > nums[i + 1]:
+                                nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                        print(nums)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Planets line up in order from smallest to biggest.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Bubble sort swaps neighbours, pass after pass: simple but slow. Real programs call sorted(), then binary search finds things lightning fast.' },
+                        { who: 'zork', text: 'Sort once, search forever!' },
+                    ],
                 },
             ],
         },

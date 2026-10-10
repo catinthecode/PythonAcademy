@@ -62,6 +62,58 @@ export const ch5: Chapter = {
                             print(" " * x + "o")
                     `,
                 },
+                {
+                    scene: 'screen',
+                    alt: 'A game screen shows a score and a row of heart lives.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Everything that changes is a variable: position, score, lives.' },
+                        { who: 'nova', text: 'Frame 2 costs me a life!' },
+                    ],
+                    code: py`
+                        score = 0
+                        lives = 3
+                        for frame in range(4):
+                            score += 10
+                            if frame == 2:
+                                lives -= 1
+                            print(f"Frame {frame}: score {score}, lives {lives}")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork\'s rocket keeps snapping back to the start.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'My rocket is stuck at 2!' },
+                        { who: 'py', text: 'x = 0 is inside the loop, so it resets every frame.' },
+                    ],
+                    code: py`
+                        for frame in range(3):
+                            x = 0
+                            x += 2
+                            print("x =", x)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'A loop of arrows around a game screen: set up, update, check, draw.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Every game loop: set up the state BEFORE the loop, then each frame update it, check the rules (like walls), and draw it.' },
+                        { who: 'nova', text: 'Set up, update, check, draw!' },
+                    ],
+                },
             ],
         },
         {
@@ -167,12 +219,15 @@ export const ch5: Chapter = {
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'nova', pose: 'think', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Gravity changes the SPEED each frame, and the speed changes the position.' }],
+                    bubbles: [
+                        { who: 'py', text: 'Gravity changes the SPEED each frame, and the speed changes the position.' },
+                        { who: 'nova', text: 'So it falls faster and faster!' },
+                    ],
                     code: py`
-                        y = 20
+                        y = 30
                         vy = 0
                         while y > 0:
-                            vy -= 1
+                            vy -= 2
                             y += vy
                             print("Height:", y)
                     `,
@@ -184,12 +239,12 @@ export const ch5: Chapter = {
                         { who: 'zork', pose: 'surprised', x: 30 },
                         { who: 'py', pose: 'point', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Careful with collisions: moving 3 at a time, x jumps from 9 to 12 and never equals 10. Use >= instead of ==.' }],
+                    bubbles: [{ who: 'py', text: 'Careful: moving 6 at a time, x jumps from 18 to 24 and never equals 20. Use >= instead of ==.' }],
                     code: py`
                         x = 0
                         while True:
-                            x += 3
-                            if x >= 10:
+                            x += 6
+                            if x >= 20:
                                 print("Hit the wall at", x)
                                 break
                     `,
@@ -199,6 +254,63 @@ export const ch5: Chapter = {
                     alt: 'Nova steers her ship with arrow keys.',
                     cast: [{ who: 'nova', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'nova', text: 'Player input each frame changes the state too. That\'s how you steer!' }],
+                    code: py`
+                        x = 5
+                        for move in ["right", "right", "left"]:
+                            if move == "right":
+                                x += 1
+                            elif move == "left":
+                                x -= 1
+                            print(move, "-> x =", x)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'A ship and a rock get close. A warning light flashes.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'zork', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Things crash when they are CLOSE, not just on the exact same spot.' },
+                        { who: 'zork', text: 'abs() gives the distance. 2 is too close!' },
+                    ],
+                    code: py`
+                        ship = 7
+                        rock = 9
+                        if abs(ship - rock) <= 2:
+                            print("Too close! Crash!")
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A rock appears on screen every third frame.',
+                    cast: [
+                        { who: 'nova', pose: 'point', x: 25 },
+                        { who: 'py', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'Can I make a rock appear every 3 frames?' },
+                        { who: 'py', text: 'Use the frame number: frame % 3 == 0.' },
+                    ],
+                    code: py`
+                        for frame in range(7):
+                            if frame % 3 == 0:
+                                print("Frame", frame, ": rock appears!")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Nova\'s ship weaves through falling asteroids.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Gravity changes speed, and speed changes position. Check collisions with >= or "close enough", never an exact ==.' },
+                        { who: 'nova', text: 'Now I can dodge anything!' },
+                    ],
                 },
             ],
         },

@@ -64,6 +64,55 @@ export const ch1: Chapter = {
                         print(7 % 2)
                     `,
                 },
+                {
+                    scene: 'village',
+                    alt: 'Rae holds a basket of 14 eggs next to egg boxes that each fit 6.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100, scale: 0.7 }],
+                    bubbles: [
+                        { who: 'rae', text: '14 eggs, boxes of 6. How many full boxes?' },
+                        { who: 'py', text: '14 // 6 is 2 full boxes. 14 % 6 is 2 eggs left.' },
+                    ],
+                    code: py`
+                        print(14 // 6)
+                        print(14 % 6)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Fizz frowns at a screen showing 5.0 instead of 5.',
+                    cast: [
+                        { who: 'fizz', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'fizz', text: '10 / 2 gave me 5.0, not 5!' },
+                        { who: 'py', text: '/ ALWAYS gives a decimal. Want a whole number? Use //.' },
+                    ],
+                    code: py`
+                        print(10 / 2)
+                        print(10 // 2)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py stands by a scoreboard listing the six math symbols. Rae and Fizz cheer.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 20 },
+                        { who: 'rae', pose: 'happy', x: 58 },
+                        { who: 'fizz', pose: 'happy', x: 82, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 38, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: '+ - * / do normal math. // counts whole groups. % finds what is left over.' },
+                        { who: 'rae', text: 'Python is the best calculator in the arena!' },
+                    ],
+                    code: py`print(25 // 7, 25 % 7)`,
+                },
             ],
         },
         {
@@ -134,6 +183,7 @@ export const ch1: Chapter = {
                 {
                     scene: 'arena',
                     alt: 'Fizz confidently says the wrong answer while Py shakes its head.',
+                    wide: true,
                     cast: [
                         { who: 'fizz', pose: 'happy', x: 28 },
                         { who: 'py', pose: 'think', x: 72, flip: true },
@@ -154,7 +204,59 @@ export const ch1: Chapter = {
                         { who: 'rae', pose: 'point', x: 30 },
                         { who: 'fizz', pose: 'surprised', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: 'Brackets ( ) go first of all. Use them to choose the order!' }],
+                    bubbles: [
+                        { who: 'rae', text: 'Brackets ( ) go first of all. You choose the order!' },
+                        { who: 'fizz', text: 'So (2 + 3) * 4 is 5 * 4. That is 20!' },
+                    ],
+                    code: py`print((2 + 3) * 4)`,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Rae counts coins at a shop stall selling potions and shields.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'coin', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: '3 potions at 4 coins each, plus a 5-coin shield?' },
+                        { who: 'py', text: 'Times first: 3 * 4 is 12. Then + 5. That is 17!' },
+                    ],
+                    code: py`print(3 * 4 + 5)`,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Fizz looks puzzled at a half that came out too big.',
+                    cast: [
+                        { who: 'fizz', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'fizz', text: 'Half of 6 + 4 should be 5, but I got 8.0!' },
+                        { who: 'py', text: 'Only the 4 got halved. Bracket the sum first!' },
+                    ],
+                    code: py`
+                        print(6 + 4 / 2)
+                        print((6 + 4) / 2)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py writes attack and damage on two chests.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'rae', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100, scale: 0.8 }],
+                    bubbles: [
+                        { who: 'py', text: 'Math works on chests too. Python looks inside, then does the sum.' },
+                        { who: 'rae', text: 'attack is 3, so damage is 6!' },
+                    ],
+                    code: py`
+                        attack = 3
+                        damage = attack * 2
+                        print(damage)
+                    `,
                 },
                 {
                     scene: 'arena',
@@ -164,7 +266,10 @@ export const ch1: Chapter = {
                         { who: 'blaze', pose: 'sad', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Math works with variables too. hp = hp - 6 means "take 6 away from the hp chest".' }],
+                    bubbles: [
+                        { who: 'blaze', text: 'Ouch! I just took 6 damage!' },
+                        { who: 'py', text: 'hp = hp - 6 means "take 6 away from the hp chest and put the answer back".' },
+                    ],
                     code: py`
                         hp = 30
                         hp = hp - 6

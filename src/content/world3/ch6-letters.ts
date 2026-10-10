@@ -14,7 +14,7 @@ export const ch6: Chapter = {
             panels: [
                 {
                     scene: 'sky',
-                    alt: 'The letters of BRICK float above the platforms, each with a number.',
+                    alt: 'The letters of PLANK float above the platforms, each with a number.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
@@ -22,9 +22,10 @@ export const ch6: Chapter = {
                     ],
                     bubbles: [
                         { who: 'py', text: 'Text works a lot like a list: each letter has a position, starting at 0.' },
+                        { who: 'bix', text: 'So word[0] is the first letter!' },
                     ],
                     code: py`
-                        word = "BRICK"
+                        word = "PLANK"
                         print(word[0], word[-1], len(word))
                     `,
                 },
@@ -52,6 +53,56 @@ export const ch6: Chapter = {
                             if letter in "aeiou":
                                 count += 1
                         print("Vowels:", count)
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Each letter of SKY sits on a numbered platform.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'Can I get each letter AND its position?' },
+                        { who: 'py', text: 'Loop over range(len(word)), then use word[i].' },
+                    ],
+                    code: py`
+                        word = "sky"
+                        for i in range(len(word)):
+                            print(i, word[i])
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Glitch reaches for a sixth letter that is not there.',
+                    cast: [
+                        { who: 'glitch', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'PLANK has 5 letters, so word[5] is K!' },
+                        { who: 'py', text: 'Positions go 0 to 4. The last is [4], or [-1].' },
+                    ],
+                    code: py`
+                        word = "PLANK"
+                        print(word[5])
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py spells Hi! on floating blocks, punctuation and all.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Text is like a list of letters: positions start at 0, len() counts them, and for walks through them.' },
+                        { who: 'bix', text: 'Even the ! counts as a letter!' },
+                    ],
+                    code: py`
+                        for ch in "Hi!":
+                            print(ch)
                     `,
                 },
             ],
@@ -139,17 +190,18 @@ export const ch6: Chapter = {
                 {
                     scene: 'sky',
                     alt: 'Glitch tries to swap a letter in place and the program refuses.',
+                    wide: true,
                     cast: [
                         { who: 'glitch', pose: 'sad', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'glitch', text: 'I want to change the first letter of "cat" to b!' },
-                        { who: 'py', text: 'You can\'t change text in place. Build a NEW piece of text instead.' },
+                        { who: 'glitch', text: 'I want to change the first letter of "mat" to h!' },
+                        { who: 'py', text: 'You can\'t change text in place. Build a NEW piece of text: "h" plus everything after the first letter.' },
                     ],
                     code: py`
-                        word = "cat"
-                        new = "b" + word[1:]
+                        word = "mat"
+                        new = "h" + word[1:]
                         print(new)
                     `,
                 },
@@ -163,7 +215,7 @@ export const ch6: Chapter = {
                     ],
                     bubbles: [{ who: 'py', text: 'Build text in a loop! Putting each letter at the FRONT reverses the word.' }],
                     code: py`
-                        word = "brick"
+                        word = "stone"
                         backwards = ""
                         for letter in word:
                             backwards = letter + backwards
@@ -176,10 +228,59 @@ export const ch6: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [{ who: 'py', text: 'Handy tools: .replace(), .count(), and slices like word[0:3] for the first 3 letters.' }],
                     code: py`
-                        word = "glitch"
-                        print(word.replace("g", "G"))
+                        word = "sunny"
+                        print(word.replace("n", "m"))
                         print(word[0:3])
                     `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix squashes a spaced-out word back together.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Add an if to skip letters you don\'t want.' },
+                        { who: 'bix', text: 'No more spaces!' },
+                    ],
+                    code: py`
+                        msg = "b r i c k"
+                        squashed = ""
+                        for ch in msg:
+                            if ch != " ":
+                                squashed += ch
+                        print(squashed)
+                    `,
+                },
+                {
+                    scene: 'circuit',
+                    alt: 'Glitch forgot to make an empty box before the loop, and the screen flashes red.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'NameError?! I was building result!' },
+                        { who: 'py', text: 'Start with result = "" before the loop.' },
+                    ],
+                    code: py`
+                        for letter in "abc":
+                            result = letter + result
+                        print(result)
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py and Bix craft a new word from letter blocks.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Text never changes in place. Build new text with +, slices and loops.' },
+                        { who: 'bix', text: 'Like crafting a new item from parts!' },
+                    ],
                 },
             ],
         },

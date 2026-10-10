@@ -49,6 +49,57 @@ export const ch8: Chapter = {
                         print(f"Fizz: {my_hp} HP | Blazewing: {enemy_hp} HP")
                     `,
                 },
+                {
+                    scene: 'arena',
+                    alt: 'Rae types a move into the purple box. Fizz flaps its wings.',
+                    cast: [
+                        { who: 'rae', pose: 'talk', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'Step 2: ask the player for a move.' },
+                        { who: 'py', text: 'Save the answer in a variable. Then an if checks it.' },
+                    ],
+                    code: py`
+                        move = input("Move? ")
+                        if move == "fly":
+                            print("Fizz flies up high!")
+                    `,
+                    inputs: ['fly'],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae stares at an empty screen. The HP line never printed.',
+                    cast: [
+                        { who: 'rae', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'My HP line only shows when I rest!' },
+                        { who: 'py', text: 'It is pushed in, so it is inside the if. Unpush it!' },
+                    ],
+                    code: py`
+                        hp = 30
+                        move = input("Move? ")
+                        if move == "rest":
+                            hp = hp + 5
+                            print("HP:", hp)
+                    `,
+                    inputs: ['wait'],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py builds a tower one block at a time. Fizz checks each block.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Build ONE step, run it, check it. Then add the next. Small steps beat one giant mess!' },
+                        { who: 'fizz', text: 'Stats are done. Next up: moves!' },
+                    ],
+                },
             ],
         },
         {
@@ -162,11 +213,25 @@ export const ch8: Chapter = {
                 {
                     scene: 'arena',
                     alt: 'Py explains that every move needs its own path.',
+                    wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'fizz', pose: 'think', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Give each move its own if/elif path, and use else for typos.' }],
+                    bubbles: [
+                        { who: 'py', text: 'Give each move its own if/elif path, and use else for typos.' },
+                        { who: 'fizz', text: 'So even a typo gets an answer!' },
+                    ],
+                    code: py`
+                        move = input("Move? ")
+                        if move == "spin":
+                            print("Spin attack!")
+                        elif move == "rest":
+                            print("Fizz rests")
+                        else:
+                            print("Huh? Unknown move")
+                    `,
+                    inputs: ['spni'],
                 },
                 {
                     scene: 'arena',
@@ -175,7 +240,61 @@ export const ch8: Chapter = {
                         { who: 'blaze', pose: 'sad', x: 30 },
                         { who: 'rae', pose: 'happy', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: 'After the move, check the HPs to see if anyone has won.' }],
+                    bubbles: [
+                        { who: 'blaze', text: 'Ugh... I fainted...' },
+                        { who: 'rae', text: 'After each move, check the HPs to see who won.' },
+                    ],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae frowns: the enemy has no HP left, but the game never said she won.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'Enemy HP is -5, but it never says I win!' },
+                        { who: 'py', text: 'You checked BEFORE the damage. Check after it!' },
+                    ],
+                    code: py`
+                        enemy_hp = 5
+                        if enemy_hp <= 0:
+                            print("You win!")
+                        enemy_hp = enemy_hp - 10
+                        print("Enemy HP:", enemy_hp)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Sneak types ZAP in capitals and the move does nothing.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'I typed ZAP. Your game ignored me! Hehe.' },
+                        { who: 'py', text: 'Use .lower() so ZAP and zap both work.' },
+                    ],
+                    code: py`
+                        move = input("Move? ")
+                        if move.lower() == "zap":
+                            print("Zap!")
+                        else:
+                            print("Nothing happens")
+                    `,
+                    inputs: ['ZAP'],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Fizz and Rae run the game again and again, checking each change.',
+                    cast: [
+                        { who: 'fizz', pose: 'talk', x: 25 },
+                        { who: 'rae', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'fizz', text: 'Get one move working before adding the next.' },
+                        { who: 'rae', text: 'And run it after every change!' },
+                    ],
                 },
                 {
                     scene: 'arena',
@@ -187,6 +306,7 @@ export const ch8: Chapter = {
                     ],
                     bubbles: [
                         { who: 'bolt', text: 'Then test every move, a typo, AND the edge: what if HP lands exactly on 0?' },
+                        { who: 'py', text: 'Plan, build in small steps, test the edges. That is how real games get made!' },
                     ],
                 },
             ],

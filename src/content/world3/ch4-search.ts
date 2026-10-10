@@ -59,6 +59,60 @@ export const ch4: Chapter = {
                             print("No cake!")
                     `,
                 },
+                {
+                    scene: 'village',
+                    alt: 'Bix packs for a cave trip and notices the torch is missing.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'torch', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'not in asks the opposite: is it MISSING?' },
+                        { who: 'bix', text: 'No torch? I need one for the cave!' },
+                    ],
+                    code: py`
+                        backpack = ["map", "key", "rope"]
+                        if "torch" not in backpack:
+                            print("Pack a torch!")
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Glitch is confused: Key with a capital K is not found.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: '"Key" in backpack is False?! It is RIGHT there!' },
+                        { who: 'py', text: 'in needs an EXACT match. Capital K is different.' },
+                    ],
+                    code: py`
+                        backpack = ["map", "key", "rope"]
+                        print("Key" in backpack)
+                        print("key" in backpack)
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Py points at a backpack with numbered pockets. Bix finds the rope.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'in asks IF something is there. index() asks WHERE. Check with in before you call index().' },
+                        { who: 'bix', text: 'And positions still start at 0!' },
+                    ],
+                    code: py`
+                        backpack = ["map", "key", "rope"]
+                        item = "rope"
+                        if item in backpack:
+                            print(item, "is at position", backpack.index(item))
+                    `,
+                },
             ],
         },
         {
@@ -168,8 +222,14 @@ export const ch4: Chapter = {
                 {
                     scene: 'village',
                     alt: 'Py raises a flag labelled found.',
-                    cast: [{ who: 'py', pose: 'point', x: 30 }],
-                    bubbles: [{ who: 'py', text: 'A "found" flag starts False and flips to True when you find a match.' }],
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'A "found" flag starts False and flips to True on a match.' },
+                        { who: 'bix', text: 'And it stays True after that!' },
+                    ],
                     code: py`
                         found = False
                         for item in ["map", "key"]:
@@ -184,11 +244,63 @@ export const ch4: Chapter = {
                     cast: [{ who: 'bix', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'bix', text: 'Searches can look for a RULE too, like the first score over 10.' }],
                     code: py`
-                        for s in [4, 9, 15, 22]:
+                        for s in [2, 6, 13, 20]:
                             if s > 10:
                                 print("First big score:", s)
                                 break
                     `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Glitch stopped searching after the very first brick.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'My search only checked ONE brick!' },
+                        { who: 'py', text: 'break is not inside the if, so it runs right away.' },
+                    ],
+                    code: py`
+                        for b in ["red", "blue", "gold"]:
+                            print("Checking", b)
+                            if b == "gold":
+                                print("Found gold!")
+                            break
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Bix counts positions along a row of bricks to find the gold one.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'How do I find WHERE the gold is myself?' },
+                        { who: 'py', text: 'Loop over the positions with range(len(...)).' },
+                    ],
+                    code: py`
+                        bricks = ["red", "blue", "gold"]
+                        for i in range(len(bricks)):
+                            if bricks[i] == "gold":
+                                print("Gold at position", i)
+                                break
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Bix holds up a magnifying glass like a detective. Py nods.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'magnifier', x: 50, y: 75 }],
+                    bubbles: [
+                        { who: 'py', text: 'Search loops check items one by one. break stops at the first match, and a found flag remembers what you saw.' },
+                        { who: 'bix', text: 'Detective Bix is on the case!' },
+                    ],
                 },
             ],
         },

@@ -42,10 +42,11 @@ export const ch7: Chapter = {
                         { who: 'py', text: 'AI helpers can be CONFIDENTLY WRONG: the code looks neat and sure of itself, but misses a rule or an edge case.' },
                     ],
                     code: py`
-                        def is_leap(year):
-                            return year % 4 == 0
+                        # Bolt's answer to "is this age a teenager (13 to 19)?"
+                        def is_teen(age):
+                            return age > 13 and age < 19
 
-                        print(is_leap(2024), is_leap(1900))
+                        print(is_teen(15), is_teen(13))
                     `,
                 },
                 {
@@ -56,8 +57,56 @@ export const ch7: Chapter = {
                         { who: 'bolt', pose: 'wave', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'nova', text: '1900 was NOT a leap year! Years divisible by 100 skip it, unless they\'re divisible by 400.' },
+                        { who: 'nova', text: '13 IS a teen! "13 to 19" needs >= and <=.' },
                         { who: 'bolt', text: 'You\'re the captain. I\'m the helper. Check my work!' },
+                    ],
+                },
+                {
+                    scene: 'room',
+                    alt: 'Nova hands Bolt a card with an exact example on it.',
+                    cast: [
+                        { who: 'nova', pose: 'point', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: '"title_case("space cat") is "Space Cat"."' },
+                        { who: 'bolt', text: 'An example! Now I know exactly what you mean.' },
+                    ],
+                    code: py`
+                        def title_case(text):
+                            return text.title()
+
+                        print(title_case("space cat"))
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork stares at an error: Bolt used a tool that does not exist.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Bolt used text.reverse(), but text has no such thing!' },
+                        { who: 'py', text: 'AI helpers sometimes invent tools. Run it and check!' },
+                    ],
+                    code: py`
+                        text = "star"
+                        print(text.reverse())
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py, Nova and Bolt look at a screen showing likely next words.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'bolt', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'AI helpers predict likely code. Usually helpful, sometimes confidently wrong. Give a clear spec, then read and test what you get.' },
+                        { who: 'bolt', text: 'Trust me a little. Test me a lot!' },
                     ],
                 },
             ],
@@ -176,6 +225,7 @@ export const ch7: Chapter = {
                 {
                     scene: 'screen',
                     alt: 'Py shows a five-step checklist for working with AI.',
+                    wide: true,
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [
                         { who: 'py', text: 'The AI checklist: 1) clear spec + examples, 2) READ the code, 3) test the edges, 4) ask it to explain, 5) never run code you don\'t understand on important stuff.' },
@@ -196,6 +246,54 @@ export const ch7: Chapter = {
                     code: py`
                         print(sum(x for x in range(1, 21) if x % 3 == 0))
                     `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Nova points at one confusing piece of code and Bolt explains it.',
+                    cast: [
+                        { who: 'nova', pose: 'think', x: 25 },
+                        { who: 'bolt', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'Explain this bit: x % 3 == 0.' },
+                        { who: 'bolt', text: 'True when x divides by 3 with nothing left over.' },
+                    ],
+                    code: py`
+                        for x in range(1, 7):
+                            print(x, x % 3 == 0)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Bolt hands over a function together with its tests.',
+                    cast: [
+                        { who: 'nova', pose: 'talk', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'Bolt, write tests for your code too.' },
+                        { who: 'bolt', text: 'Done! But YOU check that my tests make sense.' },
+                    ],
+                    code: py`
+                        def double(n):
+                            return n * 2
+
+                        assert double(4) == 8
+                        assert double(0) == 0
+                        print("Bolt's tests pass")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Py holds up a padlock next to a speech bubble with a password in it.',
+                    cast: [
+                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Can I tell Bolt my password, so it can log in for me?' },
+                        { who: 'py', text: 'Never share passwords or private info with AI helpers.' },
+                    ],
                 },
                 {
                     scene: 'space',

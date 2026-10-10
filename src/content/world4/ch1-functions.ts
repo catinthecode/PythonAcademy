@@ -64,6 +64,64 @@ export const ch1: Chapter = {
                         square()
                     `,
                 },
+                {
+                    scene: 'castle',
+                    alt: 'Kai waves a wand, but no spell comes out.',
+                    cast: [
+                        { who: 'kai', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'I wrote cheer and nothing happened!' },
+                        { who: 'py', text: 'Without ( ) you only NAME the spell. The brackets cast it.' },
+                    ],
+                    code: py`
+                        def cheer():
+                            print("Hooray!")
+
+                        cheer
+                        print("Was it cast?")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'A giant stomps three times. Kai covers his ears.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Cast a spell inside a loop to repeat it.' },
+                        { who: 'kai', text: 'STOMP, STOMP, STOMP!' },
+                    ],
+                    code: py`
+                        def stomp():
+                            print("STOMP!")
+
+                        for i in range(3):
+                            stomp()
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py opens a spellbook. Kai raises a glowing shield.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'def WRITES the spell and name() CASTS it. Pushed-in lines belong to the spell, and you must write it before you cast it.' },
+                        { who: 'kai', text: 'Write once, cast forever!' },
+                    ],
+                    code: py`
+                        def shield():
+                            print("Shield up!")
+
+                        print("Battle starts")
+                        shield()
+                    `,
+                },
             ],
         },
         {
@@ -213,6 +271,68 @@ export const ch1: Chapter = {
                             left(90)
 
                         house()
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py holds up two spell labels: a mysterious f and a clear cheer_team.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Name spells with doing words, joined by _, like cheer_team.' },
+                        { who: 'kai', text: 'f() would tell me nothing!' },
+                    ],
+                    code: py`
+                        def cheer_team():
+                            print("Go, team!")
+
+                        cheer_team()
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai edits one line in his spellbook and every message changes.',
+                    cast: [
+                        { who: 'kai', pose: 'happy', x: 25 },
+                        { who: 'slime', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'I changed ONE line, and both greetings changed!' },
+                        { who: 'slime', text: 'Blorp! Magic!' },
+                    ],
+                    caption: 'Change the message once, then run again.',
+                    code: py`
+                        def greet():
+                            print("Welcome, hero!")
+
+                        greet()
+                        greet()
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'A castle built from wall blocks. Py and Slime admire it.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'slime', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Break big jobs into named spells. Small spells build bigger ones, like bricks build a castle.' },
+                        { who: 'slime', text: 'Blorp! Even I can read that code!' },
+                    ],
+                    code: py`
+                        def wall():
+                            print("|####|")
+
+                        def castle():
+                            print(" CASTLE")
+                            wall()
+                            wall()
+
+                        castle()
                     `,
                 },
             ],

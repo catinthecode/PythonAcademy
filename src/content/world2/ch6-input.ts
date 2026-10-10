@@ -51,6 +51,59 @@ export const ch6: Chapter = {
                         { who: 'fizz', text: 'In this app, the purple ⌨️ box shows what the player types. Change it in Try it!' },
                     ],
                 },
+                {
+                    scene: 'screen',
+                    alt: 'Rae frowns: the question and the answer are squashed together with no space.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'Why does it say Name?Rae all squashed?' },
+                        { who: 'py', text: 'End your question with a space, inside the quotes.' },
+                    ],
+                    code: py`
+                        name = input("Name?")
+                        print("Hi", name)
+                    `,
+                    inputs: ['Rae'],
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Rae measures a garden plot with two questions: how wide and how long.',
+                    cast: [
+                        { who: 'rae', pose: 'talk', x: 25 },
+                        { who: 'py', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'Can I ask two questions?' },
+                        { who: 'py', text: 'Sure! Each input() waits for its own answer, in order.' },
+                    ],
+                    code: py`
+                        width = int(input("Width? "))
+                        length = int(input("Length? "))
+                        print("Garden size:", width * length)
+                    `,
+                    inputs: ['4', '6'],
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Fizz types its own name into the purple box and Py cheers.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'input() asks and waits. The answer is always text, so wrap it in int() before you do math.' },
+                        { who: 'fizz', text: 'Let me be the player! Type fizz and watch it shout.' },
+                    ],
+                    code: py`
+                        critter = input("Favourite critter? ")
+                        print(critter.upper() + "!!!")
+                    `,
+                    inputs: ['fizz'],
+                },
             ],
         },
         {
@@ -154,17 +207,18 @@ export const ch6: Chapter = {
                         { who: 'py', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Mix input with if, and your program can react to the player!' },
+                        { who: 'rae', text: 'Can my game answer back?' },
+                        { who: 'py', text: 'Yes! Mix input with if, and your program reacts to the player.' },
                     ],
                     code: py`
-                        secret = 7
+                        secret = 4
                         guess = int(input("Guess my number: "))
                         if guess == secret:
-                            print("You got it!")
+                            print("Lucky guess!")
                         else:
-                            print("Nope!")
+                            print("Try again!")
                     `,
-                    inputs: ['7'],
+                    inputs: ['4'],
                 },
                 {
                     scene: 'arena',
@@ -197,6 +251,60 @@ export const ch6: Chapter = {
                             print("That's not a number!")
                     `,
                     inputs: ['seven'],
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Py draws an arrow that jumps from a failing line straight down to except.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'rae', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'When a line under try fails, Python jumps straight to except.' },
+                        { who: 'rae', text: 'So the line after it never runs!' },
+                    ],
+                    code: py`
+                        try:
+                            n = int("ten")
+                            print("This line is skipped")
+                        except ValueError:
+                            print("Jumped to except!")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Fizz holds up a sign saying YES in capital letters.',
+                    cast: [
+                        { who: 'fizz', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'fizz', text: 'What if the player types YES in capitals?' },
+                        { who: 'py', text: 'Use .lower() first, then YES and yes both match.' },
+                    ],
+                    code: py`
+                        answer = input("Battle? ")
+                        if answer.lower() == "yes":
+                            print("Let's go!")
+                        else:
+                            print("Maybe later")
+                    `,
+                    inputs: ['YES'],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae high-fives Py while Sneak sulks, unable to crash the game.',
+                    wide: true,
+                    cast: [
+                        { who: 'rae', pose: 'happy', x: 20 },
+                        { who: 'py', pose: 'happy', x: 50 },
+                        { who: 'sneak', pose: 'sad', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'input plus if makes my game react. try/except stops silly answers from crashing it!' },
+                        { who: 'sneak', text: 'Hmph. Sneak-proof!' },
+                    ],
                 },
             ],
         },

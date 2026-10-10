@@ -34,39 +34,92 @@ export const ch3: Chapter = {
                     code: py`
                         from turtle import *
 
-                        def square(size):
-                            for i in range(4):
+                        def triangle(size):
+                            for i in range(3):
                                 forward(size)
-                                left(90)
+                                left(120)
 
-                        def row(count, size):
-                            for i in range(count):
-                                square(size)
-                                penup()
-                                forward(size + 10)
-                                pendown()
+                        def flower():
+                            for i in range(6):
+                                triangle(40)
+                                left(60)
 
-                        row(4, 30)
+                        flower()
                     `,
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai stacks labelled blocks: line, box, card.',
+                    alt: 'Kai stacks labelled blocks: greet and shout.',
                     cast: [
                         { who: 'kai', pose: 'happy', x: 30 },
                         { who: 'slime', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'kai', text: 'Functions can call functions! Each one does ONE small job.' }],
                     code: py`
-                        def line(n):
-                            print("-" * n)
+                        def greet(name):
+                            return "Hi " + name
 
-                        def box(text):
-                            line(len(text) + 4)
-                            print("| " + text + " |")
-                            line(len(text) + 4)
+                        def shout(text):
+                            return text.upper() + "!"
 
-                        box("Kai")
+                        print(shout(greet("Kai")))
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py holds up a very long spell name with the word and in the middle.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'think', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'If a name needs "and", the function does too much.' },
+                        { who: 'kai', text: 'draw_house_and_tree... I should split it!' },
+                    ],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime tries to grab gold that is locked inside another function.',
+                    cast: [
+                        { who: 'slime', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: 'Blorp? show() cannot see the gold!' },
+                        { who: 'py', text: 'Variables made inside a function stay inside it.' },
+                    ],
+                    code: py`
+                        def make():
+                            gold = 5
+
+                        def show():
+                            print(gold)
+
+                        make()
+                        show()
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai fits small code blocks together into a tower.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Big problem, small named pieces. Each piece does one job. Pass values in with parameters and get them out with return.' },
+                        { who: 'kai', text: 'Building blocks for code!' },
+                    ],
+                    code: py`
+                        def add_tax(price):
+                            return price + 2
+
+                        def total(a, b):
+                            return add_tax(a) + add_tax(b)
+
+                        print(total(5, 10))
                     `,
                 },
             ],
@@ -225,6 +278,61 @@ export const ch3: Chapter = {
                     alt: 'Kai tests each piece before putting them together.',
                     cast: [{ who: 'kai', pose: 'happy', x: 40 }],
                     bubbles: [{ who: 'kai', text: 'Test each small piece on its own. Then the big thing works the first time!' }],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai tests one small function with two quick prints.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Test a new piece with quick prints before building more.' },
+                        { who: 'kai', text: 'True for 150, False for 7. It works!' },
+                    ],
+                    code: py`
+                        def is_big(n):
+                            return n > 100
+
+                        print(is_big(150))
+                        print(is_big(7))
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py writes empty spell pages labelled with names, to fill in later.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Plan with empty pieces. pass means "fill me in later".' },
+                        { who: 'kai', text: 'The plan runs before I build anything!' },
+                    ],
+                    code: py`
+                        def draw_house():
+                            pass
+
+                        def draw_tree():
+                            pass
+
+                        draw_house()
+                        draw_tree()
+                        print("The plan works!")
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Kai and Slime check off pieces on a plan, one at a time.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'slime', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Plan the pieces, build one, test it, then build the next. Parameters carry what each piece needs.' },
+                        { who: 'slime', text: 'Blorp. Small bites are easier to chew!' },
+                    ],
                 },
             ],
         },

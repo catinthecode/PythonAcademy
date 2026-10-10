@@ -55,10 +55,61 @@ export const ch8: Chapter = {
                     ],
                     bubbles: [{ who: 'py', text: 'sorted() gives a NEW sorted list. Add reverse=True for biggest first.' }],
                     code: py`
-                        scores = [30, 45, 20]
+                        scores = [12, 40, 25]
                         print(sorted(scores))
                         print(sorted(scores, reverse=True))
                     `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Bix writes a neat line on the scoreboard.',
+                    cast: [
+                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'bix', text: 'How do I make each line look neat?' },
+                        { who: 'py', text: 'An f-string drops the name and score right into a sentence.' },
+                    ],
+                    code: py`
+                        name = "Bix"
+                        score = 30
+                        print(f"Player {name} has {score} points")
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Glitch is confused: the scores are still in the old order.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'I called sorted(scores), but nothing changed!' },
+                        { who: 'py', text: 'sorted() makes a NEW list. Save it in a variable!' },
+                    ],
+                    code: py`
+                        scores = [12, 40, 25]
+                        sorted(scores)
+                        print(scores)
+                        ranked = sorted(scores)
+                        print(ranked)
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py unrolls the leaderboard plan. Bix and Glitch cheer.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 20 },
+                        { who: 'bix', pose: 'happy', x: 55 },
+                        { who: 'glitch', pose: 'happy', x: 82, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 37, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'The plan: show every player, work out the total and average, find the winner, then rank them all.' },
+                        { who: 'bix', text: 'One part at a time!' },
+                    ],
                 },
             ],
         },
@@ -185,6 +236,57 @@ export const ch8: Chapter = {
                         { who: 'glitch', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'bolt', text: 'Test it! What about a tie? A brand new player? Nobody playing yet?' }],
+                },
+                {
+                    scene: 'village',
+                    alt: 'Players leave a queue one by one until it is empty.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'While the list is not empty, keep taking items out.' },
+                        { who: 'bix', text: 'It empties the list one by one!' },
+                    ],
+                    code: py`
+                        queue = ["Bix", "Glitch"]
+                        while len(queue) > 0:
+                            print("Next:", queue.pop(0))
+                        print("Everyone went!")
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Glitch removed a name but left its score, so the lists no longer line up.',
+                    cast: [
+                        { who: 'glitch', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'I popped a name but forgot its score!' },
+                        { who: 'py', text: 'Change both lists together, or they stop lining up.' },
+                    ],
+                    code: py`
+                        names = ["Bix", "Glitch", "Bolt"]
+                        scores = [30, 45, 20]
+                        names.pop(0)
+                        print(names[0], scores[0])
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'The finished leaderboard glows. Everyone gathers around it.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 18 },
+                        { who: 'bix', pose: 'happy', x: 45 },
+                        { who: 'glitch', pose: 'happy', x: 65 },
+                        { who: 'bolt', pose: 'wave', x: 85, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'To rank: find the best, show it, pop it from BOTH lists, repeat. Then test ties and an empty board.' },
+                        { who: 'bolt', text: 'Our leaderboard is ready!' },
+                    ],
                 },
             ],
         },

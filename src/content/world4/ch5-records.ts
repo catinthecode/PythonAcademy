@@ -57,6 +57,49 @@ export const ch5: Chapter = {
                         print(len(party), "heroes")
                     `,
                 },
+                {
+                    scene: 'castle',
+                    alt: 'Kai pours a healing potion over Ivy.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Pick a hero, then a key, and change it in place.' },
+                        { who: 'kai', text: 'Ivy is healed to 22 HP!' },
+                    ],
+                    code: PARTY + '\n' + py`
+                        party[1]["hp"] += 10
+                        print(party[1])
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime asks the whole party for its name, and the program crashes.',
+                    cast: [
+                        { who: 'slime', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: 'party["name"] crashed! Blorp?' },
+                        { who: 'py', text: 'party is a LIST. Pick a hero first: party[0]["name"].' },
+                    ],
+                    code: PARTY + '\n' + py`print(party["name"])`,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py points at a hero card in a row of cards, then at one line on it.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'In a list of dictionaries, [position] picks a hero and ["key"] picks a detail. Read it left to right.' },
+                        { who: 'kai', text: 'party[2]["name"]: the third hero\'s name!' },
+                    ],
+                    code: PARTY + '\n' + py`print(party[2]["name"], "has", party[2]["hp"], "HP")`,
+                },
             ],
         },
         {
@@ -151,13 +194,16 @@ export const ch5: Chapter = {
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'kai', pose: 'think', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Filter: loop over the list and keep only the ones that match a rule.' }],
+                    bubbles: [
+                        { who: 'py', text: 'Filter: loop over the list and keep only the ones that match a rule.' },
+                        { who: 'kai', text: 'Who needs healing? Anyone under 20 HP!' },
+                    ],
                     code: PARTY + '\n' + py`
-                        standing = []
+                        hurt = []
                         for hero in party:
-                            if hero["hp"] > 0:
-                                standing.append(hero["name"])
-                        print(standing)
+                            if hero["hp"] < 20:
+                                hurt.append(hero["name"])
+                        print(hurt)
                     `,
                 },
                 {
@@ -179,6 +225,55 @@ export const ch5: Chapter = {
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'Lists of dictionaries are how real apps store things: players, songs, messages...' }],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai writes every hero name in capitals on a banner.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Turn the heroes into a simple list of names.' },
+                        { who: 'kai', text: 'KAI, IVY, ROOK. Banner ready!' },
+                    ],
+                    code: PARTY + '\n' + py`
+                        names = []
+                        for hero in party:
+                            names.append(hero["name"].upper())
+                        print(names)
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime searches for Ivy but never finds her, even though she is right there.',
+                    cast: [
+                        { who: 'slime', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: 'if hero == "Ivy" never matches!' },
+                        { who: 'py', text: 'hero is a whole dictionary. Compare hero["name"].' },
+                    ],
+                    code: PARTY + '\n' + py`
+                        for hero in party:
+                            if hero == "Ivy":
+                                print("Found her!")
+                        print("Done searching")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai sorts hero cards into piles while Py nods.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Filter keeps every match. Find looks for one. Both look inside each dictionary with ["key"].' },
+                        { who: 'kai', text: 'So that is how real apps keep track of things!' },
+                    ],
                 },
             ],
         },

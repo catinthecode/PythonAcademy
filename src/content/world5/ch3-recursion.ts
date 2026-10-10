@@ -49,20 +49,20 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'screen',
-                    alt: 'Py shows a countdown function that calls itself with n minus 1.',
+                    alt: 'Py shows a stairs function that calls itself with n minus 1.',
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [
                         { who: 'py', text: 'Every recursive function needs a BASE CASE that stops (n == 0), and a step that makes the problem smaller (n - 1).' },
                     ],
                     code: py`
-                        def countdown(n):
+                        def stairs(n):
                             if n == 0:
-                                print("Liftoff!")
+                                print("Ground floor!")
                             else:
-                                print(n)
-                                countdown(n - 1)
+                                print("Step", n)
+                                stairs(n - 1)
 
-                        countdown(3)
+                        stairs(3)
                     `,
                 },
                 {
@@ -80,6 +80,61 @@ export const ch3: Chapter = {
 
                         fall(1)
                     `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A stack of plates: each call waits on top of the next.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Each call waits for the smaller call to answer, then adds 1.' },
+                        { who: 'nova', text: '"" is 0, so "n" is 1, "on" is 2... "moon" is 4!' },
+                    ],
+                    code: py`
+                        def length(text):
+                            if text == "":
+                                return 0
+                            return 1 + length(text[1:])
+
+                        print(length("moon"))
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork hops down by twos and jumps right over the zero.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: '5, 3, 1, -1... I hopped right past 0!' },
+                        { who: 'py', text: 'Use n <= 0, so you can never skip the base case.' },
+                    ],
+                    code: py`
+                        def hop(n):
+                            if n == 0:
+                                print("Done")
+                            else:
+                                print(n)
+                                hop(n - 2)
+
+                        hop(5)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Portals shrink smaller and smaller until the last tiny one closes.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Two rules for recursion: a BASE CASE that stops, and a recursive step that gets SMALLER, closer to that base case every time.' },
+                        { who: 'nova', text: 'Shrink, shrink, shrink... stop!' },
+                    ],
                 },
             ],
         },
@@ -203,37 +258,100 @@ export const ch3: Chapter = {
                         { who: 'nova', pose: 'think', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Recursive thinking: "the total is the FIRST gem plus the total of THE REST." The rest is a smaller problem!' },
+                        { who: 'py', text: 'Recursive thinking: "the product is the FIRST gem times the product of THE REST." The rest is a smaller problem!' },
+                        { who: 'nova', text: 'And an empty list gives 1, so it doesn\'t change the answer.' },
                     ],
                     code: py`
-                        def total(nums):
+                        def product(nums):
                             if nums == []:
-                                return 0
-                            return nums[0] + total(nums[1:])
+                                return 1
+                            return nums[0] * product(nums[1:])
 
-                        print(total([5, 10, 20]))
+                        print(product([2, 3, 4]))
                     `,
                 },
                 {
                     scene: 'meadow',
-                    alt: 'A fractal tree grows: each branch splits into two smaller branches.',
+                    alt: 'A square spiral winds inward, each line shorter than the last.',
                     cast: [{ who: 'nova', pose: 'happy', x: 30 }],
-                    bubbles: [{ who: 'nova', text: 'A tree is a trunk with two smaller trees on top! Recursion draws fractals.' }],
-                    code: TREE,
+                    bubbles: [{ who: 'nova', text: 'Recursion draws too! Each line is a bit shorter, until it\'s too small to draw.' }],
+                    code: py`
+                        from turtle import *
+
+                        def spiral(length):
+                            if length < 10:
+                                return
+                            forward(length)
+                            left(90)
+                            spiral(length - 10)
+
+                        spiral(100)
+                    `,
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork reverses a word one letter at a time.',
+                    alt: 'Zork spells a word one letter at a time.',
                     cast: [{ who: 'zork', pose: 'point', x: 40 }],
-                    bubbles: [{ who: 'zork', text: 'Reverse a word: reverse the rest, then put the first letter at the end!' }],
+                    bubbles: [{ who: 'zork', text: 'Spell a word: print the first letter, then spell the rest!' }],
                     code: py`
-                        def reverse(text):
+                        def spell(text):
                             if text == "":
-                                return ""
-                            return reverse(text[1:]) + text[0]
+                                return
+                            print(text[0])
+                            spell(text[1:])
 
-                        print(reverse("star"))
+                        spell("star")
                     `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Nova passes a bucket down a line of smaller and smaller Novas.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Don\'t trace every call. TRUST the smaller call, then do your part.' },
+                        { who: 'nova', text: 'Like passing a bucket down a line!' },
+                    ],
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Folders inside folders inside folders, each holding files.',
+                    cast: [
+                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'point', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Couldn\'t a loop do all this?' },
+                        { who: 'py', text: 'Often! But folders inside folders need recursion.' },
+                    ],
+                    code: py`
+                        def count_files(folder):
+                            total = 0
+                            for item in folder:
+                                if type(item) == list:
+                                    total += count_files(item)
+                                else:
+                                    total += 1
+                            return total
+
+                        print(count_files(["a", ["b", "c", ["d"]], "e"]))
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Nova and Zork stand under a huge branching tree.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Ask two questions: what is the smallest case, and how do I shrink the problem? First plus the rest. A trunk plus smaller trees.' },
+                        { who: 'nova', text: 'Problems inside problems. I get it now!' },
+                    ],
                 },
             ],
         },

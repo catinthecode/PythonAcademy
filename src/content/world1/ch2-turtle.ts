@@ -31,7 +31,7 @@ export const ch2: Chapter = {
                     alt: 'Shelly stands in the middle of a field, facing right.',
                     cast: [{ who: 'shelly', pose: 'talk', x: 40 }],
                     bubbles: [
-                        { who: 'shelly', text: 'Wake me up with from turtle import *. I start in the middle, facing right. forward(100) means walk 100 steps!' },
+                        { who: 'shelly', text: 'Wake me up with from turtle import * on the very first line. Then forward(100) means walk 100 steps!' },
                     ],
                     code: py`
                         from turtle import *
@@ -40,19 +40,76 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Shelly spins on the spot, dizzy.',
+                    alt: 'Max watches Shelly walk a short line, then a long line.',
                     cast: [
-                        { who: 'shelly', pose: 'surprised', x: 35 },
-                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'shelly', pose: 'talk', x: 68 },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'left(90) turns her a quarter turn left. right(90) turns her right.' },
+                        { who: 'max', text: 'Where do you start?' },
+                        { who: 'shelly', text: 'In the middle, facing right. Bigger number, longer line!' },
+                    ],
+                    caption: 'Change 40 to 200 and run it again!',
+                    code: py`
+                        from turtle import *
+                        forward(40)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Shelly spins on the spot, dizzy.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'shelly', pose: 'surprised', x: 70, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'left(90) turns her a quarter turn left. right(90) turns right.' },
                         { who: 'shelly', text: 'Turning does not move me. I spin on the spot!' },
                     ],
                     code: py`
                         from turtle import *
                         forward(100)
                         left(90)
+                        forward(100)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Max twists around, confused about which way is left. Shelly points the way she is facing.',
+                    cast: [
+                        { who: 'max', pose: 'surprised', x: 25 },
+                        { who: 'shelly', pose: 'talk', x: 68 },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'Wait, which way is MY left?' },
+                        { who: 'shelly', text: 'Use MY left! Pretend you are me, facing where I face.' },
+                    ],
+                    caption: 'Facing right, then turning right... which way now?',
+                    code: py`
+                        from turtle import *
+                        right(90)
+                        forward(100)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Shelly happily draws a zig-zag step shape while Py and Max watch.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'max', pose: 'happy', x: 50 },
+                        { who: 'shelly', pose: 'happy', x: 80, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'That is all Shelly needs: forward walks, left and right spin. 90 is a quarter turn, like a corner.' },
+                        { who: 'shelly', text: 'Mix them up and I can draw anything!' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        forward(100)
+                        left(90)
+                        forward(50)
+                        right(90)
                         forward(100)
                     `,
                 },
@@ -223,6 +280,52 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'meadow',
+                    alt: 'Max stretches his arms wide to show a long box. Py nods.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'What about a long box?' },
+                        { who: 'py', text: 'A rectangle! The sides take turns: long, short, long, short.' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        forward(120)
+                        left(90)
+                        forward(50)
+                        left(90)
+                        forward(120)
+                        left(90)
+                        forward(50)
+                        left(90)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Sneak giggles next to a square with one bent, wonky corner.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'think', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'I changed one turn. Hehehe!' },
+                        { who: 'py', text: 'One wrong turn bends every wall after it. Check each number!' },
+                    ],
+                    caption: 'Find the turn that is not 90.',
+                    code: py`
+                        from turtle import *
+                        forward(100)
+                        left(90)
+                        forward(100)
+                        left(60)
+                        forward(100)
+                        left(90)
+                        forward(100)
+                    `,
+                },
+                {
+                    scene: 'meadow',
                     alt: 'Shelly lifts her pencil and tiptoes over a gap.',
                     cast: [
                         { who: 'shelly', pose: 'talk', x: 35 },
@@ -241,14 +344,35 @@ export const ch2: Chapter = {
                     `,
                 },
                 {
+                    scene: 'meadow',
+                    alt: 'Max stares at a line that stops too early. Shelly floats with her pencil still up.',
+                    cast: [
+                        { who: 'max', pose: 'sad', x: 25 },
+                        { who: 'shelly', pose: 'talk', x: 72, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'My last line vanished!' },
+                        { who: 'shelly', text: 'My pencil is still up! I float until you say pendown().' },
+                    ],
+                    code: py`
+                        from turtle import *
+                        forward(50)
+                        penup()
+                        forward(30)
+                        forward(50)
+                    `,
+                },
+                {
                     scene: 'village',
                     alt: 'Py holds up a sign showing that big turns and small turns make different shapes.',
+                    wide: true,
+                    props: [{ item: 'sign', x: 50, y: 100 }],
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'max', pose: 'think', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Shapes are just walks and turns. Change the numbers, and you change the shape!' },
+                        { who: 'py', text: 'Shapes are just walks and turns. Change the numbers, and you change the shape! Lift the pencil for gaps.' },
                         { who: 'max', text: 'Then I can draw anything. Even a house!' },
                     ],
                 },

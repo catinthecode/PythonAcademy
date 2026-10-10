@@ -34,7 +34,7 @@ export const ch1: Chapter = {
                     code: py`
                         total = 0
                         steps = 0
-                        for n in range(1, 101):
+                        for n in range(1, 21):
                             total += n
                             steps += 1
                         print("Total:", total, "Steps:", steps)
@@ -49,8 +49,66 @@ export const ch1: Chapter = {
                     ],
                     bubbles: [{ who: 'zork', text: 'Same answer in ONE step: 1 + 2 + ... + n is n × (n + 1) ÷ 2. A smarter recipe!' }],
                     code: py`
-                        n = 100
+                        n = 20
                         print("Total:", n * (n + 1) // 2, "Steps: 1")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Nova opens boxes one at a time; the gem is in the very last one.',
+                    cast: [
+                        { who: 'nova', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'I opened boxes one by one. The gem was in the LAST box!' },
+                        { who: 'py', text: 'Worst case: 1000 boxes means 1000 steps.' },
+                    ],
+                    code: py`
+                        steps = 0
+                        for box in range(1, 1001):
+                            steps += 1
+                            if box == 1000:
+                                break
+                        print("Steps:", steps)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork stares at a step counter stuck on 1.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'My counter says 1 step for 50 numbers?' },
+                        { who: 'py', text: 'steps += 1 is outside the loop. Push it in!' },
+                    ],
+                    code: py`
+                        steps = 0
+                        for n in range(50):
+                            total = n
+                        steps += 1
+                        print("Steps:", steps)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Two recipe cards float side by side: a long one and a tiny one.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'An algorithm is a recipe. Count the steps to compare recipes: the same answer can take 1000 steps, or just 1.' },
+                        { who: 'nova', text: 'A smart recipe beats a fast computer!' },
+                    ],
+                    code: py`
+                        n = 1000
+                        print("Loop recipe:", n, "steps")
+                        print("Formula recipe: 1 step")
                     `,
                 },
             ],
@@ -162,10 +220,11 @@ export const ch1: Chapter = {
                         { who: 'nova', pose: 'think', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Some recipes cut the problem in HALF each step. 1000 → 500 → 250... only about 10 steps!' },
+                        { who: 'py', text: 'Some recipes cut the problem in HALF each step. 500 → 250 → 125... only a handful of steps!' },
+                        { who: 'nova', text: 'Halving shrinks things FAST.' },
                     ],
                     code: py`
-                        n = 1000
+                        n = 500
                         steps = 0
                         while n > 1:
                             n = n // 2
@@ -197,6 +256,52 @@ export const ch1: Chapter = {
                                 print("Duplicate:", g)
                             seen[g] = True
                     `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A step counter spins faster and faster as n grows.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Loop in a loop: watch n × n explode.' },
+                        { who: 'nova', text: 'A million steps for n = 1000!' },
+                    ],
+                    code: py`
+                        for n in [10, 100, 1000]:
+                            print(n, "->", n * n, "steps")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork pushes a shiny new computer. Py shakes its head.',
+                    cast: [
+                        { who: 'zork', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Easy fix: buy a faster computer!' },
+                        { who: 'py', text: 'A million times a million is still too slow. Better recipes win.' },
+                    ],
+                    code: py`
+                        n = 1000000
+                        print(n * n, "steps")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Three rockets race: halving, one loop, and loop-in-a-loop.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Halving is fastest, one loop is fine, and loop-in-a-loop gets slow for big n. Remembering things in a dictionary can turn slow into fast.' },
+                        { who: 'nova', text: 'Count the steps, pick the smart recipe!' },
+                    ],
                 },
             ],
         },

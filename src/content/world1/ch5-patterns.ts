@@ -45,8 +45,62 @@ export const ch5: Chapter = {
                     `,
                 },
                 {
+                    scene: 'village',
+                    alt: 'Max counts by tens on his fingers while Py writes i * 10.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'You can do math with i! i * 10 counts in tens.' },
+                        { who: 'max', text: '10, 20, 30... like magic!' },
+                    ],
+                    code: py`
+                        for i in range(1, 4):
+                            print(i * 10)
+                    `,
+                },
+                {
+                    scene: 'cave',
+                    alt: 'Max drops more and more diamonds into a chest each time around.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'A chest can grow in a loop. Each time, add i to total.' },
+                        { who: 'max', text: '10 + 1 is 11, then 11 + 2 is 13...' },
+                    ],
+                    code: py`
+                        total = 10
+                        for i in range(1, 4):
+                            total = total + i
+                            print(total)
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Max looks puzzled at a list that stops at 4. Sneak giggles behind a sign.',
+                    cast: [
+                        { who: 'max', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'max', text: 'I wanted 1 to 5, but I got 1 to 4!' },
+                        { who: 'py', text: 'range stops BEFORE the second number. Ask for one more.' },
+                    ],
+                    caption: 'Can you fix it to print 1 to 5?',
+                    code: py`
+                        for i in range(1, 5):
+                            print(i)
+                    `,
+                },
+                {
                     scene: 'meadow',
                     alt: 'Shelly walks in a square spiral that gets bigger and bigger.',
+                    wide: true,
                     cast: [
                         { who: 'shelly', pose: 'happy', x: 35 },
                         { who: 'max', pose: 'surprised', x: 78, flip: true },
@@ -155,6 +209,7 @@ export const ch5: Chapter = {
                 {
                     scene: 'room',
                     alt: 'Py shows that text times a number repeats the text.',
+                    wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'max', pose: 'surprised', x: 74, flip: true },
@@ -169,6 +224,20 @@ export const ch5: Chapter = {
                     `,
                 },
                 {
+                    scene: 'room',
+                    alt: 'Py reads the loop slowly, one turn at a time, as Max follows along.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Read it like Python. i is 1: "#" * 1 is #. i is 2: ##.' },
+                        { who: 'max', text: 'One more # every time!' },
+                    ],
+                    caption: 'Any text works. Try "Ha" * 3!',
+                    code: py`print("Ha" * 3)`,
+                },
+                {
                     scene: 'village',
                     alt: 'Py points at a chest labelled with a good name.',
                     cast: [{ who: 'py', pose: 'point', x: 30 }],
@@ -179,6 +248,40 @@ export const ch5: Chapter = {
                     code: py`
                         for steps in range(1, 4):
                             print("Climb", steps, "steps")
+                    `,
+                },
+                {
+                    scene: 'cave',
+                    alt: 'A slime blob grows bigger and bigger. Max backs away.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Patterns can grow fast! size = size * 2 doubles it each time.' },
+                        { who: 'max', text: '2, 4, 8... it keeps doubling!' },
+                    ],
+                    code: py`
+                        size = 1
+                        for i in range(3):
+                            size = size * 2
+                            print(size)
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Max frowns at a tower where every row is the same width.',
+                    cast: [
+                        { who: 'max', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'My tower is not growing!' },
+                        { who: 'py', text: 'You used * 3 every time. Use i, the part that changes!' },
+                    ],
+                    code: py`
+                        for i in range(1, 4):
+                            print("#" * 3)
                     `,
                 },
                 {

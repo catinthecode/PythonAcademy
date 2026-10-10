@@ -36,6 +36,19 @@ export const ch1: Chapter = {
                     code: py`print("Hello, Max!")`,
                 },
                 {
+                    scene: 'screen',
+                    alt: 'Max looks closely at a print line on the screen while Py names each part.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Every print has 3 parts: print, round brackets ( ), and text in quotes.' },
+                        { who: 'max', text: 'The brackets hug the quotes, and the quotes hug the words!' },
+                    ],
+                    code: py`print("Let's build!")`,
+                },
+                {
                     scene: 'meadow',
                     alt: 'Max scratches his head at two giant floating quote marks.',
                     cast: [
@@ -50,17 +63,34 @@ export const ch1: Chapter = {
                     code: py`print("I love diamonds!")`,
                 },
                 {
+                    scene: 'screen',
+                    alt: 'Max gasps at a screen showing his message with odd capitals and extra spaces, copied exactly.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Python never fixes your text. It copies every letter, capital and space exactly.' },
+                        { who: 'max', text: 'Even my typos? Yikes!' },
+                    ],
+                    code: py`print("hELLO    max!!")`,
+                },
+                {
                     scene: 'village',
                     alt: 'Py slithers past three signs in a row, reading them top to bottom.',
                     wide: true,
-                    cast: [{ who: 'py', pose: 'talk', x: 18 }],
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 18 },
+                        { who: 'max', pose: 'happy', x: 86, flip: true },
+                    ],
                     props: [
-                        { item: 'sign', x: 45, y: 100 },
-                        { item: 'sign', x: 63, y: 100 },
-                        { item: 'sign', x: 81, y: 100 },
+                        { item: 'sign', x: 42, y: 100 },
+                        { item: 'sign', x: 57, y: 100 },
+                        { item: 'sign', x: 72, y: 100 },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Every print starts a new line. Python reads your code from top to bottom, one line at a time.' },
+                        { who: 'max', text: "It's like a to-do list!" },
                     ],
                     code: py`
                         print("Dig")
@@ -184,8 +214,23 @@ export const ch1: Chapter = {
                     ],
                     props: [{ item: 'magnifier', x: 50, y: 70 }],
                     bubbles: [
-                        { who: 'py', text: 'When Python gets confused, it shows an error. Errors are clues, not failures!' },
+                        { who: 'py', text: 'Confused Python shows an error. Errors are clues, not failures!' },
+                        { who: 'max', text: 'SyntaxError... what is the clue?' },
                     ],
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Max puts the giant quote mark back at the end of the line, and Py cheers.',
+                    cast: [
+                        { who: 'max', pose: 'happy', x: 28 },
+                        { who: 'py', pose: 'happy', x: 74, flip: true },
+                    ],
+                    props: [{ item: 'quote', x: 50, y: 45 }],
+                    bubbles: [
+                        { who: 'max', text: 'The quote at the end is missing!' },
+                        { who: 'py', text: 'Yes! Quotes come in pairs. So do brackets: every ( needs a ).' },
+                    ],
+                    code: py`print("Boom")`,
                 },
                 {
                     scene: 'screen',
@@ -195,7 +240,8 @@ export const ch1: Chapter = {
                         { who: 'max', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'Python is picky about capital letters. print works, but Print is a word it has never heard of!' },
+                        { who: 'py', text: 'Capitals matter! Python knows print, but has never heard of Print.' },
+                        { who: 'max', text: 'One big letter breaks it?' },
                     ],
                     code: py`Print("Hi")`,
                 },
@@ -208,12 +254,26 @@ export const ch1: Chapter = {
                     ],
                     bubbles: [
                         { who: 'py', text: 'Without quotes, Python does math with numbers. With quotes, it just shows the text.' },
-                        { who: 'max', text: "Let's solve some puzzles!" },
                     ],
                     code: py`
                         print(5 + 3)
                         print("5 + 3")
                     `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Py counts off three rules on a sign while Max and Sneak listen. Sneak looks grumpy.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'max', pose: 'happy', x: 58 },
+                        { who: 'sneak', pose: 'sad', x: 85, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 38, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Remember: print is all small letters, quotes and brackets come in pairs, and only numbers without quotes do math.' },
+                        { who: 'max', text: "Let's solve some puzzles!" },
+                    ],
                 },
             ],
         },

@@ -49,15 +49,72 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'cave',
+                    alt: 'Max writes a label for a new chest while Py checks the spelling.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'max', text: 'Can I call a chest anything?' },
+                        { who: 'py', text: 'Almost! Small letters, no spaces. Join words with _ like gold_bars.' },
+                    ],
+                    code: py`
+                        gold_bars = 12
+                        print(gold_bars)
+                    `,
+                },
+                {
+                    scene: 'cave',
+                    alt: 'Sneak giggles as print shows the word apples instead of the number in the chest.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'sneak', text: 'Hehe! Quotes print the WORD apples!' },
+                        { who: 'py', text: 'No quotes: look inside the chest. Quotes: print the word itself.' },
+                    ],
+                    code: py`
+                        apples = 3
+                        print(apples)
+                        print("apples")
+                    `,
+                },
+                {
+                    scene: 'cave',
+                    alt: 'Py swaps the diamonds in the chest for a new pile. The old ones are gone.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [
+                        { item: 'chest', x: 50, y: 100 },
+                        { item: 'diamond', x: 50, y: 55, scale: 0.7 },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'A chest holds ONE thing. Put in something new and the old thing is gone.' },
+                        { who: 'max', text: 'So now it holds 10!' },
+                    ],
+                    code: py`
+                        diamonds = 5
+                        diamonds = 10
+                        print(diamonds)
+                    `,
+                },
+                {
+                    scene: 'cave',
                     alt: 'Max adds 3 more diamonds to the chest.',
+                    wide: true,
                     cast: [
                         { who: 'max', pose: 'happy', x: 25 },
                         { who: 'py', pose: 'talk', x: 78, flip: true },
                     ],
                     props: [{ item: 'chest', x: 52, y: 100 }],
                     bubbles: [
-                        { who: 'max', text: 'I found 3 more!' },
-                        { who: 'py', text: 'Python works out the right side first: 5 + 3 is 8. Then it puts 8 back in the chest.' },
+                        { who: 'max', text: 'I found 3 more! How do I add them?' },
+                        { who: 'py', text: 'diamonds = diamonds + 3. Python works out the right side first: 5 + 3 is 8. Then it puts 8 back in the chest.' },
                     ],
                     code: py`
                         diamonds = 5
@@ -168,12 +225,13 @@ export const ch4: Chapter = {
                 {
                     scene: 'village',
                     alt: 'Two chests side by side: one holds a name tag, the other a stack of blocks.',
+                    wide: true,
                     cast: [{ who: 'py', pose: 'talk', x: 25 }],
                     props: [
                         { item: 'chest', x: 58, y: 100 },
                         { item: 'chest', x: 82, y: 100 },
                     ],
-                    bubbles: [{ who: 'py', text: 'Chests can hold text too. Text needs quotes, numbers do not.' }],
+                    bubbles: [{ who: 'py', text: 'Chests can hold text too. Text needs quotes, numbers do not. Print either one the same way: no quotes around the chest name.' }],
                     code: py`
                         name = "Max"
                         blocks = 64
@@ -198,6 +256,23 @@ export const ch4: Chapter = {
                     `,
                 },
                 {
+                    scene: 'village',
+                    alt: 'Max frowns at the words Hello and Max squashed together with no space.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'Why is the second one squashed?' },
+                        { who: 'py', text: '+ glues with NO space. Put the space inside the quotes yourself.' },
+                    ],
+                    code: py`
+                        name = "Max"
+                        print("Hello, " + name)
+                        print("Hello," + name)
+                    `,
+                },
+                {
                     scene: 'room',
                     alt: 'Py shows that print can show several things separated by commas.',
                     cast: [
@@ -211,6 +286,22 @@ export const ch4: Chapter = {
                     code: py`
                         blocks = 64
                         print("I have", blocks, "blocks")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Sneak tries to glue a word block to a number block, and they spark and crash.',
+                    cast: [
+                        { who: 'sneak', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'I used + with text AND a number. Crash!' },
+                        { who: 'py', text: '+ cannot glue text to a number. Use commas instead!' },
+                    ],
+                    code: py`
+                        blocks = 64
+                        print("I have " + blocks + " blocks")
                     `,
                 },
                 {

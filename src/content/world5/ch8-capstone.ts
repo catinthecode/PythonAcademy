@@ -56,6 +56,52 @@ export const ch8: Chapter = {
                             print(item["q"])
                     `,
                 },
+                {
+                    scene: 'room',
+                    alt: 'Nova writes a spec card for one piece of her quiz.',
+                    cast: [
+                        { who: 'nova', pose: 'talk', x: 25 },
+                        { who: 'bolt', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'Spec first: "ask(item) shows the question and returns True or False."' },
+                        { who: 'bolt', text: 'Now anyone could build it. Even me!' },
+                    ],
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A tiny progress bar fills up as tests pass.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Build the tiniest piece, then test it right away.' },
+                        { who: 'nova', text: 'A progress bar, tested before I use it!' },
+                    ],
+                    code: py`
+                        def progress(done, total):
+                            return "#" * done + "-" * (total - done)
+
+                        assert progress(2, 5) == "##---"
+                        assert progress(0, 3) == "---"
+                        print(progress(3, 5))
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'A rocket on the launch pad. Five checklist lights turn green one by one.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'nova', pose: 'happy', x: 52 },
+                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Plan it, spec each piece, build small, test as you go, then polish. That is how real software gets made.' },
+                        { who: 'nova', text: 'Countdown to launch!' },
+                    ],
+                },
             ],
         },
         {
@@ -211,6 +257,54 @@ export const ch8: Chapter = {
                         { who: 'nova', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'zork', text: 'Your project, your ideas. Make it weird, make it fun, make it YOURS!' }],
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A blank answer box shows a friendly help message.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Friendly messages tell players what to do next.' },
+                        { who: 'nova', text: 'Much nicer than a crash!' },
+                    ],
+                    code: py`
+                        answer = ""
+                        if answer == "":
+                            print("Type an answer, then press Enter!")
+                    `,
+                },
+                {
+                    scene: 'room',
+                    alt: 'Zork play-tests the quiz and types an answer with an exclamation mark.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'nova', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'I typed "Mercury!" and it said WRONG!' },
+                        { who: 'nova', text: 'Play-testers find edges I never thought of!' },
+                    ],
+                    code: py`
+                        answer = "Mercury!"
+                        print(answer.strip().lower() == "mercury")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Everyone waves as a rocket with the player\'s name on it lifts off.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 15 },
+                        { who: 'nova', pose: 'happy', x: 38 },
+                        { who: 'zork', pose: 'happy', x: 60 },
+                        { who: 'bolt', pose: 'wave', x: 84, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Print, loops, lists, functions, tests, objects, algorithms... and how to captain an AI. Now build something amazing!' },
+                        { who: 'bolt', text: 'I will be right here to help. You are the captain!' },
+                    ],
                 },
             ],
         },

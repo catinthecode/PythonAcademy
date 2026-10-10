@@ -59,6 +59,61 @@ export const ch3: Chapter = {
                         print(level == 5)
                     `,
                 },
+                {
+                    scene: 'village',
+                    alt: 'Rae holds exactly 10 coins in front of a shop sign that says 10 coins.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'coin', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: 'The potion costs 10. I have exactly 10. Is coins > 10?' },
+                        { who: 'py', text: 'False! > means MORE than. For "at least", use >=.' },
+                    ],
+                    code: py`
+                        coins = 10
+                        print(coins > 10)
+                        print(coins >= 10)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Py points at a password with a sneaky extra space at the end.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'You can compare text too, but it must match EXACTLY.' },
+                        { who: 'fizz', text: 'One extra space makes it False?!' },
+                    ],
+                    code: py`
+                        password = "zap"
+                        print(password == "zap")
+                        print(password == "zap ")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py hosts a quiz show. Fizz and Rae hold up True and False cards.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'fizz', pose: 'happy', x: 55 },
+                        { who: 'rae', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Every comparison is a yes-or-no question. Python always answers True or False, never maybe!' },
+                        { who: 'fizz', text: 'Python would win every quiz show!' },
+                    ],
+                    code: py`
+                        hp = 8
+                        print(hp < 10)
+                        print(hp == 8)
+                        print(hp != 8)
+                    `,
+                },
             ],
         },
         {
@@ -132,9 +187,16 @@ export const ch3: Chapter = {
                 {
                     scene: 'arena',
                     alt: 'Rae puts a True card into a chest labelled can_battle.',
-                    cast: [{ who: 'rae', pose: 'point', x: 30 }],
-                    props: [{ item: 'chest', x: 68, y: 100 }],
-                    bubbles: [{ who: 'rae', text: 'You can keep the answer in a variable. can_battle holds True or False!' }],
+                    wide: true,
+                    cast: [
+                        { who: 'rae', pose: 'point', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 78, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 52, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: 'You can keep the answer in a variable. can_battle holds True or False!' },
+                        { who: 'fizz', text: 'True and False go in chests, just like numbers!' },
+                    ],
                     code: py`
                         hp = 12
                         can_battle = hp > 0
@@ -155,16 +217,67 @@ export const ch3: Chapter = {
                     `,
                 },
                 {
+                    scene: 'arena',
+                    alt: 'Fizz has 0 HP, but the can_battle chest still says True.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'rae', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'chest', x: 50, y: 100, scale: 0.8 }],
+                    bubbles: [
+                        { who: 'py', text: 'The chest keeps the answer from THAT moment. It never updates itself.' },
+                        { who: 'rae', text: 'hp is 0, but it still says True!' },
+                    ],
+                    code: py`
+                        hp = 12
+                        can_battle = hp > 0
+                        hp = 0
+                        print(can_battle)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae reads a label next to True on the screen.',
+                    cast: [
+                        { who: 'rae', pose: 'point', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'A bare True is confusing. Add a label with a comma!' },
+                        { who: 'fizz', text: 'Low HP: True. Yikes, potion time!' },
+                    ],
+                    code: py`
+                        hp = 3
+                        print("Low HP:", hp < 5)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Sneak compares a text 10 with a number 9 and the screen flashes red.',
+                    cast: [
+                        { who: 'sneak', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'Is "10" bigger than 9? CRASH!' },
+                        { who: 'py', text: 'Python cannot use < or > on text and a number.' },
+                    ],
+                    code: py`print("10" > 9)`,
+                },
+                {
                     scene: 'meadow',
-                    alt: 'Blazewing is about to evolve and glows.',
+                    alt: 'Blazewing glows, almost ready to evolve.',
                     wide: true,
                     cast: [
                         { who: 'blaze', pose: 'surprised', x: 30 },
                         { who: 'rae', pose: 'happy', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: 'Blazewing evolves at level 16 or more. That is level >= 16!' }],
+                    bubbles: [
+                        { who: 'blaze', text: 'Level 15... am I ready?' },
+                        { who: 'rae', text: 'You evolve at level 16 or more. That is level >= 16. Not yet, but so close!' },
+                    ],
                     code: py`
-                        level = 16
+                        level = 15
                         can_evolve = level >= 16
                         print("Can evolve:", can_evolve)
                     `,

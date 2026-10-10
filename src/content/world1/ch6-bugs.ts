@@ -60,6 +60,7 @@ export const ch6: Chapter = {
                         { who: 'py', text: 'SyntaxError: a typo in Python grammar, like a missing quote, colon or bracket.' },
                         { who: 'py', text: "NameError: Python doesn't know that word. Check your spelling!" },
                     ],
+                    code: py`print(score)`,
                 },
                 {
                     scene: 'village',
@@ -73,6 +74,25 @@ export const ch6: Chapter = {
                         { who: 'py', text: 'IndentationError: the spaces at the start of a line are wrong.' },
                         { who: 'py', text: "TypeError: mixing things that don't go together, like text + a number." },
                     ],
+                    code: py`print("Score: " + 10)`,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Max wears a detective hat and points at the error message, then at a missing letter in the code.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 22 },
+                        { who: 'max', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'magnifier', x: 50, y: 75 }],
+                    bubbles: [
+                        { who: 'py', text: 'Be a detective. Read the LAST line of the error first: it names the bug. Then go to the line number it shows.' },
+                        { who: 'max', text: "NameError, line 2: 'torch'... but my chest is called torches! Spelling!" },
+                    ],
+                    code: py`
+                        torches = 4
+                        print(torch)
+                    `,
                 },
             ],
         },
@@ -189,13 +209,14 @@ export const ch6: Chapter = {
             panels: [
                 {
                     scene: 'meadow',
-                    alt: 'Shelly has drawn a lopsided shape while Sneak giggles. There is no error message.',
+                    alt: 'Shelly has drawn a square with one side missing while Sneak giggles. There is no error message.',
                     wide: true,
                     cast: [
                         { who: 'shelly', pose: 'sad', x: 30 },
                         { who: 'sneak', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [
+                        { who: 'shelly', text: 'I was asked for a square, but one side is missing!' },
                         { who: 'sneak', text: 'The sneakiest bugs make NO error at all. Hehehe!' },
                     ],
                     code: py`
@@ -213,8 +234,43 @@ export const ch6: Chapter = {
                         { who: 'shelly', pose: 'think', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'py', text: 'The code runs, but does the wrong thing. Always check the result against the goal!' },
+                        { who: 'py', text: 'It runs, but does the wrong thing. Always check the result against the goal!' },
+                        { who: 'shelly', text: 'A square needs 4 sides. That 3 should be a 4!' },
                     ],
+                },
+                {
+                    scene: 'cave',
+                    alt: 'Sneak points at a print line that shows the word gems instead of the number 7.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'think', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'diamond', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'sneak', text: 'Here is another one. No error!' },
+                        { who: 'py', text: 'Python is happy, but it printed the word gems, not the 7.' },
+                    ],
+                    code: py`
+                        gems = 7
+                        print("gems")
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Max holds the goal next to his output and compares them line by line.',
+                    cast: [
+                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'max', text: 'Goal: Dig, Dig, Done! I get Done! twice.' },
+                        { who: 'py', text: 'Compare line by line. Done! is pushed in, so it repeats!' },
+                    ],
+                    code: py`
+                        for i in range(2):
+                            print("Dig")
+                            print("Done!")
+                    `,
                 },
                 {
                     scene: 'room',
@@ -227,16 +283,22 @@ export const ch6: Chapter = {
                     bubbles: [
                         { who: 'py', text: 'Lots of bugs? Fix ONE, run again, and read the next clue. One at a time!' },
                     ],
+                    caption: 'Two bugs here! Fix one, run, then fix the other.',
+                    code: py`Print("Hello)`,
                 },
                 {
                     scene: 'meadow',
                     alt: 'Max and Py hold up fly swatters, ready for action.',
+                    wide: true,
                     cast: [
-                        { who: 'max', pose: 'happy', x: 30 },
-                        { who: 'py', pose: 'happy', x: 70, flip: true },
+                        { who: 'py', pose: 'happy', x: 25 },
+                        { who: 'max', pose: 'happy', x: 72, flip: true },
                     ],
-                    props: [{ item: 'swatter', x: 45, y: 65 }],
-                    bubbles: [{ who: 'max', text: "Let's squash 'em!" }],
+                    props: [{ item: 'swatter', x: 50, y: 65 }],
+                    bubbles: [
+                        { who: 'py', text: 'Bug hunter rules: an error? Read the clue and the line number. No error? Check the result against the goal.' },
+                        { who: 'max', text: "Got it. Let's squash 'em!" },
+                    ],
                 },
             ],
         },

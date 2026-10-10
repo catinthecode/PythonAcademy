@@ -58,6 +58,63 @@ export const ch1: Chapter = {
                             print("🪙 coin")
                     `,
                 },
+                {
+                    scene: 'sky',
+                    alt: 'Bix counts down hearts floating above his head.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'bix', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Trace it like Python: ask the question, run the inside, ask again.' },
+                        { who: 'bix', text: '3, 2, 1... at 0 the question is False. Stop!' },
+                    ],
+                    code: py`
+                        lives = 3
+                        while lives > 0:
+                            print("Lives left:", lives)
+                            lives = lives - 1
+                        print("Game over")
+                    `,
+                },
+                {
+                    scene: 'circuit',
+                    alt: 'Glitch stares at a blank screen, puzzled.',
+                    cast: [
+                        { who: 'glitch', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'My loop printed NOTHING. Not even once!' },
+                        { who: 'py', text: 'The question was False at the very start, so the inside never ran.' },
+                    ],
+                    code: py`
+                        energy = 10
+                        while energy < 5:
+                            print("Charging...")
+                            energy = energy + 1
+                        print("Done")
+                    `,
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py holds up three signs: start, ask, change. Bix fills a fuel tank.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Every while loop needs 3 things: a starting value, a question, and a change inside that moves toward stopping.' },
+                        { who: 'bix', text: 'Start, ask, change. My rocket is fuelled!' },
+                    ],
+                    code: py`
+                        fuel = 0
+                        while fuel < 30:
+                            fuel = fuel + 10
+                            print("Fuel:", fuel)
+                    `,
+                },
             ],
         },
         {
@@ -162,16 +219,55 @@ export const ch1: Chapter = {
                 {
                     scene: 'sky',
                     alt: 'Py shows shortcut signs: plus-equals and minus-equals.',
+                    wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 28 },
                         { who: 'bix', pose: 'think', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Shortcuts! coins += 5 means coins = coins + 5. There\'s also -=, *= and /=.' }],
+                    bubbles: [
+                        { who: 'py', text: 'Shortcuts! coins += 5 means coins = coins + 5. There\'s also -=, *= and /=.' },
+                        { who: 'bix', text: 'Less typing, same result. I like it!' },
+                    ],
                     code: py`
                         coins = 10
                         coins += 5
                         coins -= 3
                         print(coins)
+                    `,
+                },
+                {
+                    scene: 'circuit',
+                    alt: 'A slime blob doubles in size twice. Bix backs away.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: '*= 2 doubles a value right where it is.' },
+                        { who: 'bix', text: '1, then 2, then 4. It is growing!' },
+                    ],
+                    code: py`
+                        slime = 1
+                        slime *= 2
+                        slime *= 2
+                        print(slime)
+                    `,
+                },
+                {
+                    scene: 'circuit',
+                    alt: 'Glitch watches a counter climb higher and higher, never stopping.',
+                    cast: [
+                        { who: 'glitch', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'glitch', text: 'I count UP, but stop when n is 0 or less. Hehe!' },
+                        { who: 'py', text: 'n only grows, so n > 0 stays True forever!' },
+                    ],
+                    code: py`
+                        n = 1
+                        while n > 0:
+                            n += 1
                     `,
                 },
                 {
@@ -184,14 +280,14 @@ export const ch1: Chapter = {
                     ],
                     props: [{ item: 'chest', x: 50, y: 100 }],
                     bubbles: [
-                        { who: 'bix', text: 'I save 15 coins a week. How many weeks until I have 100?' },
+                        { who: 'bix', text: 'I save 20 coins a week. How many weeks until I have 150?' },
                         { who: 'py', text: 'You don\'t know the number of weeks yet. That\'s a job for while!' },
                     ],
                     code: py`
                         coins = 0
                         weeks = 0
-                        while coins < 100:
-                            coins += 15
+                        while coins < 150:
+                            coins += 20
                             weeks += 1
                         print("Weeks:", weeks)
                         print("Coins:", coins)
@@ -204,7 +300,23 @@ export const ch1: Chapter = {
                         { who: 'glitch', pose: 'think', x: 30 },
                         { who: 'bix', pose: 'point', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'bix', text: 'Before I run a while loop I ask: does something inside it move toward stopping?' }],
+                    bubbles: [
+                        { who: 'glitch', text: 'Run my loop, Bix. Trust me!' },
+                        { who: 'bix', text: 'First I check: does something inside move toward stopping?' },
+                    ],
+                },
+                {
+                    scene: 'sky',
+                    alt: 'Py sums up the chapter on a floating sign.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Use while when you don\'t know how many times. Check it can stop!' },
+                        { who: 'bix', text: 'And += saves me typing.' },
+                    ],
                 },
             ],
         },

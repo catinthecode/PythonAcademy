@@ -71,6 +71,64 @@ export const ch4: Chapter = {
                         print(zork.energy, blip.energy)
                     `,
                 },
+                {
+                    scene: 'space',
+                    alt: 'Nova builds two space pets from the same blueprint.',
+                    cast: [
+                        { who: 'nova', pose: 'point', x: 25 },
+                        { who: 'zork', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'nova', text: 'Pass in values when you make each object.' },
+                        { who: 'zork', text: 'Same blueprint, different pets!' },
+                    ],
+                    code: py`
+                        class Pet:
+                            def __init__(self, name, sound):
+                                self.name = name
+                                self.sound = sound
+
+                        rex = Pet("Rex", "woof")
+                        mimi = Pet("Mimi", "meep")
+                        print(rex.name, "says", rex.sound)
+                        print(mimi.name, "says", mimi.sound)
+                    `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork forgot self in __init__, and the energy vanished.',
+                    cast: [
+                        { who: 'zork', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'I set energy = 10, but now it is gone!' },
+                        { who: 'py', text: 'Without self., it is only a temporary variable.' },
+                    ],
+                    code: py`
+                        class Alien:
+                            def __init__(self, name):
+                                self.name = name
+                                energy = 10
+
+                        zork = Alien("Zork")
+                        print(zork.energy)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'A blueprint on the left, three finished aliens on the right.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'A class is the blueprint. An object is one thing built from it. __init__ sets it up, and self.something stores data on THIS object.' },
+                        { who: 'nova', text: 'One blueprint, a whole crew!' },
+                    ],
+                },
             ],
         },
         {
@@ -205,23 +263,23 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'A spaceship with a fuel gauge.',
+                    alt: 'Nova shines a torch with a battery meter.',
                     cast: [{ who: 'nova', pose: 'point', x: 35 }],
-                    bubbles: [{ who: 'nova', text: 'Methods can return answers too, like a status report.' }],
+                    bubbles: [{ who: 'nova', text: 'Methods can return answers too, like a battery report.' }],
                     code: py`
-                        class Ship:
+                        class Torch:
                             def __init__(self):
-                                self.fuel = 100
+                                self.battery = 100
 
-                            def fly(self, distance):
-                                self.fuel -= distance
+                            def shine(self, minutes):
+                                self.battery -= minutes * 2
 
-                            def status(self):
-                                return f"Fuel: {self.fuel}"
+                            def report(self):
+                                return f"Battery: {self.battery}%"
 
-                        ship = Ship()
-                        ship.fly(30)
-                        print(ship.status())
+                        torch = Torch()
+                        torch.shine(15)
+                        print(torch.report())
                     `,
                 },
                 {
@@ -237,6 +295,65 @@ export const ch4: Chapter = {
                         for alien in crew:
                             alien.speak()
                     `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'Zork gets a strange message instead of a greeting.',
+                    cast: [
+                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'print(zork.speak) shows a weird "bound method"!' },
+                        { who: 'py', text: 'Methods need ( ) to run: zork.speak().' },
+                    ],
+                    code: ALIEN + '\n' + py`
+                        zork = Alien("Zork")
+                        print(zork.speak)
+                        zork.speak()
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'A little robot beeps, then works, and its battery drops.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'A method can call another method with self.' },
+                        { who: 'nova', text: 'work() beeps first, then uses 5 battery!' },
+                    ],
+                    code: py`
+                        class Robot:
+                            def __init__(self):
+                                self.battery = 20
+
+                            def beep(self):
+                                print("Beep!")
+
+                            def work(self):
+                                self.beep()
+                                self.battery -= 5
+
+                        r = Robot()
+                        r.work()
+                        print(r.battery)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'The alien crew waves from the spaceship windows.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'zork', pose: 'happy', x: 52 },
+                        { who: 'nova', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Objects bundle data, like self.energy, with actions called methods. Call a method with a dot and brackets: zork.rest().' },
+                        { who: 'zork', text: 'Data plus actions. That is me!' },
+                    ],
                 },
             ],
         },

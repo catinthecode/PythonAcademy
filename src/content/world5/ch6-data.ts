@@ -27,24 +27,25 @@ export const ch6: Chapter = {
                         { who: 'nova', text: 'I asked every alien their favourite colour. Now what?' },
                         { who: 'py', text: 'Count them with a dictionary: colour → number of votes.' },
                     ],
-                    code: VOTES + '\n' + py`
+                    code: py`
+                        snacks = ["chips", "nuts", "chips", "jelly", "chips", "nuts"]
                         counts = {}
-                        for v in votes:
-                            counts[v] = counts.get(v, 0) + 1
+                        for s in snacks:
+                            counts[s] = counts.get(s, 0) + 1
                         print(counts)
                     `,
                 },
                 {
                     scene: 'screen',
-                    alt: 'Py finds the colour with the most votes.',
+                    alt: 'Py finds the snack with the most votes.',
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [{ who: 'py', text: 'The winner: loop over the counts and keep the biggest.' }],
                     code: py`
-                        counts = {"red": 4, "blue": 3, "green": 1}
+                        counts = {"chips": 2, "nuts": 5, "jelly": 3}
                         best = None
-                        for colour in counts:
-                            if best is None or counts[colour] > counts[best]:
-                                best = colour
+                        for snack in counts:
+                            if best is None or counts[snack] > counts[best]:
+                                best = snack
                         print("Most popular:", best)
                     `,
                 },
@@ -54,10 +55,61 @@ export const ch6: Chapter = {
                     cast: [{ who: 'zork', pose: 'think', x: 40 }],
                     bubbles: [{ who: 'zork', text: 'Numbers data: biggest, smallest and average tell the story fast.' }],
                     code: py`
-                        temps = [21, 25, 19, 30, 24]
+                        temps = [18, 22, 27, 15, 23]
                         print("High:", max(temps), "Low:", min(temps))
                         print("Average:", sum(temps) / len(temps))
                     `,
+                },
+                {
+                    scene: 'screen',
+                    alt: 'A pie of snack votes split into percentages.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Turn counts into percents: count / total * 100.' },
+                        { who: 'nova', text: '75% chose chips!' },
+                    ],
+                    code: py`
+                        counts = {"chips": 6, "nuts": 2}
+                        total = 8
+                        for snack in counts:
+                            print(snack, counts[snack] / total * 100, "%")
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Zork frowns at three different spellings of red counted separately.',
+                    cast: [
+                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: '"Red", "red" and "red " counted as 3 colours!' },
+                        { who: 'py', text: 'Clean the data first with .strip().lower().' },
+                    ],
+                    code: py`
+                        votes = ["Red", "red", "red "]
+                        counts = {}
+                        for v in votes:
+                            v = v.strip().lower()
+                            counts[v] = counts.get(v, 0) + 1
+                        print(counts)
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Nova files survey cards into labelled boxes.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Collect, clean, count, summarise. A dictionary counts things; max, min and the average sum up numbers.' },
+                        { who: 'nova', text: 'Now my survey actually tells me something!' },
+                    ],
                 },
             ],
         },
@@ -162,23 +214,26 @@ export const ch6: Chapter = {
             panels: [
                 {
                     scene: 'screen',
-                    alt: 'A turtle draws a bar chart on the big screen.',
+                    alt: 'A turtle draws sideways bars on the big screen.',
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
-                    bubbles: [{ who: 'py', text: 'Pictures make data easy to see. Shelly the turtle can draw bar charts!' }],
+                    bubbles: [{ who: 'py', text: 'Pictures make data easy to see. A turtle can draw a bar for each number!' }],
                     code: py`
                         from turtle import *
-                        for value in [3, 5, 2]:
-                            left(90)
+                        for value in [4, 2, 5]:
                             forward(value * 20)
-                            right(90)
-                            forward(20)
-                            right(90)
-                            forward(value * 20)
-                            left(90)
+                            backward(value * 20)
                             penup()
-                            forward(10)
+                            right(90)
+                            forward(25)
+                            left(90)
                             pendown()
                     `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Py lists questions a data detective asks.',
+                    cast: [{ who: 'py', pose: 'talk', x: 40 }],
+                    bubbles: [{ who: 'py', text: 'Data detectives ask: how much data? Who was asked? Is anything missing or weird?' }],
                 },
                 {
                     scene: 'space',
@@ -195,10 +250,56 @@ export const ch6: Chapter = {
                     ],
                 },
                 {
+                    scene: 'screen',
+                    alt: 'One huge score towers over three small ones.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'nova', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'One weird value can wreck an average.' },
+                        { who: 'nova', text: 'That 100 must be a typo!' },
+                    ],
+                    code: py`
+                        scores = [8, 9, 7, 100]
+                        print("Average:", sum(scores) / len(scores))
+                        print("Without the 100:", sum(scores[:3]) / 3)
+                    `,
+                },
+                {
                     scene: 'space',
-                    alt: 'Py lists questions a data detective asks.',
-                    cast: [{ who: 'py', pose: 'talk', x: 40 }],
-                    bubbles: [{ who: 'py', text: 'Data detectives ask: how much data? Who was asked? Is anything missing or weird?' }],
+                    alt: 'Some survey cards are blank.',
+                    cast: [
+                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'zork', text: 'Some aliens never answered!' },
+                        { who: 'py', text: 'Skip the missing ones, and say how many were missing.' },
+                    ],
+                    code: py`
+                        answers = [5, None, 3, None, 4]
+                        real = []
+                        for a in answers:
+                            if a is not None:
+                                real.append(a)
+                        print("Missing:", len(answers) - len(real))
+                        print("Average:", sum(real) / len(real))
+                    `,
+                },
+                {
+                    scene: 'space',
+                    alt: 'Nova wears a detective hat and holds a magnifying glass over a chart.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'magnifier', x: 50, y: 75 }],
+                    bubbles: [
+                        { who: 'py', text: 'Before you trust a chart or an average, ask: how much data? Who was asked? Any weird or missing values?' },
+                        { who: 'nova', text: 'Data detective, on the case!' },
+                    ],
                 },
             ],
         },

@@ -28,8 +28,8 @@ export const ch2: Chapter = {
                         def heal(hp):
                             print("HP is now", hp + 10)
 
-                        heal(5)
-                        heal(20)
+                        heal(12)
+                        heal(30)
                     `,
                 },
                 {
@@ -42,7 +42,7 @@ export const ch2: Chapter = {
                             print(name, "hits for", damage)
 
                         attack("Kai", 7)
-                        attack("Slime", 2)
+                        attack("Ivy", 4)
                     `,
                 },
                 {
@@ -53,6 +53,66 @@ export const ch2: Chapter = {
                         { who: 'kai', pose: 'point', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'kai', text: 'The value you pass in is the argument. Inside the function, it goes by the parameter\'s name.' }],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai frowns at a message where the name and the number swapped places.',
+                    cast: [
+                        { who: 'kai', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'It says "7 hits for Kai"? Backwards!' },
+                        { who: 'py', text: 'Arguments fill the parameters in ORDER. Swap them back.' },
+                    ],
+                    code: py`
+                        def attack(name, damage):
+                            print(name, "hits for", damage)
+
+                        attack(7, "Kai")
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'A small square and a big square, drawn by the same spell.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Parameters make drawings flexible too. square(size) draws ANY size.' },
+                        { who: 'kai', text: 'One spell, small and big!' },
+                    ],
+                    code: py`
+                        from turtle import *
+
+                        def square(size):
+                            for i in range(4):
+                                forward(size)
+                                left(90)
+
+                        square(25)
+                        square(50)
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai drinks a potion with his name on the label.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Parameters are the blanks in the def line. Arguments are the values you fill in when you call it, in the same order.' },
+                        { who: 'kai', text: 'Blanks in the spell, values in the call!' },
+                    ],
+                    code: py`
+                        def potion(name, amount):
+                            print(f"{name} drinks a potion: +{amount} HP")
+
+                        potion("Kai", 15)
+                    `,
                 },
             ],
         },
@@ -168,10 +228,10 @@ export const ch2: Chapter = {
                         { who: 'py', text: 'print shows a value on screen. return HANDS IT BACK, so you can store it or do more math with it!' },
                     ],
                     code: py`
-                        def double(n):
-                            return n * 2
+                        def half(n):
+                            return n / 2
 
-                        x = double(4)
+                        x = half(10)
                         print(x + 1)
                     `,
                 },
@@ -181,10 +241,10 @@ export const ch2: Chapter = {
                     cast: [{ who: 'py', pose: 'point', x: 26 }],
                     bubbles: [{ who: 'py', text: 'A function with no return gives back None, which means "nothing".' }],
                     code: py`
-                        def say_hi():
-                            print("hi")
+                        def wave():
+                            print("*waves*")
 
-                        result = say_hi()
+                        result = wave()
                         print(result)
                     `,
                 },
@@ -199,6 +259,64 @@ export const ch2: Chapter = {
 
                         if is_strong(25):
                             print("Ready for the boss!")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py slams a door labelled return; the lines behind it never get read.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'return ENDS the function right away.' },
+                        { who: 'kai', text: 'So the line after it never runs!' },
+                    ],
+                    code: py`
+                        def check(hp):
+                            return "OK"
+                            print("You never see this")
+
+                        print(check(5))
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai stares at an empty screen after calling a function.',
+                    cast: [
+                        { who: 'kai', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'I called bonus(10), but nothing showed up!' },
+                        { who: 'py', text: 'A returned value vanishes unless you print it or store it.' },
+                    ],
+                    code: py`
+                        def bonus(score):
+                            return score + 5
+
+                        bonus(10)
+                        print(bonus(10))
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai levels up, glowing. Py hands him a gift box labelled return.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'print SHOWS a value. return GIVES IT BACK. Return answers so the rest of your code can use them.' },
+                        { who: 'kai', text: 'Level 4, here I come!' },
+                    ],
+                    code: py`
+                        def level_up(level):
+                            return level + 1
+
+                        new_level = level_up(3)
+                        print("New level:", new_level)
                     `,
                 },
             ],

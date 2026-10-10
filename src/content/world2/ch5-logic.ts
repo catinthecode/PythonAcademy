@@ -26,7 +26,7 @@ export const ch5: Chapter = {
                         { who: 'py', text: 'Python has those exact words: and, or, not!' },
                     ],
                     code: py`
-                        hp = 10
+                        hp = 25
                         asleep = False
                         print(hp > 0 and not asleep)
                     `,
@@ -56,6 +56,58 @@ export const ch5: Chapter = {
                         hp = 10
                         asleep = True
                         print(hp > 0 and not asleep)
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Fizz curls up for a nap next to an empty snack bowl.',
+                    cast: [
+                        { who: 'rae', pose: 'talk', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'candy', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: 'Fizz is happy with a snack OR a nap.' },
+                        { who: 'fizz', text: 'No snack, but a nap? Still happy!' },
+                    ],
+                    code: py`
+                        snack = False
+                        nap = True
+                        print(snack or nap)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Sneak wrote half a question after and, and the screen flashes red.',
+                    cast: [
+                        { who: 'sneak', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: '"hp > 0 and < 50" sounds right... CRASH!' },
+                        { who: 'py', text: 'Both sides need a whole question: hp > 0 and hp < 50.' },
+                    ],
+                    code: py`
+                        hp = 30
+                        print(hp > 0 and < 50)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py reads a rule out loud like a sentence. Rae and Fizz nod along.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'rae', pose: 'happy', x: 55 },
+                        { who: 'fizz', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'and: BOTH. or: at least ONE. not: flip it. Read your rule out loud, like a sentence!' },
+                        { who: 'rae', text: '"hp is more than 0 and less than 50." True!' },
+                    ],
+                    code: py`
+                        hp = 30
+                        print(hp > 0 and hp < 50)
                     `,
                 },
             ],
@@ -136,11 +188,16 @@ export const ch5: Chapter = {
                 {
                     scene: 'castle',
                     alt: 'A guard sign at the tournament gate lists two rules.',
+                    wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 26 },
                         { who: 'blaze', pose: 'happy', x: 74, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Use and/or right inside an if. The gate opens for level 10+ AND 3+ badges.' }],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Use and/or right inside an if. The gate opens for level 10 or more AND 3 or more badges.' },
+                        { who: 'blaze', text: 'Level 14 and 3 badges. Let me in!' },
+                    ],
                     code: py`
                         level = 14
                         badges = 3
@@ -178,6 +235,57 @@ export const ch5: Chapter = {
                         champion = True
                         print((level >= 10 and badges >= 3) or champion)
                     `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'A ride sign says heights 100 to 150. Fizz stretches up to measure itself.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: '"100 to 150" includes BOTH ends. Use >= and <=.' },
+                        { who: 'fizz', text: 'So 150 counts too!' },
+                    ],
+                    code: py`
+                        height = 150
+                        print(height >= 100 and height <= 150)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Fizz bounces, full of energy, ready to train.',
+                    cast: [
+                        { who: 'rae', pose: 'talk', x: 25 },
+                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'not makes rules read nicely: "if not tired".' },
+                        { who: 'fizz', text: 'Not tired at all. Training time!' },
+                    ],
+                    code: py`
+                        tired = False
+                        if not tired:
+                            print("Train!")
+                        else:
+                            print("Sleep")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Rae, Fizz and Blazewing march toward the tournament gate.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 18 },
+                        { who: 'rae', pose: 'happy', x: 48 },
+                        { who: 'fizz', pose: 'happy', x: 68 },
+                        { who: 'blaze', pose: 'happy', x: 86, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Join questions with and/or inside an if. Check the edges, and add brackets when a rule gets long.' },
+                        { who: 'rae', text: 'Tournament, here we come!' },
+                    ],
                 },
             ],
         },

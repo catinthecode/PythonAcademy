@@ -34,7 +34,7 @@ export function App() {
         if (found) {
             const { world, chapter, lesson } = found;
             return lesson.kind === 'read'
-                ? <ComicReader key={lesson.id} world={world} chapter={chapter} lesson={lesson} />
+                ? <ComicReader key={`${world.id}/${chapter.id}`} world={world} chapter={chapter} lesson={lesson} />
                 : <LessonPlayer key={`${chapter.id}/${lesson.id}`} world={world} chapter={chapter} lesson={lesson} />;
         }
     }

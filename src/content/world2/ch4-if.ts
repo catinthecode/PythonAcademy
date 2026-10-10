@@ -39,8 +39,16 @@ export const ch4: Chapter = {
                     alt: 'Py points out the colon and the pushed-in lines.',
                     cast: [{ who: 'py', pose: 'point', x: 30 }],
                     bubbles: [
-                        { who: 'py', text: 'Colons and pushed-in lines again, just like loops! Only ONE path runs: the if part or the else part.' },
+                        { who: 'py', text: 'Colons and pushed-in lines, like loops! Only ONE path runs. A line after, not pushed in, always runs.' },
                     ],
+                    code: py`
+                        hp = 50
+                        if hp < 10:
+                            print("Rest")
+                        else:
+                            print("Battle!")
+                        print("Let's go, Fizz!")
+                    `,
                 },
                 {
                     scene: 'arena',
@@ -61,6 +69,63 @@ export const ch4: Chapter = {
                             print("OK")
                         else:
                             print("Weak")
+                    `,
+                },
+                {
+                    scene: 'village',
+                    alt: 'Rae checks her coin pouch outside a potion shop.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'coin', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'rae', text: 'Do I always need an else?' },
+                        { who: 'py', text: 'No! Without else, a False question just skips its lines.' },
+                    ],
+                    code: py`
+                        coins = 2
+                        if coins >= 10:
+                            print("Buy a potion")
+                        print("Keep walking")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Sneak wrote one equals sign in an if, and the screen flashes red.',
+                    cast: [
+                        { who: 'sneak', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'My if crashed! What did I do?' },
+                        { who: 'py', text: 'An if asks a question, so it needs ==, not =.' },
+                    ],
+                    code: py`
+                        coins = 0
+                        if coins = 0:
+                            print("Broke!")
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Fizz flaps its little wings, choosing a move. Rae and Py watch.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'fizz', pose: 'happy', x: 50 },
+                        { who: 'rae', pose: 'happy', x: 80, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'if works with text too: compare with == and keep the quotes around the word.' },
+                        { who: 'rae', text: 'Now Fizz can choose its own moves!' },
+                    ],
+                    code: py`
+                        move = "fly"
+                        if move == "fly":
+                            print("Up we go!")
+                        else:
+                            print("Stay on the ground")
                     `,
                 },
             ],
@@ -165,10 +230,22 @@ export const ch4: Chapter = {
                 {
                     scene: 'screen',
                     alt: 'Py follows the questions from top to bottom with an arrow.',
-                    cast: [{ who: 'py', pose: 'point', x: 26 }],
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'rae', pose: 'think', x: 78, flip: true },
+                    ],
                     bubbles: [
                         { who: 'py', text: 'Python asks the questions top to bottom and runs ONLY the first one that is True. The rest are skipped.' },
+                        { who: 'rae', text: 'Even if a later question is True too?' },
                     ],
+                    code: py`
+                        hp = 40
+                        if hp > 30:
+                            print("Super strong")
+                        elif hp > 20:
+                            print("Strong")
+                    `,
                 },
                 {
                     scene: 'arena',
@@ -195,7 +272,66 @@ export const ch4: Chapter = {
                         { who: 'rae', pose: 'happy', x: 30 },
                         { who: 'blaze', pose: 'happy', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: 'Put the hardest test first! And you don\'t always need an else.' }],
+                    bubbles: [
+                        { who: 'rae', text: 'Put the hardest test first, then the easier ones!' },
+                        { who: 'blaze', text: 'Yay, I can be Strong again!' },
+                    ],
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py points at the number 10 sitting right on a line between two zones.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'sign', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'A badge needs 10 points or more. Try 9, 10 and 11!' },
+                        { who: 'fizz', text: '10 gets no badge. The > is wrong!' },
+                    ],
+                    caption: 'Bugs love edges. Test the number right on the line.',
+                    code: py`
+                        points = 10
+                        if points > 10:
+                            print("Badge!")
+                        else:
+                            print("No badge")
+                    `,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Rae wonders what Fizz will do when it is neither happy nor hungry.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'What if Fizz is not happy OR hungry?' },
+                        { who: 'py', text: 'Then else runs. It catches everything the questions missed.' },
+                    ],
+                    code: py`
+                        mood = "sleepy"
+                        if mood == "happy":
+                            print("Fizz dances")
+                        elif mood == "hungry":
+                            print("Fizz eats")
+                        else:
+                            print("Fizz naps")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py draws a path that stops at the first open gate. Rae and Blazewing cheer.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'rae', pose: 'happy', x: 55 },
+                        { who: 'blaze', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Remember: top to bottom, the FIRST True path wins, and else catches the rest. Test the edges!' },
+                        { who: 'rae', text: 'Hardest question first. Got it!' },
+                    ],
                 },
             ],
         },

@@ -58,6 +58,54 @@ export const ch2: Chapter = {
                         print(f"{name} has {hp} HP")
                     `,
                 },
+                {
+                    scene: 'meadow',
+                    alt: 'Rae counts the letters of Hi Fizz on her fingers and forgets the space.',
+                    cast: [
+                        { who: 'rae', pose: 'think', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'len("Hi Fizz") is 7? I only count 6 letters!' },
+                        { who: 'py', text: 'The space counts too. Every character counts!' },
+                    ],
+                    code: py`print(len("Hi Fizz"))`,
+                },
+                {
+                    scene: 'meadow',
+                    alt: 'Rae frowns at curly brackets printed on the screen.',
+                    cast: [
+                        { who: 'rae', pose: 'sad', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'My sentence printed {name} instead of Fizz!' },
+                        { who: 'py', text: 'You forgot the f. Without it, { } is just text.' },
+                    ],
+                    code: py`
+                        name = "Fizz"
+                        print("Go {name}!")
+                        print(f"Go {name}!")
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Py shows three ways to build text while Rae and Fizz watch.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'rae', pose: 'happy', x: 55 },
+                        { who: 'fizz', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Three text tools: + glues pieces, len() counts characters, and f-strings drop values in with { }.' },
+                        { who: 'rae', text: 'And f-strings work with numbers, so no more crashes!' },
+                    ],
+                    code: py`
+                        level = 7
+                        print(f"Fizz is level {level}!")
+                    `,
+                },
             ],
         },
         {
@@ -144,11 +192,15 @@ export const ch2: Chapter = {
                 {
                     scene: 'arena',
                     alt: 'Rae shouts Fizz\'s name in big capital letters.',
+                    wide: true,
                     cast: [
                         { who: 'rae', pose: 'surprised', x: 30 },
                         { who: 'fizz', pose: 'happy', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: '.upper() makes text SHOUT. .lower() makes it whisper.' }],
+                    bubbles: [
+                        { who: 'rae', text: '.upper() makes text SHOUT. .lower() makes it whisper.' },
+                        { who: 'fizz', text: 'FIZZ! ...fizz.' },
+                    ],
                     code: py`
                         name = "Fizz"
                         print(name.upper())
@@ -164,15 +216,67 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'arena',
+                    alt: 'Py points at the dot between a variable and upper.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'rae', pose: 'think', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'The dot means "do this to that text". team.upper() shouts team.' },
+                        { who: 'rae', text: 'Like giving the text an order!' },
+                    ],
+                    code: py`
+                        team = "red team"
+                        print(team.upper())
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Sneak giggles at a strange message on the screen instead of a shout.',
+                    cast: [
+                        { who: 'sneak', pose: 'happy', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'sneak', text: 'I took away the ( ). What a weird message!' },
+                        { who: 'py', text: 'Without ( ), upper never runs. Methods need brackets!' },
+                    ],
+                    code: py`
+                        name = "Fizz"
+                        print(name.upper)
+                    `,
+                },
+                {
+                    scene: 'arena',
+                    alt: 'Rae draws a border of equals signs above and below the word ARENA.',
+                    cast: [
+                        { who: 'rae', pose: 'happy', x: 25 },
+                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'rae', text: 'Repeating makes borders! "=" * 12 is a line.' },
+                        { who: 'fizz', text: 'Fancy! Fizz likes it!' },
+                    ],
+                    code: py`
+                        print("=" * 12)
+                        print("ARENA")
+                        print("=" * 12)
+                    `,
+                },
+                {
+                    scene: 'arena',
                     alt: 'Py builds a name tag out of stars.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
                         { who: 'blaze', pose: 'happy', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'py', text: 'Mix the tricks: "*" * len(name) makes a line of stars exactly as long as the name!' }],
+                    bubbles: [
+                        { who: 'py', text: 'Mix the tricks: "*" * len(name) makes a line of stars exactly as long as the name!' },
+                        { who: 'blaze', text: 'A name tag that fits me perfectly!' },
+                    ],
                     code: py`
-                        name = "Blaze"
+                        name = "Blazewing"
                         print("*" * len(name))
                         print(name)
                         print("*" * len(name))

@@ -63,6 +63,46 @@ export const ch8: Chapter = {
                             print("You can't go that way.")
                     `,
                 },
+                {
+                    scene: 'castle',
+                    alt: 'Py traces a finger from the vault back to the hall on the map.',
+                    cast: [
+                        { who: 'py', pose: 'point', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'Read it left to right: first the room, then its exit.' },
+                        { who: 'kai', text: 'West from the vault leads to the hall!' },
+                    ],
+                    code: ROOMS + '\n' + py`print(rooms["vault"]["west"])`,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Slime types a room name with a capital letter and the game crashes.',
+                    cast: [
+                        { who: 'slime', pose: 'surprised', x: 25 },
+                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'slime', text: 'rooms["Hall"] crashed! Blorp!' },
+                        { who: 'py', text: 'Keys must match exactly. "Hall" is not "hall".' },
+                    ],
+                    code: ROOMS + '\n' + py`print(rooms["Hall"]["text"])`,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai stands in the hall on a big castle map, marked "you are here".',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                    ],
+                    props: [{ item: 'scroll', x: 50, y: 100 }],
+                    bubbles: [
+                        { who: 'py', text: 'Each room maps "text" to its description, and each direction to the next room. A "here" variable remembers where the player stands.' },
+                        { who: 'kai', text: 'The whole castle fits in one dictionary!' },
+                    ],
+                },
             ],
         },
         {
@@ -182,14 +222,13 @@ export const ch8: Chapter = {
                     ],
                     code: ROOMS + '\n' + py`
                         here = "gate"
+                        moves = 0
                         while here != "vault":
-                            print(rooms[here]["text"])
                             direction = input("Go which way? ")
                             if direction in rooms[here]:
                                 here = rooms[here][direction]
-                            else:
-                                print("You can't go that way.")
-                        print(rooms[here]["text"])
+                            moves += 1
+                        print("Treasure in", moves, "moves!")
                     `,
                     inputs: ['north', 'west', 'east'],
                 },
@@ -207,6 +246,56 @@ export const ch8: Chapter = {
                         { who: 'slime', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'bolt', text: 'Test every path: the winning route, a wrong direction, and quitting early!' }],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'A player types " North " with a capital and spaces. Py tidies it up.',
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 25 },
+                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: '.strip() trims spaces, .lower() fixes capitals.' },
+                        { who: 'kai', text: '" North " becomes "north"!' },
+                    ],
+                    code: py`
+                        direction = input("Go which way? ").strip().lower()
+                        print("You typed:", direction)
+                    `,
+                    inputs: [' North '],
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Kai calls a describe function from a short, neat loop.',
+                    cast: [
+                        { who: 'kai', pose: 'point', x: 25 },
+                        { who: 'py', pose: 'happy', x: 75, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'kai', text: 'My functions keep the loop short and easy to read.' },
+                        { who: 'py', text: 'Small pieces, one clear game!' },
+                    ],
+                    code: ROOMS + '\n' + py`
+                        def describe(room):
+                            print(rooms[room]["text"])
+
+                        describe("gate")
+                        describe("vault")
+                    `,
+                },
+                {
+                    scene: 'castle',
+                    alt: 'Py draws a loop of arrows: show, ask, check, move. Kai and Slime cheer.',
+                    wide: true,
+                    cast: [
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'kai', pose: 'happy', x: 52 },
+                        { who: 'slime', pose: 'happy', x: 82, flip: true },
+                    ],
+                    bubbles: [
+                        { who: 'py', text: 'The game loop: show the room, ask for a move, check the exit, move, and repeat until the player wins or quits.' },
+                        { who: 'kai', text: 'Time to build MY castle!' },
+                    ],
                 },
             ],
         },
