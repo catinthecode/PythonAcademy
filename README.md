@@ -42,33 +42,9 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which validates the conte
 site and publishes `dist/` to GitHub Pages. One-time setup: **Settings → Pages → Source:
 GitHub Actions**. To host at a domain root instead, build with `BASE_PATH=/`.
 
-## How it fits together
+## Design docs
 
-```
-src/content/      the course, as plain data (worlds → chapters → lessons → problems)
-src/engine/       runs Python in a Web Worker, grades answers, explains errors kindly
-src/art/          SVG characters, scenes, props and comic panels
-src/pages/        chapter map, comic reader, lesson player, library, profile
-src/progress/     kid profiles, XP, stars, unlock rules (saved in the browser for now)
-```
-
-Open `#/art` in the dev server to see every character pose, scene and prop.
-
-## Adding a chapter
-
-1. Create `src/content/world1/ch6-something.ts` exporting a `Chapter` (copy an existing one).
-   Lessons go in map order: `read` lessons hold comic `panels`, `practice` and `test` lessons
-   hold `problems`. End with exactly one `test`.
-2. Add it to the world's `chapters` list in `src/content/world1/index.ts`.
-3. Run `npm run validate-content`. It runs every solution, confirms buggy starters really fail,
-   and checks predict answers against what Python actually prints.
-
-Problem types: `predict` (including `about: 'meaning'` for "what does it do?"), `fix`, `write`,
-`fill` (`___` gaps), `parsons` (put lines in order), `trace` (fill in a trace table), `breakit`
-(find the input that exposes the Robot's bug) and `instruct` (pick the instruction that makes the
-Robot build the goal). Any code problem can set `turtle: true` to be graded by its drawing. Checks are Python
-`assert` lines (see `src/content/schema.ts`); by default the kid's output must match the
-solution's output.
-
-Comic panels are data too: pick a `scene`, place the `cast` (character, pose, x position) and
-`props`, and write `bubbles`. Bubbles point at their speakers automatically.
+| Doc | Covers |
+|---|---|
+| [docs/CURRICULUM.md](docs/CURRICULUM.md) | What the course teaches and why: goals, how worlds, chapters and lessons are organized, the concept map for each world, which concepts content may use, and the rules for writing problems and comic books. **Read this before designing or writing content.** |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the app is built: runtime, source layout, routes, data model, Python engine and grading, progress and unlocks, engagement features, quality gates, and the checklist for adding content. |
