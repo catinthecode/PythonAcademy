@@ -10,7 +10,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "validate-content": "tsx scripts/validate-content.ts",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test tests/smoke.spec.ts",
+    "test:all": "playwright test tests/all-problems.spec.ts --reporter=list",
     "check": "tsc --noEmit && npm run validate-content"
   },
   "dependencies": {

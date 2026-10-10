@@ -10,9 +10,10 @@ const CROP: Record<Art, string> = {
     turtle: '-56 -72 116 80',
     sneak: '-36 -96 72 72',
     robot: '-30 -128 60 60',
+    critter: '-40 -92 80 80',
 };
 
-const NAMES: Record<Art, string> = { py: 'Py', miner: 'Miner', kid: 'Kid', turtle: 'Shelly', sneak: 'Sneak', robot: 'Robot' };
+const NAMES: Record<Art, string> = { py: 'Py', miner: 'Miner', kid: 'Kid', turtle: 'Shelly', sneak: 'Sneak', robot: 'Robot', critter: 'Critter' };
 
 export const AVATAR_CHOICES: AvatarData[] = [
     { art: 'miner' },
@@ -25,6 +26,8 @@ export const AVATAR_CHOICES: AvatarData[] = [
     { art: 'turtle' },
     { art: 'sneak' },
     { art: 'robot' },
+    { art: 'critter', tint: '#38bdf8' },
+    { art: 'critter', tint: '#f97316' },
 ];
 
 export function Avatar({ avatar, size = 48, className = '' }: { avatar: AvatarData; size?: number; className?: string }) {

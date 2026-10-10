@@ -64,7 +64,7 @@ export function ComicReader({ world, chapter, lesson }: { world: World; chapter:
                                     <ComicPanel panel={panel} world={world} />
                                     <ReadAloud panel={panel} world={world} />
                                 </div>
-                                {panel.code && <TryIt code={panel.code} />}
+                                {panel.code && <TryIt code={panel.code} inputs={panel.inputs} />}
                             </div>
                         ))}
                     </div>

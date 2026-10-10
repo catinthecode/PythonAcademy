@@ -6,10 +6,12 @@ Python in the browser, stars, XP and unlockable chapters across 5 game-themed Wo
 | World | Game | Ages | Status |
 |---|---|---|---|
 | 1 First Spells | Block World | 7–8 | ✅ 8 chapters |
-| 2 Making Choices | Critter Quest | 8–9 | sneak peek |
-| 3 Loops and Lists | Brick Park | 9–10 | sneak peek |
-| 4 Building Blocks | Hero Kingdom | 10–11 | coming soon |
-| 5 Thinking Like a Programmer | The Multiverse | 11–12 | coming soon |
+| 2 Making Choices | Critter Quest | 8–9 | ✅ 8 chapters |
+| 3 Loops and Lists | Brick Park | 9–10 | ✅ 8 chapters |
+| 4 Building Blocks | Hero Kingdom | 10–11 | ✅ 8 chapters |
+| 5 Thinking Like a Programmer | The Multiverse | 11–12 | ✅ 8 chapters |
+
+40 chapters and 525 problems in all, every one checked against real Python by `npm run validate-content`.
 
 ## Running it
 
@@ -29,6 +31,7 @@ served from the site itself (`scripts/copy-pyodide.mjs` copies it into `public/p
 |---|---|---|
 | `npm run check` | Type-check, plus every puzzle against real Python (solutions pass, buggy starters fail, predict answers match) | Before every commit (git hook) and in CI |
 | `npm run test:e2e` | Builds the site, opens every page and lesson in headless Chrome (fails on blank pages or JS errors), and plays a lesson end to end | In CI before every deploy; run it locally any time |
+| `npm run test:all` | Plays EVERY problem through the real UI (types code, fills gaps, taps tiles, picks choices, fills trace tables) and checks each is accepted | In CI before every deploy (~2 min) |
 
 The pre-commit hook lives in `.githooks/`. Turn it on in a fresh clone with
 `git config core.hooksPath .githooks`. Skip it once with `git commit --no-verify`.

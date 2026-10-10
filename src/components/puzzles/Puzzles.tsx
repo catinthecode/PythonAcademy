@@ -7,6 +7,7 @@ import { gradePredict, type Verdict } from '../../engine/grade';
 import type { RunResult } from '../../engine/python/types';
 import { CodeEditor } from '../CodeEditor';
 import { OutputConsole } from '../OutputConsole';
+import { PlayerTypes } from '../PlayerTypes';
 import { TurtleCanvas } from '../TurtleCanvas';
 import { CodeWorkspace } from './CodeWorkspace';
 import { run, seededShuffle, useDraft, useGrader } from './hooks';
@@ -178,21 +179,23 @@ export function PredictPuzzleView({ puzzle, onSolved }: PuzzleProps<PredictPuzzl
         setVerdict(v);
         if (v.passed) {
             onSolved();
-            setReveal(await run({ code: puzzle.code }));
+            setReveal(await run({ code: puzzle.code, inputs: puzzle.inputs }));
         }
     };
 
     return (
         <div className="space-y-4">
             <div className="grid gap-4 lg:grid-cols-2">
-                <div className="min-w-0">
+                <div className="min-w-0 space-y-2">
                     <CodeEditor value={puzzle.code} readOnly minLines={2} />
+                    {puzzle.inputs && <PlayerTypes inputs={puzzle.inputs} />}
                 </div>
                 <div className="space-y-2">
                     {puzzle.choices ? (
-                        puzzle.choices.map(c => (
+                        puzzle.choices.map((c, i) => (
                             <button
                                 key={c}
+                                data-choice={i}
                                 onClick={() => answer(c)}
                                 disabled={verdict?.passed}
                                 className="block w-full rounded-xl border-4 border-blue-200 bg-white px-4 py-3 text-left font-mono text-lg text-stone-900 shadow hover:border-blue-500 disabled:opacity-70"

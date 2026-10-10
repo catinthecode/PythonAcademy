@@ -4,6 +4,7 @@ import type { Verdict } from '../../engine/grade';
 import { OutputConsole } from '../OutputConsole';
 import { TurtleCanvas } from '../TurtleCanvas';
 import { useGoal, usePythonStatus } from './hooks';
+import { PlayerTypes } from '../PlayerTypes';
 
 interface Props {
     puzzle: CodePuzzle;
@@ -42,6 +43,7 @@ export function CodeWorkspace({ puzzle, editLabel, children, onCast, running, ve
                 <div className="min-w-0 space-y-3">
                     <div className="text-sm font-extrabold uppercase tracking-wide text-blue-800">{editLabel}</div>
                     {children}
+                    {puzzle.inputs && <PlayerTypes inputs={puzzle.inputs} />}
                     <div className="flex flex-wrap items-center gap-3">
                         <button
                             onClick={onCast}

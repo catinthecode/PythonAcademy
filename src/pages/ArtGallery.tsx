@@ -7,7 +7,7 @@ import type { Character, Pose, PropId, SceneId, World } from '../content/schema'
 import { WORLDS } from '../content/worlds';
 
 const POSES: Pose[] = ['idle', 'talk', 'wave', 'point', 'think', 'happy', 'surprised', 'sad'];
-const SCENES: SceneId[] = ['meadow', 'night', 'cave', 'village', 'room', 'circuit', 'screen'];
+const SCENES: SceneId[] = ['meadow', 'night', 'cave', 'village', 'room', 'circuit', 'screen', 'arena', 'sky', 'castle', 'space'];
 const PROPS: PropId[] = ['commandBlock', 'chest', 'diamond', 'tnt', 'repeater', 'sign', 'magnifier', 'pickaxe', 'torch', 'bug', 'cow', 'candy', 'coin', 'quote', 'scroll', 'swatter'];
 
 export function ArtGallery() {
@@ -15,6 +15,8 @@ export function ArtGallery() {
     const cast: Character[] = [
         ...Object.values(world.characters),
         { name: 'Kid (tinted)', art: 'kid', tint: '#2563eb' },
+        { name: 'Critter (yellow)', art: 'critter', tint: '#facc15' },
+        { name: 'Critter (lime)', art: 'critter', tint: '#84cc16' },
     ];
     return (
         <div className="mx-auto max-w-6xl space-y-10 p-6">

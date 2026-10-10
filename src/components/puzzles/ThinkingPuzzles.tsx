@@ -134,9 +134,10 @@ export function BreakItPuzzleView({ puzzle, onSolved }: PuzzleProps<BreakItPuzzl
                 <div className="space-y-2">
                     <div className="font-bold text-stone-700">Try a value for <code className="rounded bg-stone-800 px-1.5 text-green-300">{puzzle.inputName}</code>:</div>
                     <div className="flex flex-wrap gap-2">
-                        {puzzle.choices.map(c => (
+                        {puzzle.choices.map((c, i) => (
                             <button
                                 key={c}
+                                data-choice={i}
                                 onClick={() => tryIt(c)}
                                 disabled={solved || status !== 'ready'}
                                 className={`rounded-xl border-4 px-5 py-3 font-mono text-xl shadow disabled:opacity-60 ${picked === c ? 'border-blue-500 bg-blue-50' : 'border-blue-200 bg-white hover:border-blue-500'}`}
@@ -193,6 +194,7 @@ export function InstructPuzzleView({ puzzle, onSolved }: PuzzleProps<InstructPuz
                     {puzzle.choices.map((c, i) => (
                         <button
                             key={i}
+                            data-choice={i}
                             onClick={() => ask(i)}
                             disabled={solved || status !== 'ready'}
                             className={`block w-full rounded-2xl border-4 px-4 py-3 text-left text-lg shadow disabled:opacity-60 ${picked === i ? 'border-blue-500 bg-blue-50' : 'border-blue-200 bg-white hover:border-blue-500'}`}

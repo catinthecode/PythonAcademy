@@ -14,6 +14,25 @@ class _TooLong(Exception):
     pass
 
 
+class NoMoreInput(Exception):
+    pass
+
+
+def _make_input(values):
+    # Stands in for input(): answers come from the puzzle's list of what the
+    # "player" types, echoed like a terminal would show them.
+    remaining = [str(v) for v in (values or [])]
+
+    def fake_input(prompt=""):
+        if not remaining:
+            raise NoMoreInput()
+        answer = remaining.pop(0)
+        print(str(prompt) + answer)
+        return answer
+
+    return fake_input
+
+
 def _exec_user(src, ns):
     # Count executed lines of the kid's code so infinite loops end with a
     # friendly message instead of freezing the worker.
@@ -46,9 +65,46 @@ def _exec_user(src, ns):
     return None
 
 
-def _run(src, check=None, expected_output=None):
+def _run_quiet(src, inputs=None, setup=""):
+    # Re-runs a program with different answers for input() (used by checks via run_with).
+    ns = {"__name__": "__main__", "input": _make_input(inputs)}
+    out = io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    sys.stdout = sys.stderr = out
+    try:
+        if setup:
+            exec(setup, ns)
+        error = _exec_user(src, ns)
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
+    if error:
+        what = ("when the player types " + ", ".join(str(i) for i in inputs)) if inputs else ("with " + setup.strip()) if setup else ""
+        raise AssertionError("Your program crashed " + what + " (" + error["type"] + ")")
+    return out.getvalue()
+
+
+def _need_function(ns, name):
+    fn = ns.get(name)
+    if not callable(fn):
+        raise AssertionError("Define a function called " + name + "(...) first.")
+    return fn
+
+
+def _printed(fn, *args):
+    out = io.StringIO()
+    old_out = sys.stdout
+    sys.stdout = out
+    try:
+        fn(*args)
+    finally:
+        sys.stdout = old_out
+    return out.getvalue()
+
+
+def _run(src, check=None, expected_output=None, inputs_json=None):
     _turtle._reset()
-    ns = {"__name__": "__main__"}
+    inputs = json.loads(inputs_json) if inputs_json else None
+    ns = {"__name__": "__main__", "input": _make_input(inputs)}
     out = io.StringIO()
     old_out, old_err = sys.stdout, sys.stderr
     sys.stdout = sys.stderr = out
@@ -69,7 +125,16 @@ def _run(src, check=None, expected_output=None):
             output_lines=output.splitlines(),
             expected_output=expected_output,
             same_output=lambda a, b: _norm(a) == _norm(b),
+            # run_with(["7"]) re-runs the kid's program as if the player typed 7;
+            # run_with(setup="level = 20") runs it with a variable set first.
+            run_with=lambda inputs=None, setup="": _run_quiet(src, inputs, setup),
+            # function("double") returns the kid's function, or fails kindly if it's missing.
+            function=lambda name: _need_function(ns, name),
+            # printed(greet, "Kai") is what greet("Kai") prints.
+            printed=_printed,
         )
+        # Anything the kid's functions print while being checked is swallowed.
+        sys.stdout = io.StringIO()
         try:
             exec(check, env)
             passed = True
@@ -79,8 +144,10 @@ def _run(src, check=None, expected_output=None):
         except Exception as e:
             passed = False
             fail = "Puzzle check crashed (" + type(e).__name__ + ": " + str(e) + ")"
+        finally:
+            sys.stdout = old_out
 
-    simple = (int, float, str, bool, list)
+    simple = (int, float, str, bool, list, dict, tuple)
     variables = {k: v for k, v in ns.items() if not k.startswith("__") and isinstance(v, simple)}
     return json.dumps(
         {
@@ -104,8 +171,18 @@ def _trace(src, line, names):
     prev = [None]
     steps = [0]
 
-    def snap():
-        rows.append([_show(ns[n]) if n in ns else "" for n in names])
+    def snap(frame):
+        # Variables inside a function live in its frame; others are global.
+        local = frame.f_locals
+        row = []
+        for n in names:
+            if n in local:
+                row.append(_show(local[n]))
+            elif n in ns:
+                row.append(_show(ns[n]))
+            else:
+                row.append("")
+        rows.append(row)
 
     def tracer(frame, event, arg):
         if frame.f_code.co_filename != "<spell>":
@@ -115,7 +192,7 @@ def _trace(src, line, names):
             if steps[0] > STEP_LIMIT or len(rows) > 200:
                 raise _TooLong()
             if prev[0] == line:
-                snap()
+                snap(frame)
             prev[0] = frame.f_lineno if event == "line" else None
         return tracer
 

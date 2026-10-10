@@ -174,7 +174,7 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                         <PuzzleView key={`${key}/${problem.id}/${round}`} puzzle={problem} draftKey={`${profile?.id}/${key}/${problem.id}`} onSolved={onSolved} />
 
                         {solved ? (
-                            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-4 border-green-500 bg-green-100 px-5 py-4">
+                            <div data-testid="solved-banner" className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-4 border-green-500 bg-green-100 px-5 py-4">
                                 <div className="text-2xl font-bold text-green-800">
                                     ✅ {problem.boss ? 'Boss defeated!' : 'You got it!'} {justEarned ? <span className="text-yellow-600">+{justEarned} XP</span> : null}
                                 </div>

@@ -3,9 +3,9 @@
 
 // ---------- Characters & comics (drawn as SVG, see src/art) ----------
 
-export type CharacterArt = 'py' | 'miner' | 'turtle' | 'sneak' | 'kid' | 'robot';
+export type CharacterArt = 'py' | 'miner' | 'turtle' | 'sneak' | 'kid' | 'robot' | 'critter';
 export type Pose = 'idle' | 'talk' | 'wave' | 'point' | 'think' | 'happy' | 'surprised' | 'sad';
-export type SceneId = 'meadow' | 'night' | 'cave' | 'village' | 'room' | 'circuit' | 'screen';
+export type SceneId = 'meadow' | 'night' | 'cave' | 'village' | 'room' | 'circuit' | 'screen' | 'arena' | 'sky' | 'castle' | 'space';
 export type PropId =
     | 'commandBlock' | 'chest' | 'diamond' | 'tnt' | 'repeater' | 'sign' | 'magnifier'
     | 'pickaxe' | 'torch' | 'bug' | 'cow' | 'candy' | 'coin' | 'quote' | 'scroll' | 'swatter';
@@ -49,6 +49,8 @@ export interface ComicPanel {
     caption?: string;
     /** A runnable "Try it" example shown under the panel */
     code?: string;
+    /** Starting answers for input() in the Try it box (kids can change them) */
+    inputs?: string[];
     /** Span both columns of the comic page */
     wide?: boolean;
 }
@@ -78,6 +80,8 @@ export interface PredictPuzzle extends PuzzleBase {
      * description of what the code does ("What does it do?"). The last two aren't auto-checked.
      */
     about?: 'output' | 'error' | 'drawing' | 'meaning';
+    /** What the "player" types, answering each input() call in order */
+    inputs?: string[];
 }
 
 /**
@@ -132,6 +136,8 @@ interface CodePuzzleBase extends PuzzleBase {
     turtle?: boolean;
     /** Don't show the solution's output as the goal (for open-ended answers) */
     hideGoal?: boolean;
+    /** What the "player" types, answering each input() call in order */
+    inputs?: string[];
 }
 
 /** Starter code is broken; fix it. Validator also confirms the starter fails. */

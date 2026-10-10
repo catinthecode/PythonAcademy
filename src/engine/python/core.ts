@@ -30,7 +30,8 @@ export function traceCode(py: PyodideAPI, req: TraceRequest): TraceResult {
 export function runCode(py: PyodideAPI, req: RunRequest): RunResult {
     const fn = py.globals.get('_run');
     try {
-        return JSON.parse(fn(req.code, req.check ?? null, req.expectedOutput ?? null));
+        const inputs = req.inputs?.length ? JSON.stringify(req.inputs) : null;
+        return JSON.parse(fn(req.code, req.check ?? null, req.expectedOutput ?? null, inputs));
     } finally {
         fn.destroy();
     }

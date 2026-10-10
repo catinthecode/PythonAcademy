@@ -202,6 +202,90 @@ function Screen() {
     );
 }
 
+/** Critter Quest: a grassy battle arena with a painted circle and a crowd stand. */
+function Arena() {
+    return (
+        <g>
+            <Sky id="sky-arena" top="#fde68a" bottom="#fef9c3" />
+            <rect x={0} y={90} width={PANEL_W} height={60} fill="#ef4444" />
+            {Array.from({ length: 16 }, (_, i) => (
+                <circle key={i} cx={14 + i * 25} cy={108 + (i % 2) * 12} r={8} fill={['#3b82f6', '#22c55e', '#a855f7', '#f97316'][i % 4]} stroke={INK} strokeWidth={1.5} />
+            ))}
+            <rect x={0} y={140} width={PANEL_W} height={8} fill="#991b1b" />
+            <rect y={148} width={PANEL_W} height={PANEL_H - 148} fill="#4ade80" />
+            <ellipse cx={200} cy={200} rx={150} ry={34} fill="none" stroke="#fff" strokeWidth={4} />
+            <line x1={200} y1={166} x2={200} y2={234} stroke="#fff" strokeWidth={4} />
+            <circle cx={200} cy={200} r={10} fill="none" stroke="#fff" strokeWidth={4} />
+        </g>
+    );
+}
+
+/** Brick Park: chunky coloured platforms floating in a bright sky. */
+function SkyPark() {
+    const blocks: [number, number, number, string][] = [[20, 70, 70, '#f43f5e'], [150, 40, 60, '#3b82f6'], [270, 85, 90, '#22c55e'], [90, 140, 50, '#f59e0b'], [330, 150, 50, '#a855f7']];
+    return (
+        <g>
+            <Sky id="sky-park" top="#38bdf8" bottom="#bae6fd" />
+            <Cloud x={200} y={120} />
+            <Cloud x={20} y={30} />
+            {blocks.map(([x, y, w, c], i) => (
+                <g key={i}>
+                    <rect x={x} y={y} width={w} height={16} fill={c} stroke={INK} strokeWidth={2.5} />
+                    {Array.from({ length: Math.floor(w / 20) }, (_, k) => <circle key={k} cx={x + 10 + k * 20} cy={y - 3} r={4} fill={c} stroke={INK} strokeWidth={1.5} />)}
+                </g>
+            ))}
+            <rect y={GROUND_Y} width={PANEL_W} height={PANEL_H - GROUND_Y} fill="#64748b" />
+            {Array.from({ length: 20 }, (_, i) => <circle key={i} cx={10 + i * 20} cy={GROUND_Y - 3} r={4.5} fill="#64748b" stroke={INK} strokeWidth={1.5} />)}
+            <rect y={GROUND_Y} width={PANEL_W} height={3} fill={INK} />
+        </g>
+    );
+}
+
+/** Hero Kingdom: a stone castle with towers and flags on a green hill. */
+function Castle() {
+    const tower = (x: number) => (
+        <g>
+            <rect x={x} y={60} width={50} height={130} fill="#a8a29e" stroke={INK} strokeWidth={2.5} />
+            {[0, 1, 2].map(i => <rect key={i} x={x + i * 18} y={48} width={12} height={14} fill="#a8a29e" stroke={INK} strokeWidth={2.5} />)}
+            <line x1={x + 25} y1={48} x2={x + 25} y2={20} stroke={INK} strokeWidth={2.5} />
+            <path d={`M${x + 25} 20 l22 7 l-22 7 z`} fill="#dc2626" stroke={INK} strokeWidth={2} />
+            <rect x={x + 18} y={90} width={14} height={20} rx={7} fill="#1e293b" />
+        </g>
+    );
+    return (
+        <g>
+            <Sky id="sky-castle" top="#93c5fd" bottom="#e0f2fe" />
+            <Cloud x={160} y={28} />
+            {tower(90)}
+            {tower(260)}
+            <rect x={140} y={100} width={120} height={90} fill="#d6d3d1" stroke={INK} strokeWidth={2.5} />
+            {[0, 1, 2, 3, 4].map(i => <rect key={i} x={140 + i * 26} y={88} width={14} height={14} fill="#d6d3d1" stroke={INK} strokeWidth={2.5} />)}
+            <path d="M182 190 v-40 a18 18 0 0 1 36 0 v40 z" fill="#78350f" stroke={INK} strokeWidth={2.5} />
+            <path d={`M0 ${GROUND_Y - 30} Q200 ${GROUND_Y - 50} 400 ${GROUND_Y - 30} V${PANEL_H} H0 Z`} fill="#65a30d" />
+            <rect y={GROUND_Y} width={PANEL_W} height={PANEL_H - GROUND_Y} fill="#4d7c0f" />
+        </g>
+    );
+}
+
+/** The Multiverse: deep space with planets and a swirling portal. */
+function Space() {
+    return (
+        <g>
+            <Sky id="sky-space" top="#020617" bottom="#312e81" />
+            {Array.from({ length: 40 }, (_, i) => <circle key={i} cx={(i * 97) % PANEL_W} cy={(i * 53) % 200} r={(i % 3) * 0.6 + 0.8} fill="#e0e7ff" />)}
+            <circle cx={70} cy={60} r={30} fill="#f97316" stroke={INK} strokeWidth={2.5} />
+            <ellipse cx={70} cy={60} rx={48} ry={10} fill="none" stroke="#fde68a" strokeWidth={3} />
+            <circle cx={340} cy={45} r={16} fill="#22d3ee" stroke={INK} strokeWidth={2.5} />
+            {[50, 38, 26, 14].map((r, i) => (
+                <ellipse key={i} cx={300} cy={140} rx={r} ry={r * 1.25} fill="none" stroke={['#a855f7', '#ec4899', '#22d3ee', '#fff'][i]} strokeWidth={4} opacity={0.9} />
+            ))}
+            <rect y={GROUND_Y} width={PANEL_W} height={PANEL_H - GROUND_Y} fill="#4c1d95" />
+            {Array.from({ length: 8 }, (_, i) => <ellipse key={i} cx={30 + i * 50} cy={GROUND_Y + 12} rx={10} ry={4} fill="#6d28d9" />)}
+            <rect y={GROUND_Y} width={PANEL_W} height={3} fill="#a78bfa" />
+        </g>
+    );
+}
+
 export function SceneArt({ scene }: { scene: SceneId }) {
     switch (scene) {
         case 'meadow': return <Meadow />;
@@ -211,5 +295,9 @@ export function SceneArt({ scene }: { scene: SceneId }) {
         case 'room': return <Room />;
         case 'circuit': return <Circuit />;
         case 'screen': return <Screen />;
+        case 'arena': return <Arena />;
+        case 'sky': return <SkyPark />;
+        case 'castle': return <Castle />;
+        case 'space': return <Space />;
     }
 }

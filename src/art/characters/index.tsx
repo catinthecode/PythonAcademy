@@ -3,6 +3,7 @@ import { Kid, Miner } from './Blocky';
 import { Sneak } from './Sneak';
 import { Py } from './Py';
 import { Robot } from './Robot';
+import { Critter } from './Critter';
 import { Turtle } from './Turtle';
 
 /** Draws a character facing right with its feet at (0, 0). */
@@ -20,5 +21,7 @@ export function CharacterArt({ character, pose = 'idle' }: { character: Characte
             return <Sneak pose={pose} />;
         case 'robot':
             return <Robot pose={pose} />;
+        case 'critter':
+            return <Critter pose={pose} tint={character.tint} />;
     }
 }

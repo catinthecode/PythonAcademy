@@ -25,7 +25,7 @@ async function validate(p: Puzzle): Promise<string[]> {
 
     if (p.type === 'predict') {
         if (p.choices && !p.choices.includes(p.answer)) problems.push(`answer "${p.answer}" is not one of the choices`);
-        const r = await run({ code: p.code });
+        const r = await run({ code: p.code, inputs: p.inputs });
         const about = p.about ?? 'output';
         if (about === 'output') {
             if (r.error) problems.push(`code errors: ${r.error.type} ${r.error.msg}`);
@@ -34,7 +34,8 @@ async function validate(p: Puzzle): Promise<string[]> {
         } else if (about === 'error') {
             const actual = r.error?.type ?? 'No error';
             if (actual !== p.answer) problems.push(`answer is ${p.answer} but Python gives ${actual}`);
-        } else if (r.error) {
+        } else if (r.error && r.error.type !== 'TooLong') {
+            // "What does it do?" may describe an infinite loop, so the step limit is fine there.
             problems.push(`code errors: ${r.error.type} ${r.error.msg}`);
         }
         return problems;

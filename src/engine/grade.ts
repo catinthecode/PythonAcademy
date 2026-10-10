@@ -24,11 +24,13 @@ const goalCache = new Map<string, Promise<RunResult>>();
 export function goalFor(run: Runner, p: Puzzle): Promise<RunResult> | null {
     const code = solutionCode(p);
     if (code === null) return null;
-    let goal = goalCache.get(code);
+    const inputs = 'inputs' in p ? p.inputs : undefined;
+    const cacheKey = code + '\u0000' + JSON.stringify(inputs ?? null);
+    let goal = goalCache.get(cacheKey);
     if (!goal) {
-        goal = run({ code });
-        goalCache.set(code, goal);
-        goal.catch(() => goalCache.delete(code));
+        goal = run({ code, inputs });
+        goalCache.set(cacheKey, goal);
+        goal.catch(() => goalCache.delete(cacheKey));
     }
     return goal;
 }
@@ -40,7 +42,7 @@ export function checkFor(p: CodePuzzle): string | null {
 
 export async function gradeCode(run: Runner, p: CodePuzzle, code: string): Promise<Verdict> {
     const goal = await goalFor(run, p)!;
-    const result = await run({ code, check: checkFor(p), expectedOutput: goal.output });
+    const result = await run({ code, check: checkFor(p), expectedOutput: goal.output, inputs: p.inputs });
 
     if (result.error) return { passed: false, message: explain(result.error), result };
     if (result.passed === false) {

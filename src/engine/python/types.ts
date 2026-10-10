@@ -25,6 +25,8 @@ export interface RunRequest {
     code: string;
     check?: string | null;
     expectedOutput?: string | null;
+    /** Answers for input(), in order, as if the player typed them */
+    inputs?: string[] | null;
 }
 
 export interface TraceRequest {
