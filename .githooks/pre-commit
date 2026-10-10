@@ -1,0 +1,9 @@
+#!/bin/sh
+# Runs the quick checks before every commit (types + every puzzle against real Python).
+# The slower browser smoke tests run in GitHub Actions before each deploy.
+# Skip once in an emergency with: git commit --no-verify
+echo "pre-commit: type-check and puzzle validation..."
+npm run check --silent || {
+    echo "pre-commit: checks failed. Fix the errors above, or see README > Testing."
+    exit 1
+}

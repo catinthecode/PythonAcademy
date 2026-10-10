@@ -1,0 +1,71 @@
+import { indentUnit } from '@codemirror/language';
+import { python } from '@codemirror/lang-python';
+import { EditorSelection, Prec } from '@codemirror/state';
+import { oneDark } from '@codemirror/theme-one-dark';
+import { EditorView, keymap, placeholder as placeholderExt } from '@codemirror/view';
+import CodeMirror, { type ReactCodeMirrorRef } from '@uiw/react-codemirror';
+import { useEffect, useMemo, useRef } from 'react';
+
+interface Props {
+    value: string;
+    onChange?: (v: string) => void;
+    /** Ctrl/Cmd+Enter */
+    onRun?: () => void;
+    readOnly?: boolean;
+    minLines?: number;
+    /** Put the cursor at the end, ready to type, as soon as the editor appears */
+    autoFocus?: boolean;
+    placeholder?: string;
+}
+
+const kidTheme = EditorView.theme({
+    '&': { fontSize: '17px', borderRadius: '12px', overflow: 'hidden' },
+    '.cm-content': { fontFamily: "ui-monospace, 'Cascadia Code', Menlo, monospace", padding: '10px 0' },
+    '.cm-gutters': { borderRight: 'none' },
+    // A thick, bright, blinking cursor that young eyes can find
+    '.cm-cursor, .cm-dropCursor': { borderLeft: '3px solid #facc15' },
+    '&.cm-focused': { outline: '3px solid #facc15', outlineOffset: '0px' },
+    '.cm-placeholder': { color: '#94a3b8', fontStyle: 'italic' },
+});
+
+export function CodeEditor({ value, onChange, onRun, readOnly, minLines = 4, autoFocus, placeholder }: Props) {
+    const ref = useRef<ReactCodeMirrorRef>(null);
+    const extensions = useMemo(
+        () => [
+            python(),
+            indentUnit.of('    '),
+            kidTheme,
+            Prec.highest(keymap.of([{ key: 'Mod-Enter', run: () => { onRun?.(); return true; } }])),
+            EditorView.lineWrapping,
+            ...(placeholder ? [placeholderExt(placeholder)] : []),
+        ],
+        [onRun, placeholder],
+    );
+
+    useEffect(() => {
+        if (!autoFocus || readOnly) return;
+        // Wait a frame so the editor exists, then focus it with the cursor at the very end.
+        const t = setTimeout(() => {
+            const view = ref.current?.view;
+            if (!view) return;
+            view.focus();
+            view.dispatch({ selection: EditorSelection.cursor(view.state.doc.length), scrollIntoView: false });
+        }, 50);
+        return () => clearTimeout(t);
+    }, [autoFocus, readOnly]);
+
+    return (
+        <CodeMirror
+            ref={ref}
+            value={value}
+            onChange={onChange}
+            extensions={extensions}
+            theme={oneDark}
+            readOnly={readOnly}
+            editable={!readOnly}
+            minHeight={`${minLines * 1.6 + 1.2}em`}
+            basicSetup={{ foldGutter: false, highlightActiveLine: !readOnly, autocompletion: false, searchKeymap: false }}
+            aria-label="Python code"
+        />
+    );
+}

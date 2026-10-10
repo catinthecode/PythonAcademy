@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/pyodide/
+*.log
+test-results/
+playwright-report/
+# Reference screenshots (third-party, keep out of the public repo)
+images/

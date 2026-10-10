@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --font-sans: 'Quicksand', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Fredoka One', 'Quicksand', cursive;
+    --font-comic: 'Comic Neue', 'Quicksand', sans-serif;
+}
+
+body {
+    @apply bg-stone-950 text-white antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+}

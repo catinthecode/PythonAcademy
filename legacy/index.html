@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Academy: Gamer Edition</title>
+    <!-- React & Babel Engines -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Real Python in the browser -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+    <!-- Tailwind CSS for UI Layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Playful Fonts for Kids -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; }
+        h1, h2, h3 { font-family: 'Fredoka One', cursive; }
+        textarea.code { tab-size: 4; }
+    </style>
+</head>
+<body class="bg-indigo-900 text-white min-h-screen pb-12">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Runs the kid's code in a fresh namespace. A line counter stops infinite
+        // loops before they freeze the browser tab.
+        const HARNESS = `
+import sys, json, traceback
+
+class _TooLong(Exception):
+    pass
+
+def _run_spell(src):
+    ns = {"__name__": "__main__"}
+    steps = [0]
+    def tracer(frame, event, arg):
+        if frame.f_code.co_filename != "<spell>":
+            return None
+        if event == "line":
+            steps[0] += 1
+            if steps[0] > 20000:
+                raise _TooLong()
+        return tracer
+    err = None
+    sys.settrace(tracer)
+    try:
+        exec(compile(src, "<spell>", "exec"), ns)
+    except _TooLong:
+        err = {"type": "TooLong", "msg": "", "line": None}
+    except SyntaxError as e:
+        err = {"type": type(e).__name__, "msg": str(e.msg), "line": e.lineno}
+    except Exception as e:
+        line = None
+        for fs in traceback.extract_tb(e.__traceback__):
+            if fs.filename == "<spell>":
+                line = fs.lineno
+        err = {"type": type(e).__name__, "msg": str(e), "line": line}
+    finally:
+        sys.settrace(None)
+    simple = (int, float, str, bool, list)
+    vars = {k: v for k, v in ns.items() if not k.startswith("__") and isinstance(v, simple)}
+    return json.dumps({"error": err, "vars": vars}, default=str)
+`;
+
+        let captured = [];
+
+        async function bootPython() {
+            const py = await loadPyodide();
+            py.setStdout({ batched: line => captured.push(line) });
+            py.setStderr({ batched: line => captured.push(line) });
+            py.runPython(HARNESS);
+            return py;
+        }
+
+        function runSpell(py, code) {
+            captured = [];
+            const fn = py.globals.get('_run_spell');
+            try {
+                return { ...JSON.parse(fn(code)), output: captured };
+            } catch (e) {
+                return { error: { type: 'Crash', msg: String(e), line: null }, vars: {}, output: captured };
+            } finally {
+                fn.destroy();
+            }
+        }
+
+        // Turn Python errors into something a kid can act on
+        function explain(err) {
+            const at = err.line ? ` (line ${err.line})` : '';
+            switch (err.type) {
+                case 'TooLong':
+                    return '🌀 Infinite loop! Your code kept running forever and crashed the server. Does your loop ever stop?';
+                case 'TypeError':
+                    if (/str/.test(err.msg) && /int/.test(err.msg))
+                        return `🧪 Python can't add text and numbers together${at}! Text has quotes around it ("1"), numbers don't (1).`;
+                    return `🧪 Python got its types mixed up${at}: ${err.msg}`;
+                case 'NameError': {
+                    const m = err.msg.match(/'(.+?)'/);
+                    return `🔍 Python doesn't know anything called "${m ? m[1] : 'that'}"${at}. Check your spelling!`;
+                }
+                case 'IndentationError':
+                case 'TabError':
+                    return `📏 The spaces at the start of a line are off${at}. Code inside a loop needs to be indented.`;
+                case 'SyntaxError':
+                    return `📝 Python couldn't read your code${at}. Check your quotes, brackets and colons.`;
+                default:
+                    return `💥 ${err.type}${at}: ${err.msg}`;
+            }
+        }
+
+        const MISSIONS = [
+            {
+                id: 'm1',
+                label: 'Mission 1',
+                title: '⛏️ Minecraft TNT Duplicator',
+                story: 'An Enderman glitched your code. Right now, it duplicates your sword instead of TNT! Edit the code so it deploys TNT, then cast your spell.',
+                theme: {
+                    border: 'border-green-500', badge: 'bg-green-600', title: 'text-green-400',
+                    code: 'text-green-300 focus:ring-green-400', button: 'bg-green-500 hover:bg-green-600 text-black',
+                },
+                starter: [
+                    'blocks = "TNT"',
+                    'weapons = "Diamond Sword"',
+                    '',
+                    '# Fix the item name inside print() below:',
+                    'print("Deploying 64 blocks of: " + weapons)',
+                ].join('\n'),
+                reward: { key: 'inventory', value: 64 },
+                check: ({ output }) => {
+                    const out = output.join('\n');
+                    if (out.includes('Diamond Sword')) return { ok: false, text: '🗡️ Still deploying Diamond Swords! Swap the variable inside print().' };
+                    if (out.includes('TNT')) return { ok: true, text: '✅ Boom! 64 blocks of TNT deployed!' };
+                    return { ok: false, text: "🤔 Hmm, I don't see any TNT in the output." };
+                },
+            },
+            {
+                id: 'm2',
+                label: 'Mission 2',
+                title: '🎒 Pokémon Shiny Evolver',
+                story: 'Python is throwing a tantrum! Cast the spell to see the error, then fix the level candy so Charizard can level up.',
+                theme: {
+                    border: 'border-red-500', badge: 'bg-red-600', title: 'text-red-400',
+                    code: 'text-red-300 focus:ring-red-400', button: 'bg-red-500 hover:bg-red-600 text-white',
+                },
+                starter: [
+                    'charizard_level = 35',
+                    'level_up_candy = "1"  # It is trapped in text quotes!',
+                    '',
+                    'new_level = charizard_level + level_up_candy',
+                    'print("Charizard is now level", new_level)',
+                ].join('\n'),
+                reward: { key: 'level', value: 36 },
+                check: ({ vars }) => vars.new_level === 36
+                    ? { ok: true, text: '✅ Ding! Charizard leveled up to 36!' }
+                    : { ok: false, text: `🤔 Charizard is level ${vars.new_level ?? '???'}. We need level 36!` },
+            },
+            {
+                id: 'm3',
+                label: 'Mission 3',
+                title: '🧱 Roblox Obby Coin Spawner',
+                story: 'Your loop is infinite and crashes the server! Cast the spell to watch it crash 😱, then add a line at the bottom of the loop that counts up by 1.',
+                hint: '💡 Hint: coins_spawned = coins_spawned + 1 (or the shortcut coins_spawned += 1)',
+                theme: {
+                    border: 'border-cyan-500', badge: 'bg-cyan-600', title: 'text-cyan-400',
+                    code: 'text-cyan-300 focus:ring-cyan-400', button: 'bg-cyan-500 hover:bg-cyan-600 text-black',
+                },
+                starter: [
+                    'coins_spawned = 0',
+                    'while coins_spawned < 50:',
+                    '    print("🪙 Coin Spawned!")',
+                    '    # Add your line right here!',
+                ].join('\n'),
+                reward: { key: 'coins', value: 50 },
+                check: ({ output, vars }) => {
+                    const coins = output.filter(l => l.includes('Coin Spawned')).length;
+                    return vars.coins_spawned === 50 && coins === 50
+                        ? { ok: true, text: '✅ Success! Server stable. 50 Robux spawned!' }
+                        : { ok: false, text: `🤔 The server spawned ${coins} coins. We need exactly 50!` };
+                },
+            },
+        ];
+
+        function CodeEditor({ value, onChange, onRun, className }) {
+            // Insert text at the cursor, keeping the cursor right after it
+            const insert = (el, text) => {
+                const start = el.selectionStart;
+                onChange(value.slice(0, start) + text + value.slice(el.selectionEnd));
+                requestAnimationFrame(() => { el.selectionStart = el.selectionEnd = start + text.length; });
+            };
+
+            const onKeyDown = e => {
+                const el = e.target;
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    onRun();
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    insert(el, '    ');
+                } else if (e.key === 'Enter') {
+                    // Keep the current indent, and indent one more level after a colon
+                    e.preventDefault();
+                    const lineStart = value.lastIndexOf('\n', el.selectionStart - 1) + 1;
+                    const line = value.slice(lineStart, el.selectionStart);
+                    let indent = line.match(/^ */)[0];
+                    if (line.trimEnd().endsWith(':')) indent += '    ';
+                    insert(el, '\n' + indent);
+                }
+            };
+
+            return (
+                <textarea
+                    className={`code w-full bg-black p-4 rounded-xl font-mono text-sm resize-none overflow-x-auto focus:outline-none focus:ring-2 ${className}`}
+                    value={value}
+                    onChange={e => onChange(e.target.value)}
+                    onKeyDown={onKeyDown}
+                    rows={value.split('\n').length + 1}
+                    wrap="off"
+                    spellCheck={false}
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                />
+            );
+        }
+
+        function MissionCard({ mission, py, onSolved }) {
+            const [code, setCode] = useState(mission.starter);
+            const [result, setResult] = useState(null);
+            const [feedback, setFeedback] = useState(null);
+            const [running, setRunning] = useState(false);
+            const t = mission.theme;
+
+            const cast = () => {
+                if (!py || running) return;
+                setRunning(true);
+                setFeedback(null);
+                // Let React paint the "running" state before Python takes over the thread
+                setTimeout(() => {
+                    const res = runSpell(py, code);
+                    const verdict = res.error ? { ok: false, text: explain(res.error) } : mission.check(res);
+                    setResult(res);
+                    setFeedback(verdict);
+                    setRunning(false);
+                    if (verdict.ok) onSolved(mission.reward);
+                }, 30);
+            };
+
+            const reset = () => {
+                setCode(mission.starter);
+                setResult(null);
+                setFeedback(null);
+            };
+
+            const MAX_LINES = 60;
+            const output = result ? result.output : [];
+
+            return (
+                <section className={`bg-zinc-800 p-6 rounded-3xl border-4 ${t.border} shadow-xl`}>
+                    <span className={`${t.badge} text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider`}>{mission.label}</span>
+                    <h2 className={`text-2xl ${t.title} mt-2 mb-4`}>{mission.title}</h2>
+                    <p className="text-zinc-300 mb-4">{mission.story}</p>
+
+                    <CodeEditor value={code} onChange={setCode} onRun={cast} className={t.code} />
+
+                    <div className="flex flex-wrap gap-3 items-center mt-3">
+                        <button onClick={cast} disabled={!py || running}
+                            className={`${t.button} font-bold px-6 py-2 rounded-xl transform active:scale-95 transition disabled:opacity-50 disabled:cursor-wait`}>
+                            {running ? 'Casting... ✨' : 'Cast Spell 🪄'}
+                        </button>
+                        <button onClick={reset} className="bg-zinc-600 hover:bg-zinc-500 text-white font-bold px-4 py-2 rounded-xl transition">
+                            ↺ Reset
+                        </button>
+                        <span className="text-xs text-zinc-400">Tip: Ctrl+Enter casts too</span>
+                    </div>
+                    {mission.hint && <p className="text-xs text-zinc-400 mt-2">{mission.hint}</p>}
+
+                    {result && (
+                        <div className="mt-4 bg-black rounded-xl p-4 font-mono text-sm max-h-64 overflow-y-auto">
+                            <div className="text-zinc-500 mb-1">📜 Output:</div>
+                            {output.length === 0 && <div className="text-zinc-600">(nothing printed)</div>}
+                            {output.slice(0, MAX_LINES).map((line, i) => <div key={i} className="whitespace-pre">{line}</div>)}
+                            {output.length > MAX_LINES && <div className="text-zinc-500">... and {output.length - MAX_LINES} more lines</div>}
+                        </div>
+                    )}
+
+                    {feedback && (
+                        <p className={`mt-4 font-bold text-lg ${feedback.ok ? 'text-green-300' : 'text-orange-300'}`}>{feedback.text}</p>
+                    )}
+                </section>
+            );
+        }
+
+        function App() {
+            const [scores, setScores] = useState({ inventory: 0, level: 35, coins: 0 });
+            const [py, setPy] = useState(null);
+            const [pyStatus, setPyStatus] = useState('loading');
+
+            useEffect(() => {
+                bootPython()
+                    .then(p => { setPy(p); setPyStatus('ready'); })
+                    .catch(() => setPyStatus('error'));
+            }, []);
+
+            const onSolved = ({ key, value }) => setScores(prev => ({ ...prev, [key]: value }));
+
+            return (
+                <div className="max-w-4xl mx-auto px-4 py-8">
+                    {/* Header Banner */}
+                    <header className="text-center mb-12 bg-indigo-800 p-8 rounded-3xl border-4 border-indigo-400 shadow-2xl">
+                        <h1 className="text-4xl md:text-5xl text-yellow-400 mb-2 drop-shadow-md">🐍 PYTHON ACADEMY</h1>
+                        <p className="text-xl text-indigo-200">Gamer Edition: Python Coding Quests for Kids</p>
+
+                        {/* Interactive Status Bar */}
+                        <div className="grid grid-cols-3 gap-4 mt-6 max-w-md mx-auto text-sm md:text-base">
+                            <div className="bg-stone-800 p-3 rounded-xl border border-stone-600">⛏️ TNT: <span className="text-yellow-400 font-bold">{scores.inventory}</span></div>
+                            <div className="bg-stone-800 p-3 rounded-xl border border-stone-600">🎒 Lvl: <span className="text-green-400 font-bold">{scores.level}</span></div>
+                            <div className="bg-stone-800 p-3 rounded-xl border border-stone-600">🪙 Robux: <span className="text-cyan-400 font-bold">{scores.coins}</span></div>
+                        </div>
+
+                        <p className="mt-4 text-sm text-indigo-300">
+                            {pyStatus === 'loading' && '🐍 Waking up the Python snake... (first visit takes a few seconds)'}
+                            {pyStatus === 'ready' && '🐍 Python is awake! Edit the code and cast your spells.'}
+                            {pyStatus === 'error' && "😵 Python couldn't load. Check your internet connection and refresh."}
+                        </p>
+                    </header>
+
+                    <main className="space-y-12">
+                        {MISSIONS.map(m => <MissionCard key={m.id} mission={m} py={py} onSolved={onSolved} />)}
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
