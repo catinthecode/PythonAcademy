@@ -1,14 +1,17 @@
 import { useState, type ReactNode } from 'react';
 import { Avatar } from '../components/Avatar';
+import { Confetti } from '../components/Confetti';
+import { SoundToggle } from '../components/SoundToggle';
 import { XpBar } from '../components/XpBar';
 import type { World } from '../content/schema';
-import { useProfile } from '../progress/store';
+import { streak, useProfile } from '../progress/store';
 import { ChaptersOverlay } from './ChaptersOverlay';
 import { href, useRoute } from './router';
 
 const NAV = [
     { id: 'home', label: 'Home', icon: '🏠', to: href() },
     { id: 'library', label: 'Library', icon: '📚', to: href('library') },
+    { id: 'lab', label: 'Magic Lab', icon: '🧪', to: href('lab') },
     { id: 'profile', label: 'Profile', icon: '⭐', to: href('profile') },
 ];
 
@@ -24,10 +27,12 @@ export function Shell({ world, eyebrow, title, children }: Props) {
     const profile = useProfile();
     const route = useRoute();
     const [menu, setMenu] = useState(false);
-    const active = route[0] === 'library' ? 'library' : route[0] === 'profile' ? 'profile' : 'home';
+    const active = route[0] === 'library' ? 'library' : route[0] === 'lab' ? 'lab' : route[0] === 'profile' ? 'profile' : 'home';
+    const streakDays = profile ? streak(profile) : 0;
 
     return (
         <div className={`min-h-screen bg-gradient-to-br ${world.theme.bg}`}>
+            <Confetti />
             {/* Sidebar on wide screens, bottom bar on phones */}
             <nav className="fixed inset-x-0 bottom-0 z-30 flex justify-around border-t-2 border-stone-300 bg-amber-50 py-1 md:inset-y-0 md:left-0 md:right-auto md:w-24 md:flex-col md:justify-start md:gap-2 md:border-r-2 md:border-t-0 md:px-2 md:py-4">
                 <a href={href()} className="mb-4 hidden text-center leading-tight md:block">
@@ -63,6 +68,16 @@ export function Shell({ world, eyebrow, title, children }: Props) {
                         {profile && (
                             <>
                                 <div className="hidden sm:block"><XpBar xp={profile.xp} /></div>
+                                {streakDays > 0 && (
+                                    <div
+                                        className="flex items-center gap-1 rounded-xl border border-orange-300 bg-orange-100 px-2.5 py-1 text-sm font-bold text-orange-700 shadow-sm"
+                                        title={`${streakDays} day streak! Keep it burning tomorrow!`}
+                                    >
+                                        <span className="text-base">🔥</span>
+                                        <span>{streakDays}</span>
+                                    </div>
+                                )}
+                                <SoundToggle />
                                 <a href={href('profile')} title={`${profile.name}'s profile`}>
                                     <Avatar avatar={profile.avatar} size={44} />
                                 </a>

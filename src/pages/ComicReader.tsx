@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { href } from '../app/router';
 import { Shell } from '../app/Shell';
 import { ComicPanel } from '../art/ComicPanel';
+import { triggerConfetti } from '../components/Confetti';
 import { TryIt } from '../components/TryIt';
 import type { Chapter, ComicPanel as Panel, ReadingLesson, World } from '../content/schema';
 import { lessonKey } from '../content/worlds';
+import { playReadFinish } from '../engine/sound';
 import { lessonProgress, recordRead, updateProfile, useProfile } from '../progress/store';
 
 /** Reads a panel's speech bubbles aloud with the browser's built-in voice. */
@@ -73,8 +75,13 @@ export function ComicReader({ world, chapter, lesson }: { world: World; chapter:
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
                     {!done ? (
                         <button
-                            onClick={() => setEarned(recordRead(key))}
-                            className="rounded-2xl bg-green-600 px-8 py-4 text-xl font-bold text-white shadow-lg hover:bg-green-500"
+                            onClick={() => {
+                                const exp = recordRead(key);
+                                setEarned(exp);
+                                playReadFinish();
+                                triggerConfetti();
+                            }}
+                            className="rounded-2xl bg-green-600 px-8 py-4 text-xl font-bold text-white shadow-lg hover:bg-green-500 active:scale-95 transition"
                         >
                             ✅ I finished reading!
                         </button>

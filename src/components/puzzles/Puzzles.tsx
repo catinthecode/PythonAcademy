@@ -1,11 +1,13 @@
 // One component per puzzle type. Each one reports success through onSolved().
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { FillPuzzle, FixPuzzle, ParsonsPuzzle, PredictPuzzle, Puzzle, WritePuzzle } from '../../content/schema';
 import { fillTemplate } from '../../content/schema';
 import { explain } from '../../engine/explain';
 import { gradePredict, type Verdict } from '../../engine/grade';
 import type { RunResult } from '../../engine/python/types';
-import { CodeEditor } from '../CodeEditor';
+import { playError, playTap } from '../../engine/sound';
+import { CodeEditor, type CodeEditorHandle } from '../CodeEditor';
+import { MagicSymbolBar } from '../MagicSymbolBar';
 import { OutputConsole } from '../OutputConsole';
 import { PlayerTypes } from '../PlayerTypes';
 import { TurtleCanvas } from '../TurtleCanvas';
@@ -21,12 +23,13 @@ export interface PuzzleProps<P extends Puzzle = Puzzle> {
 }
 
 const resetButton = (onClick: () => void) => (
-    <button onClick={onClick} className="rounded-xl bg-stone-200 px-4 py-3 font-bold text-stone-700 hover:bg-stone-300">↺ Reset</button>
+    <button onClick={() => { playTap(); onClick(); }} className="rounded-xl bg-stone-200 px-4 py-3 font-bold text-stone-700 hover:bg-stone-300 active:scale-95 transition">↺ Reset</button>
 );
 
 // ---------- Fix the bug / Write it ----------
 
 export function EditorPuzzle({ puzzle, draftKey, onSolved }: PuzzleProps<FixPuzzle | WritePuzzle>) {
+    const editorRef = useRef<CodeEditorHandle>(null);
     const [code, setCode, reset] = useDraft<string>(draftKey, puzzle.starter + (puzzle.type === 'write' ? '\n' : ''));
     const { running, verdict, check } = useGrader(puzzle, onSolved);
     return (
@@ -38,7 +41,10 @@ export function EditorPuzzle({ puzzle, draftKey, onSolved }: PuzzleProps<FixPuzz
             verdict={verdict}
             extraButtons={resetButton(reset)}
         >
-            <CodeEditor value={code} onChange={setCode} onRun={() => check(code)} minLines={Math.max(4, code.split('\n').length)} autoFocus />
+            <div className="space-y-2">
+                <MagicSymbolBar onInsert={(s, offset) => editorRef.current?.insertSnippet(s, offset)} />
+                <CodeEditor ref={editorRef} value={code} onChange={setCode} onRun={() => check(code)} minLines={Math.max(4, code.split('\n').length)} autoFocus />
+            </div>
         </CodeWorkspace>
     );
 }
@@ -175,11 +181,14 @@ export function PredictPuzzleView({ puzzle, onSolved }: PuzzleProps<PredictPuzzl
     const [reveal, setReveal] = useState<RunResult | null>(null);
 
     const answer = async (a: string) => {
+        playTap();
         const v = gradePredict(puzzle, a);
         setVerdict(v);
         if (v.passed) {
             onSolved();
             setReveal(await run({ code: puzzle.code, inputs: puzzle.inputs }));
+        } else {
+            playError();
         }
     };
 

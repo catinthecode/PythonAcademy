@@ -5,6 +5,7 @@ import type { BreakItPuzzle, InstructPuzzle, TracePuzzle } from '../../content/s
 import { gradeTrace, tryBreak, tryInstruction } from '../../engine/grade';
 import { explain } from '../../engine/explain';
 import type { RunResult } from '../../engine/python/types';
+import { playError, playTap } from '../../engine/sound';
 import { CharacterArt } from '../../art/characters';
 import { CodeEditor } from '../CodeEditor';
 import { OutputConsole } from '../OutputConsole';
@@ -44,11 +45,14 @@ export function TracePuzzleView({ puzzle, draftKey, onSolved }: PuzzleProps<Trac
 
     const check = () => {
         if (!expected) return;
+        playTap();
         const g = gradeTrace(expected, cells);
         setWrong(g.wrong);
         if (g.passed) {
             setSolved(true);
             onSolved();
+        } else {
+            playError();
         }
     };
 
@@ -113,6 +117,7 @@ export function BreakItPuzzleView({ puzzle, onSolved }: PuzzleProps<BreakItPuzzl
     const status = usePythonStatus();
 
     const tryIt = async (input: string) => {
+        playTap();
         setPicked(input);
         setOutcome(null);
         const o = await tryBreak(run, puzzle, input);
@@ -120,6 +125,8 @@ export function BreakItPuzzleView({ puzzle, onSolved }: PuzzleProps<BreakItPuzzl
         if (o.broke) {
             setSolved(true);
             onSolved();
+        } else {
+            playError();
         }
     };
     const shown = (r: RunResult) => (r.error ? `💥 ${r.error.type}` : r.output.trim() || '(nothing)');
@@ -176,6 +183,7 @@ export function InstructPuzzleView({ puzzle, onSolved }: PuzzleProps<InstructPuz
     const [solved, setSolved] = useState(false);
 
     const ask = async (i: number) => {
+        playTap();
         setPicked(i);
         setOutcome(null);
         const o = await tryInstruction(run, puzzle, i);
@@ -183,6 +191,8 @@ export function InstructPuzzleView({ puzzle, onSolved }: PuzzleProps<InstructPuz
         if (o.matches) {
             setSolved(true);
             onSolved();
+        } else {
+            playError();
         }
     };
 

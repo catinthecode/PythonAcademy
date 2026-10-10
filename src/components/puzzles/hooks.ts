@@ -23,6 +23,8 @@ export function useGoal(puzzle: Puzzle): RunResult | null {
     return goal;
 }
 
+import { playError } from '../../engine/sound';
+
 export function useGrader(puzzle: CodePuzzle, onSolved: () => void) {
     const [running, setRunning] = useState(false);
     const [verdict, setVerdict] = useState<Verdict | null>(null);
@@ -34,7 +36,11 @@ export function useGrader(puzzle: CodePuzzle, onSolved: () => void) {
         try {
             const v = await gradeCode(run, puzzle, code);
             setVerdict(v);
-            if (v.passed) onSolved();
+            if (v.passed) {
+                onSolved();
+            } else {
+                playError();
+            }
         } finally {
             setRunning(false);
         }

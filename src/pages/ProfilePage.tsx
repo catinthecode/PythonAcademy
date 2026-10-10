@@ -155,11 +155,66 @@ function ProgressTab({ profile }: { profile: Profile }) {
     );
 }
 
-export function ProfilePage({ tab }: { tab: 'profile' | 'progress' }) {
+import { getBadges } from '../progress/badges';
+
+function BadgesTab({ profile }: { profile: Profile }) {
+    const badges = getBadges(profile);
+    const unlockedCount = badges.filter(b => b.unlocked).length;
+
+    return (
+        <div className="space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow text-stone-900">
+                <div>
+                    <h2 className="text-2xl text-blue-800">Trophy Room 🏆</h2>
+                    <p className="text-stone-600">Solve puzzles, beat bosses, and keep your streak burning to collect badges!</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-xl bg-amber-100 border-2 border-amber-300 px-4 py-2 font-bold text-amber-900 text-lg">
+                    <span>🏆</span>
+                    <span>{unlockedCount} of {badges.length} Unlocked</span>
+                </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                {badges.map(b => (
+                    <div
+                        key={b.id}
+                        className={`relative flex flex-col justify-between rounded-2xl p-4 shadow transition border-4 ${b.unlocked ? 'border-amber-400 bg-amber-50 hover:scale-[1.02]' : 'border-stone-200 bg-stone-100 opacity-60'}`}
+                    >
+                        <div className="flex items-start gap-3">
+                            <span className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-3xl shadow-sm ${b.unlocked ? 'bg-amber-300 text-stone-900 ring-2 ring-yellow-400' : 'bg-stone-300 text-stone-500'}`}>
+                                {b.icon}
+                            </span>
+                            <div className="min-w-0 flex-1">
+                                <h3 className="font-display text-lg text-stone-900 leading-tight">{b.title}</h3>
+                                <p className="text-xs text-stone-600 mt-1">{b.description}</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-4">
+                            <div className="mb-1 flex justify-between text-xs font-bold text-stone-600">
+                                <span>{b.unlocked ? '✨ Complete!' : 'Progress'}</span>
+                                <span>{b.progress} / {b.max}</span>
+                            </div>
+                            <div className="h-3 w-full overflow-hidden rounded-full bg-stone-200">
+                                <div
+                                    className={`h-full transition-all duration-500 ${b.unlocked ? 'bg-amber-400' : 'bg-blue-500'}`}
+                                    style={{ width: `${Math.min(100, (b.progress / b.max) * 100)}%` }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export function ProfilePage({ tab }: { tab: 'profile' | 'progress' | 'badges' }) {
     const profile = useProfile()!;
     const { world } = homeChapter(profile, WORLDS);
     const tabs = [
         { id: 'profile', label: '😀 Profile', to: href('profile') },
+        { id: 'badges', label: '🏆 Badges', to: href('profile', 'badges') },
         { id: 'progress', label: '⭐ Progress', to: href('profile', 'progress') },
     ];
     return (
@@ -172,7 +227,7 @@ export function ProfilePage({ tab }: { tab: 'profile' | 'progress' }) {
                         </a>
                     ))}
                 </div>
-                {tab === 'profile' ? <ProfileTab profile={profile} /> : <ProgressTab profile={profile} />}
+                {tab === 'profile' ? <ProfileTab profile={profile} /> : tab === 'badges' ? <BadgesTab profile={profile} /> : <ProgressTab profile={profile} />}
             </div>
         </Shell>
     );

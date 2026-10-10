@@ -25,14 +25,39 @@ const TYPE_LABEL = {
     instruct: 'Better instruction',
 };
 
-function PyCard({ pose, children }: { pose: Pose; children: React.ReactNode }) {
+import { triggerConfetti } from '../components/Confetti';
+import { SpeechButton } from '../components/SpeechButton';
+import { playBossDefeat, playLevelUp, playSuccess, playTap } from '../engine/sound';
+
+function PyCard({ pose, promptText, children }: { pose: Pose; promptText?: string; children: React.ReactNode }) {
+    const [wiggle, setWiggle] = useState(false);
+    const tapPy = () => {
+        setWiggle(true);
+        playTap();
+        setTimeout(() => setWiggle(false), 500);
+    };
+
     return (
         <div className="flex items-end gap-2">
-            <svg viewBox="-40 -145 100 150" className="hidden w-20 shrink-0 sm:block md:w-24" aria-hidden>
-                <CharacterArt character={PY} pose={pose} />
-            </svg>
+            <button
+                type="button"
+                onClick={tapPy}
+                title="Tap Py! 🐍"
+                className={`w-16 shrink-0 sm:w-20 md:w-24 transition-transform ${wiggle ? 'scale-110 -rotate-6' : 'hover:scale-105 active:scale-95'}`}
+            >
+                <svg viewBox="-40 -145 100 150" className="w-full" aria-hidden>
+                    <CharacterArt character={PY} pose={wiggle ? 'wave' : pose} />
+                </svg>
+            </button>
             <div className="relative flex-1 rounded-2xl border-[3px] border-stone-800 bg-white px-4 py-3 text-lg font-semibold text-stone-900 md:text-xl">
-                {children}
+                {promptText && (
+                    <div className="absolute right-3 top-3">
+                        <SpeechButton text={promptText} title="Read question aloud" />
+                    </div>
+                )}
+                <div className={promptText ? 'pr-9' : ''}>
+                    {children}
+                </div>
             </div>
         </div>
     );
@@ -80,6 +105,12 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
     }
 
     const finished = allSolved && index >= ids.length;
+    useEffect(() => {
+        if (finished) {
+            playLevelUp();
+            triggerConfetti();
+        }
+    }, [finished]);
     const problem = lesson.problems[Math.min(index, ids.length - 1)];
     const solved = lp.solved.includes(problem.id);
     const hintsShown = lp.hints[problem.id] ?? 0;
@@ -89,9 +120,18 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
     const onSolved = () => {
         const earned = recordSolved(key, problem.id, { boss: !!problem.boss, problemIds: ids });
         setJustEarned(earned);
+        if (problem.boss) {
+            playBossDefeat();
+        } else {
+            playSuccess();
+        }
+        triggerConfetti();
     };
 
-    const goNext = () => setIndex(i => (i + 1 < ids.length ? i + 1 : ids.length));
+    const goNext = () => {
+        playTap();
+        setIndex(i => (i + 1 < ids.length ? i + 1 : ids.length));
+    };
     const chapterNo = world.chapters.indexOf(chapter) + 1;
 
     return (
@@ -108,7 +148,7 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                             return (
                                 <button
                                     key={p.id}
-                                    onClick={() => open && setIndex(i)}
+                                    onClick={() => { playTap(); open && setIndex(i); }}
                                     disabled={!open}
                                     className={`flex h-12 w-12 items-center justify-center rounded-full border-4 text-lg font-bold shadow ${current ? 'border-yellow-400 ring-4 ring-yellow-300/50' : 'border-white/70'} ${done ? 'bg-green-500 text-white' : open ? 'bg-white text-stone-800' : 'bg-stone-400 text-stone-600'} ${p.boss ? 'rounded-xl' : ''}`}
                                     aria-label={`Problem ${i + 1}${done ? ', solved' : ''}${open ? '' : ', locked'}`}
@@ -120,7 +160,7 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                         {allSolved && (
                             <button
                                 key="results"
-                                onClick={() => setIndex(ids.length)}
+                                onClick={() => { playTap(); setIndex(ids.length); }}
                                 className={`flex h-12 items-center rounded-full border-4 px-4 font-bold shadow ${finished ? 'border-yellow-400 bg-yellow-300 text-stone-900' : 'border-white/70 bg-yellow-200 text-stone-800'}`}
                             >
                                 🏁 Results
@@ -146,7 +186,7 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                     <div className="mx-auto max-w-2xl rounded-3xl border-4 border-yellow-400 bg-white p-8 text-center text-stone-900 shadow-2xl">
                         <svg viewBox="-60 -145 120 150" className="mx-auto w-32" aria-hidden><CharacterArt character={PY} pose="happy" /></svg>
                         <h2 className="text-4xl text-blue-800">{lesson.kind === 'test' ? 'Test passed!' : 'Lesson complete!'}</h2>
-                        <div className="my-4"><StarRow stars={lp.stars} size="text-6xl" /></div>
+                        <div className="my-4"><StarRow stars={lp.stars} size="text-6xl" animated /></div>
                         <p className="mb-6 text-lg">
                             {lp.stars === 3 ? 'Perfect! No hints needed. 🎉' : `You used ${totalHints} hint${totalHints === 1 ? '' : 's'}. Try again without hints for ${starsFor(0)} stars!`}
                         </p>
@@ -166,7 +206,7 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                             <h2 className="text-2xl text-stone-800">{problem.title}</h2>
                         </div>
                         <div className="mb-5">
-                            <PyCard pose={solved ? 'happy' : problem.boss ? 'surprised' : 'talk'}>
+                            <PyCard pose={solved ? 'happy' : problem.boss ? 'surprised' : 'talk'} promptText={problem.prompt}>
                                 <RichText text={problem.prompt} />
                             </PyCard>
                         </div>
@@ -174,11 +214,11 @@ export function LessonPlayer({ world, chapter, lesson }: { world: World; chapter
                         <PuzzleView key={`${key}/${problem.id}/${round}`} puzzle={problem} draftKey={`${profile?.id}/${key}/${problem.id}`} onSolved={onSolved} />
 
                         {solved ? (
-                            <div data-testid="solved-banner" className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-4 border-green-500 bg-green-100 px-5 py-4">
+                            <div data-testid="solved-banner" className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border-4 border-green-500 bg-green-100 px-5 py-4 animate-bounce-once">
                                 <div className="text-2xl font-bold text-green-800">
                                     ✅ {problem.boss ? 'Boss defeated!' : 'You got it!'} {justEarned ? <span className="text-yellow-600">+{justEarned} XP</span> : null}
                                 </div>
-                                <button onClick={goNext} className="rounded-xl bg-green-600 px-6 py-3 text-lg font-bold text-white hover:bg-green-500">
+                                <button onClick={goNext} className="rounded-xl bg-green-600 px-6 py-3 text-lg font-bold text-white hover:bg-green-500 shadow-lg active:scale-95 transition">
                                     {index + 1 < ids.length ? 'Next problem →' : 'See results 🏁'}
                                 </button>
                             </div>

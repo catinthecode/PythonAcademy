@@ -4,7 +4,12 @@ import { EditorSelection, Prec } from '@codemirror/state';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { EditorView, keymap, placeholder as placeholderExt } from '@codemirror/view';
 import CodeMirror, { type ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import { useEffect, useMemo, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+
+export interface CodeEditorHandle {
+    insertSnippet: (snippet: string, offset?: number) => void;
+    focus: () => void;
+}
 
 interface Props {
     value: string;
@@ -28,7 +33,10 @@ const kidTheme = EditorView.theme({
     '.cm-placeholder': { color: '#94a3b8', fontStyle: 'italic' },
 });
 
-export function CodeEditor({ value, onChange, onRun, readOnly, minLines = 4, autoFocus, placeholder }: Props) {
+export const CodeEditor = forwardRef<CodeEditorHandle, Props>(function CodeEditor(
+    { value, onChange, onRun, readOnly, minLines = 4, autoFocus, placeholder },
+    forwardedRef,
+) {
     const ref = useRef<ReactCodeMirrorRef>(null);
     const extensions = useMemo(
         () => [
@@ -41,6 +49,26 @@ export function CodeEditor({ value, onChange, onRun, readOnly, minLines = 4, aut
         ],
         [onRun, placeholder],
     );
+
+    useImperativeHandle(forwardedRef, () => ({
+        insertSnippet(snippet: string, offset = 0) {
+            const view = ref.current?.view;
+            if (!view) return;
+            const sel = view.state.selection.main;
+            const from = sel.from;
+            const to = sel.to;
+            const targetPos = Math.max(0, from + snippet.length + offset);
+            view.dispatch({
+                changes: { from, to, insert: snippet },
+                selection: EditorSelection.cursor(targetPos),
+                scrollIntoView: true,
+            });
+            view.focus();
+        },
+        focus() {
+            ref.current?.view?.focus();
+        },
+    }));
 
     useEffect(() => {
         if (!autoFocus || readOnly) return;
@@ -68,4 +96,5 @@ export function CodeEditor({ value, onChange, onRun, readOnly, minLines = 4, aut
             aria-label="Python code"
         />
     );
-}
+});
+

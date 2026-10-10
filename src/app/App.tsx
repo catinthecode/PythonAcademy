@@ -4,6 +4,7 @@ import { ChapterMap } from '../pages/ChapterMap';
 import { ComicReader } from '../pages/ComicReader';
 import { LessonPlayer } from '../pages/LessonPlayer';
 import { Library } from '../pages/Library';
+import { MagicLab } from '../pages/MagicLab';
 import { ProfilePage } from '../pages/ProfilePage';
 import { WhoIsPlaying } from '../pages/WhoIsPlaying';
 import { useProfile } from '../progress/store';
@@ -17,7 +18,8 @@ import { useRoute } from './router';
  *   #/w/w1/ch2                     chapter map
  *   #/w/w1/ch2/lesson/practice1    a reading or problem lesson
  *   #/library[/w1]                 comics library
- *   #/profile[/progress]           profile and progress tabs
+ *   #/lab                          magic lab creative sandbox
+ *   #/profile[/progress|/badges]   profile, badges, and progress tabs
  *   #/art                          dev gallery of all the art
  */
 export function App() {
@@ -44,7 +46,13 @@ export function App() {
         const world = findWorld(route[1] ?? '') ?? homeChapter(profile, WORLDS).world;
         return <Library world={world} />;
     }
-    if (route[0] === 'profile') return <ProfilePage tab={route[1] === 'progress' ? 'progress' : 'profile'} />;
+    if (route[0] === 'lab') {
+        return <MagicLab />;
+    }
+    if (route[0] === 'profile') {
+        const tab = route[1] === 'badges' ? 'badges' : route[1] === 'progress' ? 'progress' : 'profile';
+        return <ProfilePage tab={tab} />;
+    }
 
     const { world, chapter } = homeChapter(profile, WORLDS);
     return <ChapterMap world={world} chapter={chapter} />;

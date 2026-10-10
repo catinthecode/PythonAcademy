@@ -44,7 +44,7 @@ async function expectRendered(page: Page, route: string, errors: string[], title
 test('every page renders without errors', async ({ page }) => {
     await withTestPlayer(page);
     const errors = watchErrors(page);
-    for (const route of ['', 'library', 'library/w2', 'profile', 'profile/progress', 'art', 'who']) {
+    for (const route of ['', 'library', 'library/w2', 'lab', 'profile', 'profile/badges', 'profile/progress', 'art', 'who']) {
         await expectRendered(page, route, errors);
     }
 });
