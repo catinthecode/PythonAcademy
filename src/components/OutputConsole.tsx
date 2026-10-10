@@ -1,3 +1,5 @@
+import { SpacedLine } from './SpacedLine';
+
 const MAX_LINES = 80;
 
 export function OutputConsole({ output, label = '📜 Output' }: { output: string; label?: string }) {
@@ -10,7 +12,7 @@ export function OutputConsole({ output, label = '📜 Output' }: { output: strin
                 <div className="text-stone-500">(nothing printed)</div>
             ) : (
                 <>
-                    {shown.map((l, i) => <div key={i} className="whitespace-pre-wrap">{l || ' '}</div>)}
+                    {shown.map((l, i) => <div key={i} className="whitespace-pre-wrap"><SpacedLine line={l} cellClass="bg-green-900/60 shadow-[inset_0_0_0_1px_#166534]" />{l ? '' :' '}</div>)}
                     {lines.length > MAX_LINES && <div className="text-stone-500">… and {lines.length - MAX_LINES} more lines</div>}
                 </>
             )}

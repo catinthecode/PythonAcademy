@@ -25,7 +25,9 @@ interface Props {
 
 const kidTheme = EditorView.theme({
     '&': { fontSize: '17px', borderRadius: '12px', overflow: 'hidden' },
-    '.cm-content': { fontFamily: "ui-monospace, 'Cascadia Code', Menlo, monospace", padding: '10px 0' },
+    // No ligatures: kids must see "====" and "==" as separate characters they can count
+    // (Cascadia Mono is Cascadia Code without them)
+    '.cm-content': { fontFamily: "ui-monospace, 'Cascadia Mono', Consolas, Menlo, monospace", fontVariantLigatures: 'none', padding: '10px 0' },
     '.cm-gutters': { borderRight: 'none' },
     // A thick, bright, blinking cursor that young eyes can find
     '.cm-cursor, .cm-dropCursor': { borderLeft: '3px solid #facc15' },

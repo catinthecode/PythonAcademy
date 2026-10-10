@@ -5,6 +5,7 @@ import { OutputConsole } from '../OutputConsole';
 import { TurtleCanvas } from '../TurtleCanvas';
 import { useGoal, usePythonStatus } from './hooks';
 import { PlayerTypes } from '../PlayerTypes';
+import { GOAL_SPACE, hasTrickySpaces, SpacedLine } from '../SpacedLine';
 
 interface Props {
     puzzle: CodePuzzle;
@@ -20,12 +21,20 @@ interface Props {
 
 /** The 🎯 Goal box: exactly what the kid's program should print. Big and impossible to miss. */
 function GoalBox({ output }: { output: string }) {
+    const text = output.replace(/\n$/, '');
     return (
         <div className="rounded-2xl border-4 border-yellow-400 bg-yellow-50 p-3 shadow-[0_0_0_4px_rgba(250,204,21,0.25)]">
             <div className="mb-1 flex items-center gap-2 text-sm font-extrabold uppercase tracking-wide text-yellow-800">
                 <span className="text-2xl">🎯</span> Goal: make Python print exactly this
             </div>
-            <pre className="max-h-48 overflow-auto rounded-xl bg-white px-4 py-3 font-mono text-xl text-stone-900">{output.replace(/\n$/, '') || '(nothing)'}</pre>
+            <pre className="max-h-48 overflow-auto rounded-xl bg-white px-4 py-3 font-mono text-xl text-stone-900">
+                {text ? text.split('\n').map((l, i) => <div key={i}><SpacedLine line={l} cellClass={GOAL_SPACE} />{l ? '' : ' '}</div>) : '(nothing)'}
+            </pre>
+            {hasTrickySpaces(text) && (
+                <div className="mt-1 flex items-center gap-2 text-sm font-bold text-yellow-900">
+                    <span className={`inline-block h-5 w-3 rounded-sm ${GOAL_SPACE}`} /> = one space. Count them!
+                </div>
+            )}
         </div>
     );
 }

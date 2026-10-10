@@ -10,6 +10,7 @@ import { CharacterArt } from '../../art/characters';
 import { CodeEditor } from '../CodeEditor';
 import { OutputConsole } from '../OutputConsole';
 import { TurtleCanvas } from '../TurtleCanvas';
+import { GOAL_SPACE, SpacedLine } from '../SpacedLine';
 import { run, trace, useDraft, useGoal, usePythonStatus } from './hooks';
 import type { PuzzleProps } from './Puzzles';
 
@@ -223,7 +224,7 @@ export function InstructPuzzleView({ puzzle, onSolved }: PuzzleProps<InstructPuz
                         goal && (
                             <div className="rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 p-3">
                                 <div className="mb-1 text-xs font-bold uppercase tracking-wide text-blue-700">🎯 Goal output</div>
-                                <pre className="whitespace-pre-wrap font-mono text-base text-stone-800">{goal.output.trimEnd()}</pre>
+                                <pre className="whitespace-pre-wrap font-mono text-base text-stone-800">{goal.output.trimEnd().split('\n').map((l, i) => <div key={i}><SpacedLine line={l} cellClass={GOAL_SPACE} />{l ? '' : ' '}</div>)}</pre>
                             </div>
                         )
                     )}

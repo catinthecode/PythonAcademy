@@ -337,7 +337,7 @@ export const ch1: Chapter = {
                     type: 'write',
                     boss: true,
                     title: 'BOSS: Forge a diamond sword',
-                    prompt: 'Make Python print this sword exactly, spaces and all. You need 5 print lines!',
+                    prompt: 'Make Python print this sword exactly, spaces and all. Each blue box in the 🎯 Goal is one space. You need 5 print lines!',
                     starter: py`# Look carefully at the spaces at the start of each line`,
                     solution: py`
                         print("  []")
