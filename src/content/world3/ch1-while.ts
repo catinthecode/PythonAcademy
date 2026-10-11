@@ -16,7 +16,7 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'sky',
-                    alt: 'Bix stacks bricks into a tower in the floating park.',
+                    alt: 'Bix the builder stacks bricks into a tower in the floating park.',
                     wide: true,
                     cast: [
                         { who: 'bix', pose: 'talk', x: 25 },

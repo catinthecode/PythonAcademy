@@ -294,7 +294,7 @@ export const ch6: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Rae high-fives Py while Sneak sulks, unable to crash the game.',
+                    alt: 'Rae high-fives Py\'s tail while Sneak sulks, unable to crash the game.',
                     wide: true,
                     cast: [
                         { who: 'rae', pose: 'happy', x: 20 },

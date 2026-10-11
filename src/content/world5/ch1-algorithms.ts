@@ -14,7 +14,7 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'space',
-                    alt: 'Nova and Zork float past a thousand boxes in space.',
+                    alt: 'Nova the space explorer and Zork float past a thousand boxes in space.',
                     wide: true,
                     cast: [
                         { who: 'nova', pose: 'surprised', x: 22 },

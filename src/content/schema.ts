@@ -5,7 +5,9 @@
 
 export type CharacterArt =
     | 'py' | 'miner' | 'turtle' | 'sneak' | 'kid' | 'robot' | 'critter'
-    | 'dragon' | 'blob' | 'alien' | 'parrot' | 'bunny' | 'cat' | 'owl' | 'fox';
+    | 'dragon' | 'blob' | 'alien' | 'parrot' | 'bunny' | 'cat' | 'owl' | 'fox'
+    | 'mole' | 'raccoon' | 'golem' | 'frog' | 'octopus'
+    | 'kidMiner' | 'kidTrainer' | 'kidBuilder' | 'kidKnight' | 'kidAstronaut';
 export type Pose = 'idle' | 'talk' | 'wave' | 'point' | 'think' | 'happy' | 'surprised' | 'sad';
 export type SceneId = 'meadow' | 'night' | 'cave' | 'village' | 'room' | 'circuit' | 'screen' | 'arena' | 'sky' | 'castle' | 'space';
 export type PropId =

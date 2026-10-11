@@ -2,14 +2,20 @@ import type { Character, Pose } from '../../content/schema';
 import { Alien } from './Alien';
 import { Kid, Miner } from './Blocky';
 import { Blob } from './Blob';
+import { BrickGolem } from './BrickGolem';
 import { Bunny } from './Bunny';
 import { Cat } from './Cat';
+import { Child } from './Child';
 import { Critter } from './Critter';
 import { Dragon } from './Dragon';
 import { Fox } from './Fox';
+import { FrogKnight } from './FrogKnight';
+import { Mole } from './Mole';
+import { Octopus } from './Octopus';
 import { Owl } from './Owl';
 import { Parrot } from './Parrot';
 import { Py } from './Py';
+import { Raccoon } from './Raccoon';
 import { Robot } from './Robot';
 import { Sneak } from './Sneak';
 import { Turtle } from './Turtle';
@@ -48,5 +54,21 @@ export function CharacterArt({ character, pose = 'idle' }: { character: Characte
             return <Owl pose={pose} tint={tint} />;
         case 'fox':
             return <Fox pose={pose} tint={tint} />;
+        case 'mole':
+            return <Mole pose={pose} tint={tint} />;
+        case 'raccoon':
+            return <Raccoon pose={pose} tint={tint} />;
+        case 'golem':
+            return <BrickGolem pose={pose} tint={tint} />;
+        case 'frog':
+            return <FrogKnight pose={pose} tint={tint} />;
+        case 'octopus':
+            return <Octopus pose={pose} tint={tint} />;
+        case 'kidMiner':
+        case 'kidTrainer':
+        case 'kidBuilder':
+        case 'kidKnight':
+        case 'kidAstronaut':
+            return <Child pose={pose} art={character.art} />;
     }
 }

@@ -218,7 +218,7 @@ export const ch2: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Py hands a gift box labelled return back to Hoot the owl.',
+                    alt: 'Py slides a gift box labelled return over to Hoot the owl.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
@@ -226,6 +226,7 @@ export const ch2: Chapter = {
                     ],
                     bubbles: [
                         { who: 'py', text: 'print shows a value on screen. return HANDS IT BACK, so you can store it or do more math with it!' },
+                        { who: 'hoot', text: "Hoo! I'm Hoot. So return hands the answer right back?" },
                     ],
                     code: py`
                         def half(n):
@@ -301,7 +302,7 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Hoot levels up, glowing. Py hands over a gift box labelled return.',
+                    alt: 'Hoot levels up, glowing. Py slides over a gift box labelled return.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },

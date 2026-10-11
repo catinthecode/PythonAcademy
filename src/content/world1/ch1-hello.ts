@@ -14,7 +14,7 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'meadow',
-                    alt: 'Max finds a glowing magic block in a meadow. Py the snake pops out of it.',
+                    alt: 'Max the young miner finds a glowing magic block in a meadow. Py the snake pops out of it.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'wave', x: 30, y: 75 },
@@ -50,7 +50,7 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Max scratches his head at two giant floating quote marks.',
+                    alt: 'Max tilts his hard hat at two giant floating quote marks.',
                     cast: [
                         { who: 'max', pose: 'think', x: 30 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },

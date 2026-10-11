@@ -14,7 +14,7 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Kai the hero meets Py at the castle gates.',
+                    alt: 'Kai the young knight meets Py at the castle gates.',
                     wide: true,
                     cast: [
                         { who: 'kai', pose: 'wave', x: 25 },

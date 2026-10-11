@@ -65,7 +65,7 @@ export const ch8: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Py traces a finger from the vault back to the hall on the map.',
+                    alt: 'Py traces its tail from the vault back to the hall on the map.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
                         { who: 'kai', pose: 'happy', x: 75, flip: true },

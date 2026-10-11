@@ -19,20 +19,31 @@ const CROP: Record<Art, string> = {
     cat: '-28 -100 60 60',
     owl: '-32 -96 66 66',
     fox: '-32 -106 72 72',
+    mole: '-24 -106 62 62',
+    raccoon: '-24 -98 60 60',
+    golem: '-26 -106 62 62',
+    frog: '-26 -102 62 62',
+    octopus: '-34 -90 70 70',
+    kidMiner: '-30 -122 60 60',
+    kidTrainer: '-34 -120 68 68',
+    kidBuilder: '-30 -122 60 60',
+    kidKnight: '-30 -116 60 60',
+    kidAstronaut: '-40 -118 68 68',
 };
 
 const NAMES: Record<Art, string> = {
     py: 'Py', miner: 'Miner', kid: 'Kid', turtle: 'Shelly', sneak: 'Sneak', robot: 'Robot', critter: 'Critter',
     dragon: 'Dragon', blob: 'Slime', alien: 'Alien', parrot: 'Parrot', bunny: 'Bunny', cat: 'Cat', owl: 'Owl', fox: 'Fox',
+    mole: 'Mole', raccoon: 'Raccoon', golem: 'Brick golem', frog: 'Frog knight', octopus: 'Octopus',
+    kidMiner: 'Miner kid', kidTrainer: 'Trainer kid', kidBuilder: 'Builder kid', kidKnight: 'Knight kid', kidAstronaut: 'Astronaut kid',
 };
 
 export const AVATAR_CHOICES: AvatarData[] = [
-    { art: 'miner' },
-    { art: 'kid', tint: '#dc2626' },
-    { art: 'kid', tint: '#2563eb' },
-    { art: 'kid', tint: '#9333ea' },
-    { art: 'kid', tint: '#16a34a' },
-    { art: 'kid', tint: '#ea580c' },
+    { art: 'kidMiner' },
+    { art: 'kidTrainer' },
+    { art: 'kidBuilder' },
+    { art: 'kidKnight' },
+    { art: 'kidAstronaut' },
     { art: 'py' },
     { art: 'turtle' },
     { art: 'sneak' },
@@ -47,6 +58,11 @@ export const AVATAR_CHOICES: AvatarData[] = [
     { art: 'owl' },
     { art: 'fox' },
     { art: 'blob' },
+    { art: 'mole' },
+    { art: 'raccoon' },
+    { art: 'golem' },
+    { art: 'frog' },
+    { art: 'octopus' },
 ];
 
 export function Avatar({ avatar, size = 48, className = '' }: { avatar: AvatarData; size?: number; className?: string }) {

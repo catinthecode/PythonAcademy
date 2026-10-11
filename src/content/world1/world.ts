@@ -3,7 +3,7 @@ import type { Character } from '../schema';
 
 export const characters: Record<string, Character> = {
     py: PY,
-    max: { name: 'Max', art: 'miner' },
+    max: { name: 'Max', art: 'kidMiner' },
     shelly: { name: 'Shelly', art: 'turtle' },
     sneak: { name: 'Sneak', art: 'sneak' },
     bolt: { name: 'Bolt', art: 'robot' },

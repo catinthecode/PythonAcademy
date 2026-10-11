@@ -14,12 +14,13 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'arena',
-                    alt: 'Rae and Blazewing arrive at the battle arena. Py greets them.',
+                    alt: 'Rae the critter trainer arrives at the battle arena with her critters Fizz and Blazewing. Py greets them.',
                     wide: true,
                     cast: [
                         { who: 'rae', pose: 'wave', x: 18 },
-                        { who: 'blaze', pose: 'happy', x: 42 },
-                        { who: 'py', pose: 'talk', x: 78, flip: true },
+                        { who: 'fizz', pose: 'happy', x: 38 },
+                        { who: 'blaze', pose: 'happy', x: 55 },
+                        { who: 'py', pose: 'talk', x: 80, flip: true },
                     ],
                     bubbles: [
                         { who: 'rae', text: 'Blazewing has 12 HP and just drank a potion worth 8. How much HP now?' },

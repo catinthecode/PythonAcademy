@@ -39,7 +39,7 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Py walks along the line of heroes.',
+                    alt: 'Py slithers along the line of heroes.',
                     cast: [{ who: 'py', pose: 'point', x: 30 }],
                     bubbles: [{ who: 'py', text: 'Loop over the list: each turn, hero is one whole dictionary.' }],
                     code: PARTY + '\n' + py`

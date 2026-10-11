@@ -280,7 +280,7 @@ export const ch7: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Bolt scratches its head next to a strange spiky shape instead of a triangle.',
+                    alt: 'Bolt taps its metal head next to a strange spiky shape instead of a triangle.',
                     cast: [
                         { who: 'max', pose: 'surprised', x: 25 },
                         { who: 'bolt', pose: 'sad', x: 75, flip: true },
