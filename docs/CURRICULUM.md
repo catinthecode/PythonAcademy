@@ -60,12 +60,13 @@ characters.
 
 Recurring characters: **Py** (the guide, a snake in a wizard hat) appears in every world.
 **Bolt** appears in every chapter 7, and sometimes elsewhere. Each world adds a kid hero and a
-mischief-maker who causes the bugs.
+mischief-maker who causes the bugs. Newer characters own the topics that suit them (listed per world
+below) and take over those books, so no one face is in every book.
 
 ## 3. Scope and sequence
 
 ### World 1 · First Spells · *Block World* · ages 7–8
-Cast: Py, Max (a miner), Shelly (a turtle), Sneak (who causes bugs), Bolt.
+Cast: Py, Max (a miner), Shelly (a turtle), Sneak (who causes bugs), Bolt. Pip (a parrot) owns printing text and remembering values: Ch1 book 2, Ch4, Ch5 book 2.
 **Big idea:** computers follow exact instructions in order.
 
 | # | Chapter | Concepts | Thinking skill |
@@ -82,7 +83,7 @@ Cast: Py, Max (a miner), Shelly (a turtle), Sneak (who causes bugs), Bolt.
 World 1 leans on the turtle: 43 of its 114 problems are drawings.
 
 ### World 2 · Making Choices · *Critter Quest* · ages 8–9
-Cast: Py, Rae (a kid trainer), Fizz and Blazewing (critters), Bolt, Sneak.
+Cast: Py, Rae (a kid trainer), Fizz (a critter), Blazewing (a dragon), Bolt, Sneak, Hop (a bunny critter). Blazewing owns battle maths (Ch1); Hop owns True/False and logic (Ch3, Ch5).
 **Big idea:** programs can calculate, ask questions and choose.
 
 | # | Chapter | Concepts | Thinking skill |
@@ -97,7 +98,7 @@ Cast: Py, Rae (a kid trainer), Fizz and Blazewing (critters), Bolt, Sneak.
 | 8 | ⚔️ Project: Critter Battle | stats, input moves, damage maths, a winner | Plan, then make it fair |
 
 ### World 3 · Loops and Lists · *Brick Park* · ages 9–10
-Cast: Py, Bix (a kid), Glitch (a critter), Bolt.
+Cast: Py, Bix (a kid), Glitch (a critter), Bolt. Mochi (a cat) owns lists and grids: Ch2, Ch5.
 **Big idea:** handle many things and repeat until done.
 
 | # | Chapter | Concepts | Thinking skill |
@@ -112,7 +113,7 @@ Cast: Py, Bix (a kid), Glitch (a critter), Bolt.
 | 8 | 🏆 Project: Leaderboard | lists, totals, `sorted`, ranks | Build in parts |
 
 ### World 4 · Building Blocks · *Hero Kingdom* · ages 10–11
-Cast: Py, Kai (a kid hero), Slime (a critter), Bolt.
+Cast: Py, Kai (a kid hero), Slime (a slime blob), Bolt. Hoot (an owl scholar) owns looking things up: Ch2 book 2, Ch4, Ch5.
 **Big idea:** build big programs from small, tested pieces.
 
 | # | Chapter | Concepts | Thinking skill |
@@ -127,7 +128,7 @@ Cast: Py, Kai (a kid hero), Slime (a critter), Bolt.
 | 8 | 🏰 Project: Text Adventure | a dictionary of rooms, `input` moves, a game loop, functions | Design a small system |
 
 ### World 5 · Thinking Like a Programmer · *The Multiverse* · ages 11–12
-Cast: Py, Nova (a kid explorer), Zork (an alien critter), Bolt.
+Cast: Py, Nova (a kid explorer), Zork (a one-eyed alien), Bolt. Comet (a space fox) owns speed and motion: Ch1 book 2, Ch3, Ch5.
 **Big idea:** compare approaches, model the world, and work with AI.
 
 | # | Chapter | Concepts | Thinking skill |

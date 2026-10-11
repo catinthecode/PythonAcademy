@@ -14,14 +14,14 @@ export const ch5: Chapter = {
             panels: [
                 {
                     scene: 'space',
-                    alt: 'Nova watches a rocket move across the screen in small jumps.',
+                    alt: 'Comet watches a rocket move across the screen in small jumps.',
                     wide: true,
                     cast: [
-                        { who: 'nova', pose: 'think', x: 25 },
+                        { who: 'comet', pose: 'think', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'nova', text: 'How do games make things move?' },
+                        { who: 'comet', text: 'How do games make things move?' },
                         { who: 'py', text: 'A game loop! Each frame: update the state (like position), draw it, repeat, many times a second.' },
                     ],
                     code: py`
@@ -49,7 +49,7 @@ export const ch5: Chapter = {
                     alt: 'Zork bounces off the edge of the screen.',
                     cast: [
                         { who: 'zork', pose: 'happy', x: 30 },
-                        { who: 'nova', pose: 'surprised', x: 72, flip: true },
+                        { who: 'comet', pose: 'surprised', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'zork', text: 'To bounce, flip the speed when I hit a wall: speed = -speed!' }],
                     code: py`
@@ -67,11 +67,11 @@ export const ch5: Chapter = {
                     alt: 'A game screen shows a score and a row of heart lives.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                        { who: 'comet', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Everything that changes is a variable: position, score, lives.' },
-                        { who: 'nova', text: 'Frame 2 costs me a life!' },
+                        { who: 'comet', text: 'Frame 2 costs me a life!' },
                     ],
                     code: py`
                         score = 0
@@ -107,11 +107,11 @@ export const ch5: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                        { who: 'comet', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Every game loop: set up the state BEFORE the loop, then each frame update it, check the rules (like walls), and draw it.' },
-                        { who: 'nova', text: 'Set up, update, check, draw!' },
+                        { who: 'comet', text: 'Set up, update, check, draw!' },
                     ],
                 },
             ],
@@ -234,9 +234,9 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork zooms past a wall without touching it.',
+                    alt: 'Comet zooms past a wall without touching it.',
                     cast: [
-                        { who: 'zork', pose: 'surprised', x: 30 },
+                        { who: 'comet', pose: 'surprised', x: 30 },
                         { who: 'py', pose: 'point', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'Careful: moving 6 at a time, x jumps from 18 to 24 and never equals 20. Use >= instead of ==.' }],
@@ -269,11 +269,11 @@ export const ch5: Chapter = {
                     alt: 'A ship and a rock get close. A warning light flashes.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'zork', pose: 'surprised', x: 75, flip: true },
+                        { who: 'comet', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Things crash when they are CLOSE, not just on the exact same spot.' },
-                        { who: 'zork', text: 'abs() gives the distance. 2 is too close!' },
+                        { who: 'comet', text: 'abs() gives the distance. 2 is too close!' },
                     ],
                     code: py`
                         ship = 7

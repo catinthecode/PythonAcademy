@@ -22,14 +22,14 @@ export const ch5: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Kai gathers a party of three heroes.',
+                    alt: 'Hoot gathers a party of three heroes.',
                     wide: true,
                     cast: [
-                        { who: 'kai', pose: 'happy', x: 25 },
+                        { who: 'hoot', pose: 'happy', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'kai', text: 'My party has three heroes, and each has a name, HP and a level.' },
+                        { who: 'hoot', text: 'My party has three heroes, and each has a name, HP and a level.' },
                         { who: 'py', text: 'Each hero is a dictionary. The party is a LIST of dictionaries!' },
                     ],
                     code: PARTY + '\n' + py`
@@ -49,9 +49,9 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Kai adds a new hero to the party.',
-                    cast: [{ who: 'kai', pose: 'point', x: 40 }],
-                    bubbles: [{ who: 'kai', text: 'New heroes are just new dictionaries, appended to the list.' }],
+                    alt: 'Hoot adds a new hero to the party.',
+                    cast: [{ who: 'hoot', pose: 'point', x: 40 }],
+                    bubbles: [{ who: 'hoot', text: 'New heroes are just new dictionaries, appended to the list.' }],
                     code: PARTY + '\n' + py`
                         party.append({"name": "Pip", "hp": 20, "level": 1})
                         print(len(party), "heroes")
@@ -59,14 +59,14 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai pours a healing potion over Ivy.',
+                    alt: 'Hoot pours a healing potion over Ivy.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Pick a hero, then a key, and change it in place.' },
-                        { who: 'kai', text: 'Ivy is healed to 22 HP!' },
+                        { who: 'hoot', text: 'Ivy is healed to 22 HP!' },
                     ],
                     code: PARTY + '\n' + py`
                         party[1]["hp"] += 10
@@ -92,11 +92,11 @@ export const ch5: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'In a list of dictionaries, [position] picks a hero and ["key"] picks a detail. Read it left to right.' },
-                        { who: 'kai', text: 'party[2]["name"]: the third hero\'s name!' },
+                        { who: 'hoot', text: 'party[2]["name"]: the third hero\'s name!' },
                     ],
                     code: PARTY + '\n' + py`print(party[2]["name"], "has", party[2]["hp"], "HP")`,
                 },
@@ -221,7 +221,7 @@ export const ch5: Chapter = {
                     scene: 'castle',
                     alt: 'The slime tries to sneak into the party.',
                     cast: [
-                        { who: 'slime', pose: 'happy', x: 30 },
+                        { who: 'hoot', pose: 'happy', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'Lists of dictionaries are how real apps store things: players, songs, messages...' }],
@@ -246,13 +246,13 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Slime searches for Ivy but never finds her, even though she is right there.',
+                    alt: 'Hoot searches for Ivy but never finds her, even though she is right there.',
                     cast: [
-                        { who: 'slime', pose: 'sad', x: 25 },
+                        { who: 'hoot', pose: 'sad', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'slime', text: 'if hero == "Ivy" never matches!' },
+                        { who: 'hoot', text: 'if hero == "Ivy" never matches!' },
                         { who: 'py', text: 'hero is a whole dictionary. Compare hero["name"].' },
                     ],
                     code: PARTY + '\n' + py`

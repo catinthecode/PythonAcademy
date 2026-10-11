@@ -1,4 +1,6 @@
-// Dev page (#/art): every character in every pose, every scene and prop. Handy when drawing.
+// Dev page (#/art): every character in every pose, every scene and prop, and any chapter's
+// comic panels. Handy when drawing.
+import { useState } from 'react';
 import { CharacterArt } from '../art/characters';
 import { ComicPanel } from '../art/ComicPanel';
 import { PropArt } from '../art/props';
@@ -11,13 +13,12 @@ const SCENES: SceneId[] = ['meadow', 'night', 'cave', 'village', 'room', 'circui
 const PROPS: PropId[] = ['commandBlock', 'chest', 'diamond', 'tnt', 'repeater', 'sign', 'magnifier', 'pickaxe', 'torch', 'bug', 'cow', 'candy', 'coin', 'quote', 'scroll', 'swatter'];
 
 export function ArtGallery() {
-    const world: World = WORLDS[0];
-    const cast: Character[] = [
-        ...Object.values(world.characters),
-        { name: 'Kid (tinted)', art: 'kid', tint: '#2563eb' },
-        { name: 'Critter (yellow)', art: 'critter', tint: '#facc15' },
-        { name: 'Critter (lime)', art: 'critter', tint: '#84cc16' },
-    ];
+    const [worldIndex, setWorldIndex] = useState(0);
+    const [chapterIndex, setChapterIndex] = useState(0);
+    const world: World = WORLDS[worldIndex];
+    const chapter = world.chapters[chapterIndex];
+    // Every character from every world, once each
+    const cast: Character[] = [...new Map(WORLDS.flatMap(w => Object.values(w.characters)).map(c => [c.name, c])).values()];
     return (
         <div className="mx-auto max-w-6xl space-y-10 p-6">
             <h1 className="text-3xl">Art gallery</h1>
@@ -59,14 +60,37 @@ export function ArtGallery() {
                 </div>
             </section>
             <section>
-                <h2 className="mb-2 text-xl">Panels (World 1, Chapter 1)</h2>
-                <div className="grid gap-3 md:grid-cols-2">
-                    {world.chapters[0].lessons.flatMap(l => (l.kind === 'read' ? l.panels : [])).map((p, i) => (
-                        <div key={i} className={p.wide ? 'md:col-span-2' : ''}>
-                            <ComicPanel panel={p} world={world} />
-                        </div>
-                    ))}
+                <div className="mb-2 flex flex-wrap items-center gap-3">
+                    <h2 className="text-xl">Panels</h2>
+                    <select
+                        aria-label="World"
+                        value={worldIndex}
+                        onChange={e => { setWorldIndex(Number(e.target.value)); setChapterIndex(0); }}
+                        className="rounded border border-stone-400 bg-white px-2 py-1 text-stone-900"
+                    >
+                        {WORLDS.map((w, i) => <option key={w.id} value={i}>World {w.number}: {w.title}</option>)}
+                    </select>
+                    <select
+                        aria-label="Chapter"
+                        value={chapterIndex}
+                        onChange={e => setChapterIndex(Number(e.target.value))}
+                        className="rounded border border-stone-400 bg-white px-2 py-1 text-stone-900"
+                    >
+                        {world.chapters.map((c, i) => <option key={c.id} value={i}>Chapter {i + 1}: {c.title}</option>)}
+                    </select>
                 </div>
+                {chapter.lessons.map(l => l.kind === 'read' && (
+                    <div key={l.id} className="mb-6">
+                        <h3 className="mb-2 text-lg">{l.title}</h3>
+                        <div className="grid gap-3 md:grid-cols-2">
+                            {l.panels.map((p, i) => (
+                                <div key={i} className={p.wide ? 'md:col-span-2' : ''}>
+                                    <ComicPanel panel={p} world={world} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </section>
         </div>
     );

@@ -23,4 +23,12 @@ export const CHARACTER_HEIGHT: Record<CharacterArt, number> = {
     sneak: 90,
     robot: 124,
     critter: 90,
+    dragon: 108,
+    blob: 70,
+    alien: 110,
+    parrot: 100,
+    bunny: 116,
+    cat: 94,
+    owl: 90,
+    fox: 103,
 };

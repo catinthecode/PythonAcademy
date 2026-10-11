@@ -16,14 +16,14 @@ export const ch5: Chapter = {
             panels: [
                 {
                     scene: 'sky',
-                    alt: 'Bix lays bricks row by row to build a wall.',
+                    alt: 'Mochi lays bricks row by row to build a wall.',
                     wide: true,
                     cast: [
-                        { who: 'bix', pose: 'talk', x: 25 },
+                        { who: 'mochi', pose: 'talk', x: 25 },
                         { who: 'py', pose: 'point', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'A wall is rows of bricks. Each row has the same number of bricks.' },
+                        { who: 'mochi', text: 'A wall is rows of bricks. Each row has the same number of bricks.' },
                         { who: 'py', text: 'That\'s a loop inside a loop! The inner loop runs fully for EACH turn of the outer loop.' },
                     ],
                     code: py`
@@ -49,8 +49,8 @@ export const ch5: Chapter = {
                 {
                     scene: 'sky',
                     alt: 'A neat 3 by 4 wall of bricks appears.',
-                    cast: [{ who: 'bix', pose: 'happy', x: 40 }],
-                    bubbles: [{ who: 'bix', text: 'Inner loop: bricks across. Outer loop: rows down!' }],
+                    cast: [{ who: 'mochi', pose: 'happy', x: 40 }],
+                    bubbles: [{ who: 'mochi', text: 'Inner loop: bricks across. Outer loop: rows down!' }],
                     code: py`
                         for row in range(3):
                             for col in range(4):
@@ -78,13 +78,13 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Bix counts the bricks in a wall of 2 rows and 5 columns.',
+                    alt: 'Mochi counts the bricks in a wall of 2 rows and 5 columns.',
                     cast: [
-                        { who: 'bix', pose: 'think', x: 25 },
+                        { who: 'mochi', pose: 'think', x: 25 },
                         { who: 'py', pose: 'point', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'How many times does the inside run?' },
+                        { who: 'mochi', text: 'How many times does the inside run?' },
                         { who: 'py', text: 'Rows times columns: 2 × 5 is 10. Count to check!' },
                     ],
                     code: py`
@@ -101,11 +101,11 @@ export const ch5: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                        { who: 'mochi', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Outer loop = rows. Inner loop = columns. end="" keeps a row together, and print() after the inner loop starts the next row.' },
-                        { who: 'bix', text: 'Rows down, bricks across!' },
+                        { who: 'mochi', text: 'Rows down, bricks across!' },
                     ],
                     code: py`
                         for row in range(2):
@@ -232,9 +232,9 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Glitch hops across a grid of floating platforms.',
-                    cast: [{ who: 'glitch', pose: 'happy', x: 40 }],
-                    bubbles: [{ who: 'glitch', text: 'Grids are everywhere in games: maps, boards, pixel art!' }],
+                    alt: 'Mochi hops across a grid of floating platforms.',
+                    cast: [{ who: 'mochi', pose: 'happy', x: 40 }],
+                    bubbles: [{ who: 'mochi', text: 'Grids are everywhere in games: maps, boards, pixel art!' }],
                 },
                 {
                     scene: 'arena',
@@ -259,13 +259,13 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Glitch frowns at a staircase whose first step is missing.',
+                    alt: 'Mochi frowns at a staircase whose first step is missing.',
                     cast: [
-                        { who: 'glitch', pose: 'think', x: 25 },
+                        { who: 'mochi', pose: 'think', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'glitch', text: 'My staircase starts with an empty row!' },
+                        { who: 'mochi', text: 'My staircase starts with an empty row!' },
                         { who: 'py', text: 'range(0) runs zero times. Start rows at 1.' },
                     ],
                     code: py`
@@ -277,12 +277,12 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Bix, Glitch and Py stand on a grid of floating platforms.',
+                    alt: 'Bix, Mochi and Py stand on a grid of floating platforms.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
                         { who: 'bix', pose: 'happy', x: 55 },
-                        { who: 'glitch', pose: 'happy', x: 82, flip: true },
+                        { who: 'mochi', pose: 'happy', x: 82, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'The inner loop can use the outer variable for growing shapes, and an if inside makes patterns.' },

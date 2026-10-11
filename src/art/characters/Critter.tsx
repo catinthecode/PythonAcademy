@@ -1,13 +1,8 @@
-// A round, friendly critter with big ears and a curly tail. Tintable, so one drawing serves as
-// a pet (World 2), a slime-ish monster (World 4) or an alien (World 5).
+// A round, friendly critter with big ears and a fluffy tail. Tintable, so one drawing serves as
+// a pet (Fizz, World 2) or a glitchy creature (Glitch, World 3).
 import type { Pose } from '../../content/schema';
 import { INK, LINE } from '../common';
-
-function shade(hex: string, amount: number) {
-    const n = parseInt(hex.slice(1), 16);
-    const c = (v: number) => Math.max(0, Math.min(255, Math.round(v + amount)));
-    return `#${[(n >> 16) & 255, (n >> 8) & 255, n & 255].map(v => c(v).toString(16).padStart(2, '0')).join('')}`;
-}
+import { shade } from './parts';
 
 export function Critter({ pose, tint = '#facc15' }: { pose: Pose; tint?: string }) {
     const dark = shade(tint, -60);

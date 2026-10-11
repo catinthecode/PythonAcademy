@@ -213,11 +213,11 @@ export const ch5: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
-                        { who: 'max', pose: 'surprised', x: 74, flip: true },
+                        { who: 'pip', pose: 'surprised', x: 74, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'A trick: text times a number repeats it. "#" * 3 makes ###.' },
-                        { who: 'max', text: 'Then "#" * i makes a longer line every time!' },
+                        { who: 'pip', text: 'I love repeating things! So "#" * i makes a longer line every time!' },
                     ],
                     code: py`
                         for i in range(1, 5):
@@ -226,14 +226,14 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'room',
-                    alt: 'Py reads the loop slowly, one turn at a time, as Max follows along.',
+                    alt: 'Py reads the loop slowly, one turn at a time, as Pip follows along.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'max', pose: 'think', x: 75, flip: true },
+                        { who: 'pip', pose: 'think', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Read it like Python. i is 1: "#" * 1 is #. i is 2: ##.' },
-                        { who: 'max', text: 'One more # every time!' },
+                        { who: 'pip', text: 'One more # every time!' },
                     ],
                     caption: 'Any text works. Try "Ha" * 3!',
                     code: py`print("Ha" * 3)`,
@@ -253,14 +253,14 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'cave',
-                    alt: 'A slime blob grows bigger and bigger. Max backs away.',
+                    alt: 'A slime blob grows bigger and bigger. Pip flaps away.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                        { who: 'pip', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Patterns can grow fast! size = size * 2 doubles it each time.' },
-                        { who: 'max', text: '2, 4, 8... it keeps doubling!' },
+                        { who: 'pip', text: '2, 4, 8... it keeps doubling!' },
                     ],
                     code: py`
                         size = 1
@@ -271,13 +271,13 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'room',
-                    alt: 'Max frowns at a tower where every row is the same width.',
+                    alt: 'Pip frowns at a tower where every row is the same width.',
                     cast: [
-                        { who: 'max', pose: 'sad', x: 25 },
+                        { who: 'pip', pose: 'sad', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'max', text: 'My tower is not growing!' },
+                        { who: 'pip', text: 'My tower is not growing!' },
                         { who: 'py', text: 'You used * 3 every time. Use i, the part that changes!' },
                     ],
                     code: py`
@@ -287,10 +287,10 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Max, Py and Shelly look at stairs, spirals and towers around them.',
+                    alt: 'Pip, Py and Shelly look at stairs, spirals and towers around them.',
                     wide: true,
                     cast: [
-                        { who: 'max', pose: 'happy', x: 22 },
+                        { who: 'pip', pose: 'happy', x: 22 },
                         { who: 'shelly', pose: 'happy', x: 52 },
                         { who: 'py', pose: 'wave', x: 80, flip: true },
                     ],

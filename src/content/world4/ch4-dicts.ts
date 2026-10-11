@@ -14,14 +14,14 @@ export const ch4: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Kai opens a bag with labelled pockets.',
+                    alt: 'Hoot opens a bag with labelled pockets.',
                     wide: true,
                     cast: [
-                        { who: 'kai', pose: 'think', x: 25 },
+                        { who: 'hoot', pose: 'think', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'kai', text: 'How many potions do I have? A list makes me remember positions...' },
+                        { who: 'hoot', text: 'Hoo! How many potions do I have? A list makes me remember positions...' },
                         { who: 'py', text: 'Use a dictionary: look things up by NAME. Each key has a value.' },
                     ],
                     code: py`
@@ -61,13 +61,13 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai frowns at a crash after leaving the quotes off a key.',
+                    alt: 'Hoot frowns at a crash after leaving the quotes off a key.',
                     cast: [
-                        { who: 'kai', pose: 'surprised', x: 25 },
+                        { who: 'hoot', pose: 'surprised', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'kai', text: 'bag[arrow] crashed with a NameError!' },
+                        { who: 'hoot', text: 'bag[arrow] crashed with a NameError!' },
                         { who: 'py', text: 'Text keys need quotes: bag["arrow"].' },
                     ],
                     code: py`
@@ -80,28 +80,28 @@ export const ch4: Chapter = {
                     alt: 'Py compares a numbered list with a labelled hero sheet.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Lists find things by position. Dictionaries find them by name.' },
-                        { who: 'kai', text: 'hero["level"] beats hero[2]!' },
+                        { who: 'hoot', text: 'hero["level"] beats hero[2]!' },
                     ],
                     code: py`
-                        hero = {"name": "Kai", "hp": 30, "level": 4}
+                        hero = {"name": "Hoot", "hp": 30, "level": 4}
                         print(hero["level"])
                     `,
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai checks his stats on a glowing scroll as he takes damage.',
+                    alt: 'Hoot checks its stats on a glowing scroll after taking damage.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'A dictionary holds key: value pairs. d[key] reads, d[key] = value adds or changes, and .get() asks safely.' },
-                        { who: 'kai', text: 'No mana key? .get gives me 0 instead of a crash!' },
+                        { who: 'hoot', text: 'No mana key? .get gives me 0 instead of a crash!' },
                     ],
                     code: py`
                         stats = {"hp": 30}
@@ -196,10 +196,10 @@ export const ch4: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Kai empties his bag onto a table, item by item.',
+                    alt: 'Hoot empties its bag onto a table, item by item.',
                     wide: true,
                     cast: [
-                        { who: 'kai', pose: 'point', x: 25 },
+                        { who: 'hoot', pose: 'point', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'A for loop over a dictionary gives you each KEY. Use it to look up the value.' }],
@@ -222,9 +222,9 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Kai tallies letters in a word using a dictionary.',
-                    cast: [{ who: 'kai', pose: 'happy', x: 40 }],
-                    bubbles: [{ who: 'kai', text: 'Counting with a dictionary: .get(thing, 0) + 1 works even the first time!' }],
+                    alt: 'Hoot tallies letters in a word using a dictionary.',
+                    cast: [{ who: 'hoot', pose: 'happy', x: 40 }],
+                    bubbles: [{ who: 'hoot', text: 'Counting with a dictionary: .get(thing, 0) + 1 works even the first time!' }],
                     code: py`
                         counts = {}
                         for letter in "banana":
@@ -234,15 +234,15 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'village',
-                    alt: 'Kai adds up the prices on a shop sign.',
+                    alt: 'Hoot adds up the prices on a shop sign.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'kai', pose: 'think', x: 75, flip: true },
+                        { who: 'hoot', pose: 'think', x: 75, flip: true },
                     ],
                     props: [{ item: 'sign', x: 50, y: 100 }],
                     bubbles: [
                         { who: 'py', text: 'Loop over the keys and add up every value.' },
-                        { who: 'kai', text: 'Buying one of everything costs 8!' },
+                        { who: 'hoot', text: 'Buying one of everything costs 8!' },
                     ],
                     code: py`
                         prices = {"potion": 5, "map": 3}
@@ -271,15 +271,15 @@ export const ch4: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai tips out his bag and counts everything with a tally sheet.',
+                    alt: 'Hoot tips out its bag and counts everything with a tally sheet.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Looping over a dictionary gives you the keys. in checks the keys. And .get(key, 0) + 1 can count anything.' },
-                        { who: 'kai', text: 'My bag is finally organised!' },
+                        { who: 'hoot', text: 'My bag is finally organised!' },
                     ],
                 },
             ],

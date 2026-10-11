@@ -218,11 +218,11 @@ export const ch2: Chapter = {
             panels: [
                 {
                     scene: 'castle',
-                    alt: 'Py hands a gift box back to Kai, labelled return.',
+                    alt: 'Py hands a gift box labelled return back to Hoot the owl.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
-                        { who: 'kai', pose: 'surprised', x: 72, flip: true },
+                        { who: 'hoot', pose: 'surprised', x: 72, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'print shows a value on screen. return HANDS IT BACK, so you can store it or do more math with it!' },
@@ -250,9 +250,9 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai uses a function answer inside an if.',
-                    cast: [{ who: 'kai', pose: 'happy', x: 40 }],
-                    bubbles: [{ who: 'kai', text: 'Returned answers can go anywhere: in an if, in a variable, into another function!' }],
+                    alt: 'Hoot uses a function answer inside an if.',
+                    cast: [{ who: 'hoot', pose: 'happy', x: 40 }],
+                    bubbles: [{ who: 'hoot', text: 'Hoo! Returned answers can go anywhere: in an if, in a variable, into another function!' }],
                     code: py`
                         def is_strong(hp):
                             return hp >= 20
@@ -266,11 +266,11 @@ export const ch2: Chapter = {
                     alt: 'Py slams a door labelled return; the lines behind it never get read.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'kai', pose: 'surprised', x: 75, flip: true },
+                        { who: 'hoot', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'return ENDS the function right away.' },
-                        { who: 'kai', text: 'So the line after it never runs!' },
+                        { who: 'hoot', text: 'So the line after it never runs!' },
                     ],
                     code: py`
                         def check(hp):
@@ -282,13 +282,13 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai stares at an empty screen after calling a function.',
+                    alt: 'Hoot stares at an empty screen after calling a function.',
                     cast: [
-                        { who: 'kai', pose: 'sad', x: 25 },
+                        { who: 'hoot', pose: 'sad', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'kai', text: 'I called bonus(10), but nothing showed up!' },
+                        { who: 'hoot', text: 'I called bonus(10), but nothing showed up!' },
                         { who: 'py', text: 'A returned value vanishes unless you print it or store it.' },
                     ],
                     code: py`
@@ -301,15 +301,15 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Kai levels up, glowing. Py hands him a gift box labelled return.',
+                    alt: 'Hoot levels up, glowing. Py hands over a gift box labelled return.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'kai', pose: 'happy', x: 75, flip: true },
+                        { who: 'hoot', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'print SHOWS a value. return GIVES IT BACK. Return answers so the rest of your code can use them.' },
-                        { who: 'kai', text: 'Level 4, here I come!' },
+                        { who: 'hoot', text: 'Level 4, here I come!' },
                     ],
                     code: py`
                         def level_up(level):

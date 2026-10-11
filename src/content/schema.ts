@@ -3,7 +3,9 @@
 
 // ---------- Characters & comics (drawn as SVG, see src/art) ----------
 
-export type CharacterArt = 'py' | 'miner' | 'turtle' | 'sneak' | 'kid' | 'robot' | 'critter';
+export type CharacterArt =
+    | 'py' | 'miner' | 'turtle' | 'sneak' | 'kid' | 'robot' | 'critter'
+    | 'dragon' | 'blob' | 'alien' | 'parrot' | 'bunny' | 'cat' | 'owl' | 'fox';
 export type Pose = 'idle' | 'talk' | 'wave' | 'point' | 'think' | 'happy' | 'surprised' | 'sad';
 export type SceneId = 'meadow' | 'night' | 'cave' | 'village' | 'room' | 'circuit' | 'screen' | 'arena' | 'sky' | 'castle' | 'space';
 export type PropId =
@@ -13,7 +15,7 @@ export type PropId =
 export interface Character {
     name: string;
     art: CharacterArt;
-    /** Main colour for characters that can be tinted (kid) */
+    /** Main colour for characters that can be tinted (kid, critter and the animals) */
     tint?: string;
 }
 

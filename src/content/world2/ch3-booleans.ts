@@ -14,14 +14,14 @@ export const ch3: Chapter = {
             panels: [
                 {
                     scene: 'arena',
-                    alt: 'Fizz checks its HP bar and asks Py a question.',
+                    alt: 'Hop, Rae\'s new bunny critter, checks its HP bar and asks Py a question.',
                     wide: true,
                     cast: [
-                        { who: 'fizz', pose: 'think', x: 28 },
+                        { who: 'hop', pose: 'think', x: 28 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'fizz', text: 'Is my HP bigger than 10?' },
+                        { who: 'hop', text: 'I\'m Hop, Rae\'s newest critter! Is my HP bigger than 10?' },
                         { who: 'py', text: 'Ask Python! A comparison always answers True or False.' },
                     ],
                     code: py`
@@ -82,11 +82,11 @@ export const ch3: Chapter = {
                     alt: 'Py points at a password with a sneaky extra space at the end.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                        { who: 'hop', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'You can compare text too, but it must match EXACTLY.' },
-                        { who: 'fizz', text: 'One extra space makes it False?!' },
+                        { who: 'hop', text: 'One extra space makes it False?!' },
                     ],
                     code: py`
                         password = "zap"
@@ -96,16 +96,16 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Py hosts a quiz show. Fizz and Rae hold up True and False cards.',
+                    alt: 'Py hosts a quiz show. Hop and Rae hold up True and False cards.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
-                        { who: 'fizz', pose: 'happy', x: 55 },
+                        { who: 'hop', pose: 'happy', x: 55 },
                         { who: 'rae', pose: 'happy', x: 82, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Every comparison is a yes-or-no question. Python always answers True or False, never maybe!' },
-                        { who: 'fizz', text: 'Python would win every quiz show!' },
+                        { who: 'hop', text: 'Python would win every quiz show!' },
                     ],
                     code: py`
                         hp = 8
@@ -190,12 +190,12 @@ export const ch3: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'rae', pose: 'point', x: 25 },
-                        { who: 'fizz', pose: 'happy', x: 78, flip: true },
+                        { who: 'hop', pose: 'happy', x: 78, flip: true },
                     ],
                     props: [{ item: 'chest', x: 52, y: 100 }],
                     bubbles: [
                         { who: 'rae', text: 'You can keep the answer in a variable. can_battle holds True or False!' },
-                        { who: 'fizz', text: 'True and False go in chests, just like numbers!' },
+                        { who: 'hop', text: 'True and False go in chests, just like numbers!' },
                     ],
                     code: py`
                         hp = 12
@@ -208,7 +208,7 @@ export const ch3: Chapter = {
                     alt: 'Py compares a text "5" with a number 5.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
-                        { who: 'fizz', pose: 'surprised', x: 72, flip: true },
+                        { who: 'hop', pose: 'surprised', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'Careful: the text "5" and the number 5 are NOT equal!' }],
                     code: py`
@@ -218,7 +218,7 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Fizz has 0 HP, but the can_battle chest still says True.',
+                    alt: 'Hop has 0 HP, but the can_battle chest still says True.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
                         { who: 'rae', pose: 'surprised', x: 75, flip: true },
@@ -240,11 +240,11 @@ export const ch3: Chapter = {
                     alt: 'Rae reads a label next to True on the screen.',
                     cast: [
                         { who: 'rae', pose: 'point', x: 25 },
-                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                        { who: 'hop', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'rae', text: 'A bare True is confusing. Add a label with a comma!' },
-                        { who: 'fizz', text: 'Low HP: True. Yikes, potion time!' },
+                        { who: 'hop', text: 'Low HP: True. Yikes, potion time!' },
                     ],
                     code: py`
                         hp = 3

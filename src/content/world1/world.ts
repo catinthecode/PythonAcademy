@@ -7,4 +7,5 @@ export const characters: Record<string, Character> = {
     shelly: { name: 'Shelly', art: 'turtle' },
     sneak: { name: 'Sneak', art: 'sneak' },
     bolt: { name: 'Bolt', art: 'robot' },
+    pip: { name: 'Pip', art: 'parrot', tint: '#ef4444' },
 };

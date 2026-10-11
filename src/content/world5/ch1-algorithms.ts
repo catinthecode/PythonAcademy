@@ -242,9 +242,9 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork checks for repeated star gems two different ways.',
+                    alt: 'Comet the space fox checks for repeated star gems two different ways.',
                     cast: [
-                        { who: 'zork', pose: 'think', x: 30 },
+                        { who: 'comet', pose: 'think', x: 30 },
                         { who: 'nova', pose: 'happy', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'nova', text: 'Finding duplicates: comparing every pair is slow. Remembering what you\'ve seen in a dictionary is fast!' }],
@@ -275,13 +275,13 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork pushes a shiny new computer. Py shakes its head.',
+                    alt: 'Comet pushes a shiny new computer. Py shakes its head.',
                     cast: [
-                        { who: 'zork', pose: 'happy', x: 25 },
+                        { who: 'comet', pose: 'happy', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'zork', text: 'Easy fix: buy a faster computer!' },
+                        { who: 'comet', text: 'Easy fix: buy a faster computer!' },
                         { who: 'py', text: 'A million times a million is still too slow. Better recipes win.' },
                     ],
                     code: py`
@@ -296,7 +296,7 @@ export const ch1: Chapter = {
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
                         { who: 'nova', pose: 'happy', x: 52 },
-                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                        { who: 'comet', pose: 'happy', x: 82, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Halving is fastest, one loop is fine, and loop-in-a-loop gets slow for big n. Remembering things in a dictionary can turn slow into fast.' },

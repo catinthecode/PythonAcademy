@@ -207,27 +207,27 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Py and Max look at a red error message through a magnifying glass, like detectives.',
+                    alt: 'Py and Pip the parrot look at a red error message through a magnifying glass, like detectives.',
                     cast: [
                         { who: 'py', pose: 'talk', x: 28 },
-                        { who: 'max', pose: 'think', x: 72, flip: true },
+                        { who: 'pip', pose: 'think', x: 72, flip: true },
                     ],
                     props: [{ item: 'magnifier', x: 50, y: 70 }],
                     bubbles: [
                         { who: 'py', text: 'Confused Python shows an error. Errors are clues, not failures!' },
-                        { who: 'max', text: 'SyntaxError... what is the clue?' },
+                        { who: 'pip', text: 'Squawk! I\'m Pip. SyntaxError... what is the clue?' },
                     ],
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Max puts the giant quote mark back at the end of the line, and Py cheers.',
+                    alt: 'Pip puts the giant quote mark back at the end of the line, and Py cheers.',
                     cast: [
-                        { who: 'max', pose: 'happy', x: 28 },
+                        { who: 'pip', pose: 'happy', x: 28 },
                         { who: 'py', pose: 'happy', x: 74, flip: true },
                     ],
                     props: [{ item: 'quote', x: 50, y: 45 }],
                     bubbles: [
-                        { who: 'max', text: 'The quote at the end is missing!' },
+                        { who: 'pip', text: 'The quote at the end is missing!' },
                         { who: 'py', text: 'Yes! Quotes come in pairs. So do brackets: every ( needs a ).' },
                     ],
                     code: py`print("Boom")`,
@@ -237,19 +237,19 @@ export const ch1: Chapter = {
                     alt: 'Py holds up two signs: one says print, the other says Print with a big X.',
                     cast: [
                         { who: 'py', pose: 'point', x: 30 },
-                        { who: 'max', pose: 'surprised', x: 75, flip: true },
+                        { who: 'pip', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Capitals matter! Python knows print, but has never heard of Print.' },
-                        { who: 'max', text: 'One big letter breaks it?' },
+                        { who: 'pip', text: 'One big letter breaks it?' },
                     ],
                     code: py`Print("Hi")`,
                 },
                 {
                     scene: 'village',
-                    alt: 'Max counts on his fingers while Py shows numbers floating with and without quotes.',
+                    alt: 'Pip counts on its wing feathers while Py shows numbers floating with and without quotes.',
                     cast: [
-                        { who: 'max', pose: 'think', x: 25 },
+                        { who: 'pip', pose: 'think', x: 25 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
@@ -262,17 +262,17 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Py counts off three rules on a sign while Max and Sneak listen. Sneak looks grumpy.',
+                    alt: 'Py counts off three rules on a sign while Pip and Sneak listen. Sneak looks grumpy.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
-                        { who: 'max', pose: 'happy', x: 58 },
+                        { who: 'pip', pose: 'happy', x: 58 },
                         { who: 'sneak', pose: 'sad', x: 85, flip: true },
                     ],
                     props: [{ item: 'sign', x: 38, y: 100 }],
                     bubbles: [
                         { who: 'py', text: 'Remember: print is all small letters, quotes and brackets come in pairs, and only numbers without quotes do math.' },
-                        { who: 'max', text: "Let's solve some puzzles!" },
+                        { who: 'pip', text: "Let's solve some puzzles!" },
                     ],
                 },
             ],

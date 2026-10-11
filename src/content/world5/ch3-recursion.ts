@@ -36,14 +36,14 @@ export const ch3: Chapter = {
             panels: [
                 {
                     scene: 'space',
-                    alt: 'Nova looks into a portal that shows smaller and smaller copies of itself.',
+                    alt: 'Comet looks into a portal that shows smaller and smaller copies of itself.',
                     wide: true,
                     cast: [
-                        { who: 'nova', pose: 'surprised', x: 22 },
+                        { who: 'comet', pose: 'surprised', x: 22 },
                         { who: 'py', pose: 'talk', x: 62, flip: true },
                     ],
                     bubbles: [
-                        { who: 'nova', text: 'The portal shows a portal, inside a portal, inside a portal...' },
+                        { who: 'comet', text: 'Whoa! The portal shows a portal, inside a portal, inside a portal...' },
                         { who: 'py', text: 'That\'s recursion! A function can call ITSELF to solve a smaller version of the same problem.' },
                     ],
                 },
@@ -70,7 +70,7 @@ export const ch3: Chapter = {
                     alt: 'Zork forgets the base case and falls into an endless portal.',
                     cast: [
                         { who: 'zork', pose: 'surprised', x: 30 },
-                        { who: 'nova', pose: 'point', x: 72, flip: true },
+                        { who: 'comet', pose: 'point', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'zork', text: 'I forgot the base case! I\'m falling forever... RecursionError!' }],
                     code: py`
@@ -86,11 +86,11 @@ export const ch3: Chapter = {
                     alt: 'A stack of plates: each call waits on top of the next.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'nova', pose: 'think', x: 75, flip: true },
+                        { who: 'comet', pose: 'think', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Each call waits for the smaller call to answer, then adds 1.' },
-                        { who: 'nova', text: '"" is 0, so "n" is 1, "on" is 2... "moon" is 4!' },
+                        { who: 'comet', text: '"" is 0, so "n" is 1, "on" is 2... "moon" is 4!' },
                     ],
                     code: py`
                         def length(text):
@@ -129,11 +129,11 @@ export const ch3: Chapter = {
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'nova', pose: 'happy', x: 75, flip: true },
+                        { who: 'comet', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Two rules for recursion: a BASE CASE that stops, and a recursive step that gets SMALLER, closer to that base case every time.' },
-                        { who: 'nova', text: 'Shrink, shrink, shrink... stop!' },
+                        { who: 'comet', text: 'Shrink, shrink, shrink... stop!' },
                     ],
                 },
             ],
@@ -290,9 +290,9 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork spells a word one letter at a time.',
-                    cast: [{ who: 'zork', pose: 'point', x: 40 }],
-                    bubbles: [{ who: 'zork', text: 'Spell a word: print the first letter, then spell the rest!' }],
+                    alt: 'Comet spells a word one letter at a time.',
+                    cast: [{ who: 'comet', pose: 'point', x: 40 }],
+                    bubbles: [{ who: 'comet', text: 'Spell a word: print the first letter, then spell the rest!' }],
                     code: py`
                         def spell(text):
                             if text == "":
@@ -319,11 +319,11 @@ export const ch3: Chapter = {
                     scene: 'screen',
                     alt: 'Folders inside folders inside folders, each holding files.',
                     cast: [
-                        { who: 'zork', pose: 'think', x: 25 },
+                        { who: 'comet', pose: 'think', x: 25 },
                         { who: 'py', pose: 'point', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'zork', text: 'Couldn\'t a loop do all this?' },
+                        { who: 'comet', text: 'Couldn\'t a loop do all this?' },
                         { who: 'py', text: 'Often! But folders inside folders need recursion.' },
                     ],
                     code: py`
@@ -341,12 +341,12 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Nova and Zork stand under a huge branching tree.',
+                    alt: 'Nova and Comet stand under a huge branching tree.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
                         { who: 'nova', pose: 'happy', x: 52 },
-                        { who: 'zork', pose: 'happy', x: 82, flip: true },
+                        { who: 'comet', pose: 'happy', x: 82, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Ask two questions: what is the smallest case, and how do I shrink the problem? First plus the rest. A trunk plus smaller trees.' },

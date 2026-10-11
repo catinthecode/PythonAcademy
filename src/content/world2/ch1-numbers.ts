@@ -14,15 +14,15 @@ export const ch1: Chapter = {
             panels: [
                 {
                     scene: 'arena',
-                    alt: 'Rae and Fizz arrive at the battle arena. Py greets them.',
+                    alt: 'Rae and Blazewing arrive at the battle arena. Py greets them.',
                     wide: true,
                     cast: [
                         { who: 'rae', pose: 'wave', x: 18 },
-                        { who: 'fizz', pose: 'happy', x: 42 },
+                        { who: 'blaze', pose: 'happy', x: 42 },
                         { who: 'py', pose: 'talk', x: 78, flip: true },
                     ],
                     bubbles: [
-                        { who: 'rae', text: 'Fizz has 12 HP and just drank a potion worth 8. How much HP now?' },
+                        { who: 'rae', text: 'Blazewing has 12 HP and just drank a potion worth 8. How much HP now?' },
                         { who: 'py', text: 'Python is a super calculator! + adds, - takes away, * times, / divides.' },
                     ],
                     code: py`
@@ -37,7 +37,7 @@ export const ch1: Chapter = {
                     alt: 'Py splits 10 berries between 4 critters; 2 berries are left over.',
                     cast: [
                         { who: 'py', pose: 'point', x: 28 },
-                        { who: 'fizz', pose: 'think', x: 72, flip: true },
+                        { who: 'blaze', pose: 'think', x: 72, flip: true },
                     ],
                     props: [{ item: 'candy', x: 50, y: 100 }],
                     bubbles: [
@@ -50,9 +50,9 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Fizz holds the two leftover berries.',
+                    alt: 'Blazewing holds the two leftover berries.',
                     cast: [
-                        { who: 'fizz', pose: 'happy', x: 30 },
+                        { who: 'blaze', pose: 'happy', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
@@ -83,13 +83,13 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Fizz frowns at a screen showing 5.0 instead of 5.',
+                    alt: 'Blazewing frowns at a screen showing 5.0 instead of 5.',
                     cast: [
-                        { who: 'fizz', pose: 'surprised', x: 25 },
+                        { who: 'blaze', pose: 'surprised', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'fizz', text: '10 / 2 gave me 5.0, not 5!' },
+                        { who: 'blaze', text: '10 / 2 gave me 5.0, not 5!' },
                         { who: 'py', text: '/ ALWAYS gives a decimal. Want a whole number? Use //.' },
                     ],
                     code: py`
@@ -99,12 +99,12 @@ export const ch1: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Py stands by a scoreboard listing the six math symbols. Rae and Fizz cheer.',
+                    alt: 'Py stands by a scoreboard listing the six math symbols. Rae and Blazewing cheer.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 20 },
                         { who: 'rae', pose: 'happy', x: 58 },
-                        { who: 'fizz', pose: 'happy', x: 82, flip: true },
+                        { who: 'blaze', pose: 'happy', x: 82, flip: true },
                     ],
                     props: [{ item: 'sign', x: 38, y: 100 }],
                     bubbles: [

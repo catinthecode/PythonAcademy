@@ -14,14 +14,14 @@ export const ch2: Chapter = {
             panels: [
                 {
                     scene: 'sky',
-                    alt: 'Bix holds up three bricks: red, blue and green.',
+                    alt: 'Mochi the cat holds up three bricks: red, blue and green.',
                     wide: true,
                     cast: [
-                        { who: 'bix', pose: 'point', x: 25 },
+                        { who: 'mochi', pose: 'point', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'I have a red, a blue and a green brick. Do I need three variables?' },
+                        { who: 'mochi', text: 'Meow! I\'m Mochi. I have a red, a blue and a green brick. Do I need three variables?' },
                         { who: 'py', text: 'No! A list keeps many things in ONE variable, inside square brackets.' },
                     ],
                     code: py`
@@ -35,7 +35,7 @@ export const ch2: Chapter = {
                     alt: 'Py numbers the bricks 0, 1, 2.',
                     cast: [
                         { who: 'py', pose: 'point', x: 28 },
-                        { who: 'bix', pose: 'surprised', x: 72, flip: true },
+                        { who: 'mochi', pose: 'surprised', x: 72, flip: true },
                     ],
                     bubbles: [{ who: 'py', text: 'Each item has a position called an index, and counting starts at 0!' }],
                     code: py`
@@ -63,17 +63,17 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Bix holds a profile card listing his name, level and a checkmark.',
+                    alt: 'Mochi holds a profile card listing its name, level and a checkmark.',
                     cast: [
-                        { who: 'bix', pose: 'happy', x: 25 },
+                        { who: 'mochi', pose: 'happy', x: 25 },
                         { who: 'py', pose: 'talk', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'Can one list hold words AND numbers?' },
+                        { who: 'mochi', text: 'Can one list hold words AND numbers?' },
                         { who: 'py', text: 'Yes! Text, numbers, even True. Each keeps its own index.' },
                     ],
                     code: py`
-                        profile = ["Bix", 10, True]
+                        profile = ["Mochi", 10, True]
                         print(profile[0])
                         print(profile[1] + 5)
                     `,
@@ -96,15 +96,15 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Py lines up blocks with index numbers under them. Bix counts along.',
+                    alt: 'Py lines up blocks with index numbers under them. Mochi counts along.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'bix', pose: 'happy', x: 75, flip: true },
+                        { who: 'mochi', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Square brackets make a list. [0] is the first item, [-1] is the last, and len() counts them all.' },
-                        { who: 'bix', text: 'So the last index is always len minus 1!' },
+                        { who: 'mochi', text: 'So the last index is always len minus 1!' },
                     ],
                     code: py`
                         blocks = ["oak", "stone", "glass", "brick"]
@@ -195,14 +195,14 @@ export const ch2: Chapter = {
             panels: [
                 {
                     scene: 'sky',
-                    alt: 'Bix adds a yellow brick to the end of the row.',
+                    alt: 'Mochi adds a yellow brick to the end of the row.',
                     wide: true,
                     cast: [
-                        { who: 'bix', pose: 'happy', x: 30 },
+                        { who: 'mochi', pose: 'happy', x: 30 },
                         { who: 'py', pose: 'talk', x: 72, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'I found a new brick! Where does it go?' },
+                        { who: 'mochi', text: 'I found a new brick! Where does it go?' },
                         { who: 'py', text: '.append() adds an item to the END of the list. The list grows by one.' },
                     ],
                     code: py`
@@ -213,9 +213,9 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'sky',
-                    alt: 'Bix swaps the blue brick for a purple one.',
-                    cast: [{ who: 'bix', pose: 'point', x: 40 }],
-                    bubbles: [{ who: 'bix', text: 'To change one item, put a new value at its position.' }],
+                    alt: 'Mochi swaps the blue brick for a purple one.',
+                    cast: [{ who: 'mochi', pose: 'point', x: 40 }],
+                    bubbles: [{ who: 'mochi', text: 'To change one item, put a new value at its position.' }],
                     code: py`
                         blocks = ["oak", "stone", "glass"]
                         blocks[2] = "gold"
@@ -227,11 +227,11 @@ export const ch2: Chapter = {
                     alt: 'A machine stamps out square numbers onto a growing list.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'bix', pose: 'surprised', x: 75, flip: true },
+                        { who: 'mochi', pose: 'surprised', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Append inside a loop to build a list fast.' },
-                        { who: 'bix', text: '1, 4, 9, 16. A list of squares!' },
+                        { who: 'mochi', text: '1, 4, 9, 16. A list of squares!' },
                     ],
                     code: py`
                         squares = []
@@ -259,13 +259,13 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'village',
-                    alt: 'Bix adds 5 bonus points to the first score on a board.',
+                    alt: 'Mochi adds 5 bonus points to the first score on a board.',
                     cast: [
-                        { who: 'bix', pose: 'point', x: 25 },
+                        { who: 'mochi', pose: 'point', x: 25 },
                         { who: 'py', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
-                        { who: 'bix', text: 'Can I add bonus points to one score?' },
+                        { who: 'mochi', text: 'Can I add bonus points to one score?' },
                         { who: 'py', text: 'Sure: scores[0] += 5 changes just that item.' },
                     ],
                     code: py`

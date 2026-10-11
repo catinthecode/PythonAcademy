@@ -14,15 +14,15 @@ export const ch5: Chapter = {
             panels: [
                 {
                     scene: 'arena',
-                    alt: 'Rae checks two things before sending Fizz into battle.',
+                    alt: 'Rae checks two things before sending Hop into battle.',
                     wide: true,
                     cast: [
                         { who: 'rae', pose: 'think', x: 25 },
-                        { who: 'fizz', pose: 'idle', x: 48 },
+                        { who: 'hop', pose: 'idle', x: 48 },
                         { who: 'py', pose: 'talk', x: 78, flip: true },
                     ],
                     bubbles: [
-                        { who: 'rae', text: 'Fizz can battle if its HP is above 0 AND it is not asleep.' },
+                        { who: 'rae', text: 'Hop can battle if its HP is above 0 AND it is not asleep.' },
                         { who: 'py', text: 'Python has those exact words: and, or, not!' },
                     ],
                     code: py`
@@ -46,12 +46,12 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Fizz yawns; it is asleep.',
+                    alt: 'Hop yawns; it is asleep.',
                     cast: [
-                        { who: 'fizz', pose: 'sad', x: 30 },
+                        { who: 'hop', pose: 'sad', x: 30 },
                         { who: 'rae', pose: 'talk', x: 72, flip: true },
                     ],
-                    bubbles: [{ who: 'rae', text: 'If Fizz is asleep, not asleep is False, so the whole "and" is False.' }],
+                    bubbles: [{ who: 'rae', text: 'If Hop is asleep, not asleep is False, so the whole "and" is False.' }],
                     code: py`
                         hp = 10
                         asleep = True
@@ -60,15 +60,15 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Fizz curls up for a nap next to an empty snack bowl.',
+                    alt: 'Hop curls up for a nap next to an empty snack bowl.',
                     cast: [
                         { who: 'rae', pose: 'talk', x: 25 },
-                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                        { who: 'hop', pose: 'happy', x: 75, flip: true },
                     ],
                     props: [{ item: 'candy', x: 50, y: 100 }],
                     bubbles: [
-                        { who: 'rae', text: 'Fizz is happy with a snack OR a nap.' },
-                        { who: 'fizz', text: 'No snack, but a nap? Still happy!' },
+                        { who: 'rae', text: 'Hop is happy with a snack OR a nap.' },
+                        { who: 'hop', text: 'No snack, but a nap? Still happy!' },
                     ],
                     code: py`
                         snack = False
@@ -94,12 +94,12 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Py reads a rule out loud like a sentence. Rae and Fizz nod along.',
+                    alt: 'Py reads a rule out loud like a sentence. Rae and Hop nod along.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 20 },
                         { who: 'rae', pose: 'happy', x: 55 },
-                        { who: 'fizz', pose: 'happy', x: 82, flip: true },
+                        { who: 'hop', pose: 'happy', x: 82, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'and: BOTH. or: at least ONE. not: flip it. Read your rule out loud, like a sentence!' },
@@ -238,15 +238,15 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'village',
-                    alt: 'A ride sign says heights 100 to 150. Fizz stretches up to measure itself.',
+                    alt: 'A ride sign says heights 100 to 150. Hop stretches up to measure itself.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
-                        { who: 'fizz', pose: 'surprised', x: 75, flip: true },
+                        { who: 'hop', pose: 'surprised', x: 75, flip: true },
                     ],
                     props: [{ item: 'sign', x: 50, y: 100 }],
                     bubbles: [
                         { who: 'py', text: '"100 to 150" includes BOTH ends. Use >= and <=.' },
-                        { who: 'fizz', text: 'So 150 counts too!' },
+                        { who: 'hop', text: 'So 150 counts too!' },
                     ],
                     code: py`
                         height = 150
@@ -255,14 +255,14 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'arena',
-                    alt: 'Fizz bounces, full of energy, ready to train.',
+                    alt: 'Hop bounces, full of energy, ready to train.',
                     cast: [
                         { who: 'rae', pose: 'talk', x: 25 },
-                        { who: 'fizz', pose: 'happy', x: 75, flip: true },
+                        { who: 'hop', pose: 'happy', x: 75, flip: true },
                     ],
                     bubbles: [
                         { who: 'rae', text: 'not makes rules read nicely: "if not tired".' },
-                        { who: 'fizz', text: 'Not tired at all. Training time!' },
+                        { who: 'hop', text: 'Not tired at all. Training time!' },
                     ],
                     code: py`
                         tired = False
@@ -274,12 +274,12 @@ export const ch5: Chapter = {
                 },
                 {
                     scene: 'castle',
-                    alt: 'Rae, Fizz and Blazewing march toward the tournament gate.',
+                    alt: 'Rae, Hop and Blazewing march toward the tournament gate.',
                     wide: true,
                     cast: [
                         { who: 'py', pose: 'talk', x: 18 },
                         { who: 'rae', pose: 'happy', x: 48 },
-                        { who: 'fizz', pose: 'happy', x: 68 },
+                        { who: 'hop', pose: 'happy', x: 68 },
                         { who: 'blaze', pose: 'happy', x: 86, flip: true },
                     ],
                     bubbles: [
