@@ -84,7 +84,8 @@ export const ch5: Chapter = {
                     alt: 'Max looks puzzled at a list that stops at 4. Sneak giggles behind a sign.',
                     cast: [
                         { who: 'max', pose: 'sad', x: 25 },
-                        { who: 'py', pose: 'talk', x: 75, flip: true },
+                        { who: 'sneak', pose: 'happy', x: 52, y: 95, scale: 0.8 },
+                        { who: 'py', pose: 'talk', x: 78, flip: true },
                     ],
                     props: [{ item: 'sign', x: 50, y: 100 }],
                     bubbles: [
@@ -305,7 +306,7 @@ export const ch5: Chapter = {
             title: 'Pattern Maker',
             problems: [
                 {
-                    id: 'p6',
+                    id: 'p5',
                     type: 'predict',
                     title: 'Growing tower',
                     prompt: 'What will this code print?',
@@ -318,7 +319,7 @@ export const ch5: Chapter = {
                     hints: ['i is 1, then 2, then 3. "#" * 2 is ##.'],
                 },
                 {
-                    id: 'p10',
+                    id: 'p6',
                     type: 'predict',
                     about: 'meaning',
                     title: 'What does it do?',
@@ -358,7 +359,7 @@ export const ch5: Chapter = {
                     ],
                 },
                 {
-                    id: 'p9',
+                    id: 'p8',
                     type: 'trace',
                     title: 'Doubling slime',
                     prompt: 'A slime doubles in size every turn. Fill in `i` and `size` each time line 3 finishes.',
@@ -376,7 +377,7 @@ export const ch5: Chapter = {
                     ],
                 },
                 {
-                    id: 'p8',
+                    id: 'p9',
                     type: 'write',
                     turtle: true,
                     title: 'Square spiral',

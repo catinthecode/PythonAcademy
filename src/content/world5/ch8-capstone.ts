@@ -25,10 +25,10 @@ export const ch8: Chapter = {
                     alt: 'Nova, Zork, Bolt and Py stand in front of a giant launch pad.',
                     wide: true,
                     cast: [
-                        { who: 'nova', pose: 'happy', x: 15 },
-                        { who: 'zork', pose: 'happy', x: 37 },
-                        { who: 'bolt', pose: 'wave', x: 62 },
-                        { who: 'py', pose: 'talk', x: 85, flip: true },
+                        { who: 'py', pose: 'talk', x: 15 },
+                        { who: 'bolt', pose: 'wave', x: 38 },
+                        { who: 'zork', pose: 'happy', x: 62 },
+                        { who: 'nova', pose: 'happy', x: 85, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Time for your capstone: a project that uses everything you know!' },

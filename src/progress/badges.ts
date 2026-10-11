@@ -26,24 +26,6 @@ export function getBadges(profile: Profile | null): Badge[] {
     let totalStars = 0;
     let perfectLessons = 0;
 
-    // Index all puzzles by id to look up their types
-    const puzzleLookup = new Map<string, { type: string; boss: boolean; turtle: boolean }>();
-    for (const w of WORLDS) {
-        for (const c of w.chapters) {
-            for (const l of c.lessons) {
-                if (l.kind !== 'read') {
-                    for (const p of l.problems) {
-                        puzzleLookup.set(p.id, {
-                            type: p.type,
-                            boss: !!p.boss,
-                            turtle: 'turtle' in p ? !!p.turtle : false,
-                        });
-                    }
-                }
-            }
-        }
-    }
-
     for (const w of WORLDS) {
         for (const c of w.chapters) {
             for (const l of c.lessons) {
@@ -58,12 +40,12 @@ export function getBadges(profile: Profile | null): Badge[] {
 
                     for (const pid of lp.solved) {
                         totalSolved++;
-                        const meta = puzzleLookup.get(pid);
-                        if (meta) {
-                            if (meta.boss) bossesSolved++;
-                            if (meta.turtle) turtleSolved++;
-                            if (meta.type === 'fix') fixSolved++;
-                            if (meta.type === 'predict') predictSolved++;
+                        const prob = l.problems.find(p => p.id === pid);
+                        if (prob) {
+                            if (prob.boss) bossesSolved++;
+                            if ('turtle' in prob && prob.turtle) turtleSolved++;
+                            if (prob.type === 'fix') fixSolved++;
+                            if (prob.type === 'predict') predictSolved++;
                         }
                     }
                 }

@@ -24,8 +24,8 @@ export const ch7: Chapter = {
                     alt: 'Bolt the robot rolls into the workshop and waves at Max.',
                     wide: true,
                     cast: [
-                        { who: 'max', pose: 'surprised', x: 25 },
-                        { who: 'bolt', pose: 'wave', x: 72, flip: true },
+                        { who: 'bolt', pose: 'wave', x: 28 },
+                        { who: 'max', pose: 'surprised', x: 72, flip: true },
                     ],
                     bubbles: [
                         { who: 'bolt', text: "Beep boop! I'm Bolt, your robot helper. Tell me what you want and I'll write the code!" },

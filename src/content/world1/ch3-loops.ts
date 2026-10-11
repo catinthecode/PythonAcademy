@@ -191,7 +191,7 @@ export const ch3: Chapter = {
                     ],
                 },
                 {
-                    id: 'p6',
+                    id: 'p5',
                     type: 'write',
                     turtle: true,
                     title: 'Triangle tent',
@@ -342,7 +342,7 @@ export const ch3: Chapter = {
             title: 'Loop Detective',
             problems: [
                 {
-                    id: 'p5',
+                    id: 'p6',
                     type: 'predict',
                     title: 'Counting with i',
                     prompt: 'What will this code print?',
@@ -358,7 +358,7 @@ export const ch3: Chapter = {
                     ],
                 },
                 {
-                    id: 'p9',
+                    id: 'p7',
                     type: 'predict',
                     title: 'Inside or outside?',
                     prompt: 'What will this code print?',
@@ -375,7 +375,7 @@ export const ch3: Chapter = {
                     ],
                 },
                 {
-                    id: 'p7',
+                    id: 'p8',
                     type: 'parsons',
                     turtle: true,
                     title: 'Loop puzzle',
@@ -393,7 +393,7 @@ export const ch3: Chapter = {
                     ],
                 },
                 {
-                    id: 'p8',
+                    id: 'p9',
                     type: 'fill',
                     title: 'TNT stack',
                     prompt: 'How many times should the loop run to print the goal?',

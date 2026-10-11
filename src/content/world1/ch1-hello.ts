@@ -17,10 +17,10 @@ export const ch1: Chapter = {
                     alt: 'Max finds a glowing magic block in a meadow. Py the snake pops out of it.',
                     wide: true,
                     cast: [
-                        { who: 'max', pose: 'surprised', x: 28 },
-                        { who: 'py', pose: 'wave', x: 70, y: 75, flip: true },
+                        { who: 'py', pose: 'wave', x: 30, y: 75 },
+                        { who: 'max', pose: 'surprised', x: 72, flip: true },
                     ],
-                    props: [{ item: 'commandBlock', x: 70, y: 100, scale: 1.3 }],
+                    props: [{ item: 'commandBlock', x: 30, y: 100, scale: 1.3 }],
                     bubbles: [
                         { who: 'py', text: "Hi Max! I'm Py. I live inside this magic block, and I speak Python!" },
                         { who: 'max', text: 'Python? Can it help me build stuff?' },

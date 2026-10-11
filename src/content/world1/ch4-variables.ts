@@ -157,7 +157,7 @@ export const ch4: Chapter = {
                     hints: ['Line 2 takes what is in the chest (10), adds 5, and puts the answer back.'],
                 },
                 {
-                    id: 'p4',
+                    id: 'p3',
                     type: 'predict',
                     title: 'Quote trap',
                     prompt: 'Careful! What will this code print?',
@@ -173,7 +173,7 @@ export const ch4: Chapter = {
                     ],
                 },
                 {
-                    id: 'p3',
+                    id: 'p4',
                     type: 'fix',
                     title: 'TNT duplicator',
                     prompt: 'A glitch made this code deploy swords instead of TNT! Change the variable inside print() so it deploys TNT.',
@@ -368,7 +368,7 @@ export const ch4: Chapter = {
                     ],
                 },
                 {
-                    id: 'p8',
+                    id: 'p7',
                     type: 'fix',
                     title: 'Mixing trouble',
                     prompt: 'Python crashes when it tries to glue text and a number. Fix it so it prints `I have 64 blocks`.',
@@ -386,7 +386,7 @@ export const ch4: Chapter = {
                     ],
                 },
                 {
-                    id: 'p7',
+                    id: 'p8',
                     type: 'fill',
                     turtle: true,
                     title: 'Just the right size',

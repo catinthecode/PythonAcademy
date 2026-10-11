@@ -282,7 +282,7 @@ export const ch2: Chapter = {
                 },
                 {
                     scene: 'space',
-                    alt: 'Zork and Nova swap places in one quick hop.',
+                    alt: 'Py shows Zork how to swap values in one line.',
                     cast: [
                         { who: 'py', pose: 'point', x: 25 },
                         { who: 'zork', pose: 'happy', x: 75, flip: true },

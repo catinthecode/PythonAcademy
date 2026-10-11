@@ -323,11 +323,12 @@ export const ch3: Chapter = {
                 },
                 {
                     scene: 'meadow',
-                    alt: 'Kai and Slime check off pieces on a plan, one at a time.',
+                    alt: 'Py, Kai and Slime check off pieces on a plan, one at a time.',
                     wide: true,
                     cast: [
-                        { who: 'py', pose: 'talk', x: 25 },
-                        { who: 'slime', pose: 'happy', x: 75, flip: true },
+                        { who: 'py', pose: 'talk', x: 20 },
+                        { who: 'kai', pose: 'happy', x: 50 },
+                        { who: 'slime', pose: 'happy', x: 80, flip: true },
                     ],
                     bubbles: [
                         { who: 'py', text: 'Plan the pieces, build one, test it, then build the next. Parameters carry what each piece needs.' },
