@@ -63,6 +63,10 @@ const solvedCount = (p: Profile) => Object.values(p.lessons).reduce((n, l) => n 
 /** Replacing a player loses whatever they did here since the file was saved, so say so and offer a backup first. */
 function ReplacePrompt({ incoming, existing, onReplace, onCancel }: { incoming: Profile; existing: Profile; onReplace: () => void; onCancel: () => void }) {
     const [backedUp, setBackedUp] = useState(false);
+    // A light grown-up check: replacing loses progress, so a kid shouldn't do it by accident.
+    const [[a, b]] = useState(() => [6 + Math.floor(Math.random() * 4), 6 + Math.floor(Math.random() * 4)]);
+    const [answer, setAnswer] = useState('');
+    const grownUp = Number(answer) === a * b;
     const describe = (p: Profile) => `Lvl ${levelInfo(p.xp).level}, ${p.xp} XP`;
     const fileIsBehind = incoming.xp < existing.xp || solvedCount(incoming) < solvedCount(existing);
     return (
@@ -74,6 +78,17 @@ function ReplacePrompt({ incoming, existing, onReplace, onCancel }: { incoming: 
             </ul>
             {fileIsBehind && <p className="mb-2 font-bold text-red-700">⚠️ The file has less progress than this device.</p>}
             <p className="mb-2 text-sm">Anything {existing.name} did on this device since the file was saved will be lost.</p>
+            <label className="mb-3 flex flex-wrap items-center gap-2 text-sm">
+                <span>Grown-up check: what is {a} × {b}?</span>
+                <input
+                    value={answer}
+                    onChange={e => setAnswer(e.target.value)}
+                    inputMode="numeric"
+                    maxLength={3}
+                    aria-label="Grown-up check answer"
+                    className="w-16 rounded-lg border-2 border-stone-300 px-2 py-1 focus:border-blue-500 focus:outline-none"
+                />
+            </label>
             <div className="flex flex-wrap gap-2">
                 <button
                     onClick={() => { downloadProfile(existing); setBackedUp(true); }}
@@ -81,7 +96,13 @@ function ReplacePrompt({ incoming, existing, onReplace, onCancel }: { incoming: 
                 >
                     💾 {backedUp ? 'Saved! Save again' : "Save this device's copy first"}
                 </button>
-                <button onClick={onReplace} className="rounded-lg bg-amber-500 px-3 py-1 font-bold text-white hover:bg-amber-600">Replace</button>
+                <button
+                    onClick={onReplace}
+                    disabled={!grownUp}
+                    className="rounded-lg bg-amber-500 px-3 py-1 font-bold text-white hover:bg-amber-600 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                    Replace
+                </button>
                 <button onClick={onCancel} className="rounded-lg bg-stone-200 px-3 py-1 font-bold hover:bg-stone-300">Cancel</button>
             </div>
         </div>

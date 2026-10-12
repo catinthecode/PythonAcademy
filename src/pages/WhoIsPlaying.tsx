@@ -44,7 +44,7 @@ export function WhoIsPlaying() {
                             <span className="text-lg font-bold">New player</span>
                         </button>
                     </div>
-                    <LoadProgressButton className="mt-6" onLoaded={() => navigate()} />
+                    <GrownUpLoad className="mt-6" />
                 </div>
             ) : (
                 <div className="w-full max-w-xl rounded-3xl border-4 border-amber-100 bg-white p-6 text-stone-900 shadow-2xl">
@@ -89,12 +89,20 @@ export function WhoIsPlaying() {
                         </button>
                     </div>
                     <p className="mt-4 text-center text-sm text-stone-500">Progress is saved in this browser on this device.</p>
-                    <div className="mt-4 border-t border-stone-200 pt-4 text-center">
-                        <p className="mb-2 text-sm text-stone-600">Played before on another device? Load your saved progress file.</p>
-                        <LoadProgressButton onLoaded={() => navigate()} />
-                    </div>
+                    <GrownUpLoad className="mt-4 border-t border-stone-200 pt-4" />
                 </div>
             )}
         </div>
+    );
+}
+
+/** Loading a file can replace a player, so keep it tucked away with the other grown-up things. */
+function GrownUpLoad({ className }: { className: string }) {
+    return (
+        <details className={`text-center ${className}`}>
+            <summary className="cursor-pointer text-sm font-bold text-stone-500">🔧 For grown-ups: load a saved progress file</summary>
+            <p className="my-2 text-sm text-stone-600">Played before on another device? Load the progress file you saved there.</p>
+            <LoadProgressButton onLoaded={() => navigate()} />
+        </details>
     );
 }
