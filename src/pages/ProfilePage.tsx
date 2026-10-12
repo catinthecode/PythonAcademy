@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { href, navigate } from '../app/router';
 import { Shell } from '../app/Shell';
 import { Avatar, AVATAR_CHOICES } from '../components/Avatar';
+import { LoadProgressButton, SaveProgressButton, StorageStatus } from '../components/Backup';
 import { StarRow } from '../components/StarRow';
 import { XpBar } from '../components/XpBar';
 import type { World } from '../content/schema';
@@ -75,6 +76,17 @@ function ProfileTab({ profile }: { profile: Profile }) {
                         <input type="checkbox" className="h-5 w-5" checked={!!profile.unlockAll} onChange={e => updateProfile({ unlockAll: e.target.checked })} />
                         Unlock every chapter and Test (skip ahead or review)
                     </label>
+                    <div className="mt-4 space-y-2 rounded-xl bg-sky-50 p-3">
+                        <h3 className="font-bold text-blue-800">Backup and move to another device</h3>
+                        <p className="text-sm text-stone-600">
+                            Progress is saved only in this browser. Save it to a file to keep a backup, or to load it on another device.
+                        </p>
+                        <div className="flex flex-wrap items-start gap-2">
+                            <SaveProgressButton profile={profile} />
+                            <LoadProgressButton />
+                        </div>
+                        <StorageStatus />
+                    </div>
                     <div className="mt-4">
                         {!confirmDelete ? (
                             <button onClick={() => setConfirmDelete(true)} className="rounded-lg border-2 border-red-300 px-3 py-1 font-bold text-red-700 hover:bg-red-50">Delete this player…</button>

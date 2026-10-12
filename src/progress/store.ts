@@ -2,6 +2,7 @@
 // the `backend` object, so a server-backed version can replace it later without touching pages.
 import { useSyncExternalStore } from 'react';
 import type { CharacterArt } from '../content/schema';
+import { keepStorage } from './transfer';
 import { starsFor, XP } from './xp';
 
 export interface Avatar {
@@ -71,6 +72,8 @@ const localBackend: Backend = {
 const backend: Backend = localBackend;
 let data: Data = backend.load() ?? { version: 1, profiles: [], current: null };
 const listeners = new Set<() => void>();
+// Once there's progress worth keeping, ask the browser not to clear it.
+if (data.profiles.length > 0) void keepStorage();
 
 function commit(next: Data) {
     data = next;
@@ -121,6 +124,15 @@ export function createProfile(name: string, avatar: Avatar) {
         days: [],
     };
     commit({ ...data, profiles: [...data.profiles, profile], current: profile.id });
+    void keepStorage();
+}
+
+/** Adds a player loaded from a backup file. A player with the same id is replaced by the file's copy. */
+export function importProfile(profile: Profile) {
+    const exists = data.profiles.some(p => p.id === profile.id);
+    const profiles = exists ? data.profiles.map(p => (p.id === profile.id ? profile : p)) : [...data.profiles, profile];
+    commit({ ...data, profiles, current: profile.id });
+    void keepStorage();
 }
 
 export function switchProfile(id: string | null) {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { navigate } from '../app/router';
 import { Avatar, AVATAR_CHOICES } from '../components/Avatar';
+import { LoadProgressButton } from '../components/Backup';
 import { createProfile, switchProfile, useProgress, type Avatar as AvatarData } from '../progress/store';
 import { levelInfo } from '../progress/xp';
 
@@ -43,6 +44,7 @@ export function WhoIsPlaying() {
                             <span className="text-lg font-bold">New player</span>
                         </button>
                     </div>
+                    <LoadProgressButton className="mt-6" onLoaded={() => navigate()} />
                 </div>
             ) : (
                 <div className="w-full max-w-xl rounded-3xl border-4 border-amber-100 bg-white p-6 text-stone-900 shadow-2xl">
@@ -87,6 +89,10 @@ export function WhoIsPlaying() {
                         </button>
                     </div>
                     <p className="mt-4 text-center text-sm text-stone-500">Progress is saved in this browser on this device.</p>
+                    <div className="mt-4 border-t border-stone-200 pt-4 text-center">
+                        <p className="mb-2 text-sm text-stone-600">Played before on another device? Load your saved progress file.</p>
+                        <LoadProgressButton onLoaded={() => navigate()} />
+                    </div>
                 </div>
             )}
         </div>
